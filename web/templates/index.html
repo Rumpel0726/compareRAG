@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏥 compareRAG</h1>
+            <p class="subtitle">Медицинский ассистент на базе RAG</p>
+            <div class="status" id="status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Проверка соединения...</span>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <!-- Messages -->
+            <div class="messages" id="messages">
+                <div class="message system-message">
+                    <div class="message-content">
+                        <p><strong>Добро пожаловать в медицинский ассистент!</strong></p>
+                        <p>Я могу отвечать на вопросы по 10 медицинским документам в базе знаний.</p>
+                        <p>Задайте вопрос на русском языке, и я найду релевантную информацию в документах.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Form -->
+            <form class="input-form" id="chat-form">
+                <div class="input-container">
+                    <textarea
+                        id="query-input"
+                        placeholder="Введите ваш вопрос..."
+                        rows="1"
+                        required
+                    ></textarea>
+                    <button type="submit" id="send-button">
+                        <span class="button-text">Отправить</span>
+                        <span class="loading-spinner" style="display: none;">⏳</span>
+                    </button>
+                </div>
+
+                <!-- Settings -->
+                <div class="settings">
+                    <label>
+                        Количество документов (top_k):
+                        <input type="number" id="top-k" min="1" max="20" value="5">
+                    </label>
+                    <label>
+                        Температура:
+                        <input type="number" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer with Stats -->
+        <footer class="footer">
+            <div class="stats" id="stats">
+                <span>Документов в базе: <strong id="doc-count">-</strong></span>
+                <span>Модель: <strong id="model-name">-</strong></span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
