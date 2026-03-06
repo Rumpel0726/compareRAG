@@ -99,6 +99,66 @@ function formatAssistantMessage(data) {
     answerP.innerHTML = data.answer.replace(/\n/g, '<br>');
     container.appendChild(answerP);
 
+    // Подобранные чанки
+    if (data.chunks && data.chunks.length > 0) {
+        const chunksDiv = document.createElement('div');
+        chunksDiv.classList.add('chunks-section');
+
+        const chunksTitle = document.createElement('div');
+        chunksTitle.classList.add('chunks-title');
+        chunksTitle.textContent = `📄 Подобранные фрагменты (${data.chunks.length}):`;
+        chunksDiv.appendChild(chunksTitle);
+
+        const chunksList = document.createElement('div');
+        chunksList.classList.add('chunks-list');
+
+        data.chunks.forEach((chunk, index) => {
+            const chunkItem = document.createElement('div');
+            chunkItem.classList.add('chunk-item');
+
+            // Заголовок чанка с файлом и score
+            const chunkHeader = document.createElement('div');
+            chunkHeader.classList.add('chunk-header');
+
+            const scoreText = chunk.score ? ` (релевантность: ${chunk.score.toFixed(3)})` : '';
+            chunkHeader.innerHTML = `<strong>${index + 1}. ${chunk.file_name}</strong>${scoreText}`;
+
+            chunkItem.appendChild(chunkHeader);
+
+            // Текст чанка
+            const chunkText = document.createElement('div');
+            chunkText.classList.add('chunk-text');
+            // Ограничиваем длину для отображения
+            const displayText = chunk.text.length > 500
+                ? chunk.text.substring(0, 500) + '...'
+                : chunk.text;
+            chunkText.textContent = displayText;
+            chunkItem.appendChild(chunkText);
+
+            // Кнопка "показать полностью" для длинных чанков
+            if (chunk.text.length > 500) {
+                const expandBtn = document.createElement('button');
+                expandBtn.classList.add('expand-btn');
+                expandBtn.textContent = 'Показать полностью';
+                expandBtn.onclick = () => {
+                    if (chunkText.textContent === displayText) {
+                        chunkText.textContent = chunk.text;
+                        expandBtn.textContent = 'Свернуть';
+                    } else {
+                        chunkText.textContent = displayText;
+                        expandBtn.textContent = 'Показать полностью';
+                    }
+                };
+                chunkItem.appendChild(expandBtn);
+            }
+
+            chunksList.appendChild(chunkItem);
+        });
+
+        chunksDiv.appendChild(chunksList);
+        container.appendChild(chunksDiv);
+    }
+
     // Источники
     if (data.sources && data.sources.length > 0) {
         const sourcesDiv = document.createElement('div');
@@ -106,7 +166,7 @@ function formatAssistantMessage(data) {
 
         const sourcesTitle = document.createElement('div');
         sourcesTitle.classList.add('sources-title');
-        sourcesTitle.textContent = '📚 Источники:';
+        sourcesTitle.textContent = '📚 Файлы-источники:';
         sourcesDiv.appendChild(sourcesTitle);
 
         const sourcesList = document.createElement('div');

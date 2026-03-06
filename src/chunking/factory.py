@@ -11,12 +11,16 @@ from ..utils.exceptions import ChunkingError
 
 from .chonkie_chunker import ChonkieChunker, CHONKIE_AVAILABLE
 from .langchain_chunker import LangChainChunker, LANGCHAIN_AVAILABLE
+from .sentence_chunker import SentenceChunkerWrapper, SENTENCE_CHUNKER_AVAILABLE
+from .semantic_chunker import SemanticChunkerWrapper, SEMANTIC_CHUNKER_AVAILABLE
 
 
 # Реестр доступных чанкеров
 CHUNKER_REGISTRY: Dict[str, Type[BaseChunker]] = {
     "chonkie": ChonkieChunker,
     "langchain": LangChainChunker,
+    "sentence": SentenceChunkerWrapper,
+    "semantic_chunker": SemanticChunkerWrapper,
 }
 
 
@@ -70,6 +74,16 @@ class ChunkingStrategyFactory:
                 "LangChain недоступен. Установите: pip install langchain"
             )
 
+        if strategy_name == "sentence" and not SENTENCE_CHUNKER_AVAILABLE:
+            raise ChunkingError(
+                "Chonkie SentenceChunker недоступен. Установите: pip install chonkie"
+            )
+
+        if strategy_name == "semantic_chunker" and not SEMANTIC_CHUNKER_AVAILABLE:
+            raise ChunkingError(
+                "Chonkie SemanticChunker недоступен. Установите: pip install chonkie"
+            )
+
         # Создаем и возвращаем экземпляр чанкера
         try:
             chunker = chunker_class(**kwargs)
@@ -94,6 +108,10 @@ class ChunkingStrategyFactory:
             if name == "chonkie" and CHONKIE_AVAILABLE:
                 available.append(name)
             elif name == "langchain" and LANGCHAIN_AVAILABLE:
+                available.append(name)
+            elif name == "sentence" and SENTENCE_CHUNKER_AVAILABLE:
+                available.append(name)
+            elif name == "semantic_chunker" and SEMANTIC_CHUNKER_AVAILABLE:
                 available.append(name)
 
         return available

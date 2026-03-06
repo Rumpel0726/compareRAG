@@ -139,6 +139,9 @@ class SimpleRAGOrchestrator:
             # Извлекаем источники
             sources = self._extract_sources(retrieval_result.chunks)
 
+            # Сериализуем chunks для передачи в API
+            chunks_data = self._serialize_chunks(retrieval_result.chunks, retrieval_result.scores)
+
             # Формируем результат
             total_time = time.time() - start_time
 
@@ -146,6 +149,7 @@ class SimpleRAGOrchestrator:
                 "query": user_query,
                 "answer": answer,
                 "sources": sources,
+                "chunks": chunks_data,
                 "retrieval_time": round(retrieval_time, 2),
                 "generation_time": round(generation_time, 2),
                 "total_time": round(total_time, 2),
@@ -230,6 +234,31 @@ class SimpleRAGOrchestrator:
                 sources.add(file_name)
 
         return sorted(list(sources))
+
+    def _serialize_chunks(self, chunks, scores) -> list[Dict[str, Any]]:
+        """
+        Сериализует chunks в словари для передачи в API.
+
+        Args:
+            chunks: Список чанков
+            scores: Список scores релевантности
+
+        Returns:
+            Список словарей с данными чанков
+        """
+        chunks_data = []
+
+        for idx, chunk in enumerate(chunks):
+            chunk_dict = {
+                "text": chunk.text,
+                "file_name": chunk.metadata.get("file_name", "Unknown"),
+                "chunk_id": chunk.chunk_id,
+                "score": scores[idx] if idx < len(scores) else None,
+                "metadata": chunk.metadata
+            }
+            chunks_data.append(chunk_dict)
+
+        return chunks_data
 
     def get_statistics(self) -> Dict[str, Any]:
         """

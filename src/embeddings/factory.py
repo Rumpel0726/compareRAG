@@ -110,4 +110,6 @@ def create_embedder_from_config(config) -> BaseEmbedder:
         url=config.lm_studio.url,
         model=config.lm_studio.embedding_model,
         timeout=config.lm_studio.timeout,
+        add_eos_token=config.lm_studio.add_eos_token,
+        eos_token=config.lm_studio.eos_token,
     )

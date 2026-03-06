@@ -19,9 +19,24 @@ class LMStudioConfig(BaseSettings):
     temperature: float = Field(default=0.7, ge=0.0, le=2.0, description="Температура генерации")
     max_tokens: int = Field(default=2000, ge=1, description="Максимальное количество токенов")
     timeout: int = Field(default=120, description="Таймаут запросов в секундах")
+    add_eos_token: bool = Field(default=False, description="Добавлять EOS-токен в конец каждого текста перед эмбеддингом")
+    eos_token: str = Field(default="</s>", description="EOS-токен для добавления (зависит от модели)")
 
     class Config:
         env_prefix = "LM_STUDIO_"
+
+    @property
+    def embedding_model_id(self) -> str:
+        """Короткий идентификатор модели эмбеддингов для использования в именах коллекций.
+
+        Примеры:
+            text-embedding-nomic-embed-text-v1.5  → nomic
+            text-embedding-qwen3-embedding-0.6b   → qwen3
+        """
+        name = self.embedding_model.lower()
+        if name.startswith("text-embedding-"):
+            name = name[len("text-embedding-"):]
+        return name.split("-")[0]
 
 
 class ChromaDBConfig(BaseSettings):
@@ -49,9 +64,12 @@ class ChunkingConfig(BaseSettings):
 class RetrievalConfig(BaseSettings):
     """Конфигурация для поиска."""
 
-    strategy: str = Field(default="semantic", description="Стратегия поиска")
+    strategy: str = Field(default="semantic", description="Стратегия поиска: semantic или hybrid")
     top_k: int = Field(default=5, ge=1, description="Количество результатов")
     score_threshold: float = Field(default=0.0, ge=0.0, le=1.0, description="Порог score")
+    rrf_k: int = Field(default=60, ge=1, description="Константа RRF для гибридного поиска")
+    bm25_k1: float = Field(default=1.5, ge=0.0, description="BM25 параметр k1 (насыщение частоты термина)")
+    bm25_b: float = Field(default=0.75, ge=0.0, le=1.0, description="BM25 параметр b (нормализация длины документа)")
 
     class Config:
         env_prefix = "RETRIEVAL_"

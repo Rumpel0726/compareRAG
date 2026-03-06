@@ -8,7 +8,7 @@ lm_studio:
   embedding_model: "text-embedding-nomic-embed-text-v1.5"
   temperature: 0.7
   max_tokens: 2000
-  timeout: 120
+  timeout: 300
 
 # Настройки ChromaDB
 chromadb:
@@ -24,9 +24,12 @@ chunking:
 
 # Настройки поиска
 retrieval:
-  strategy: "semantic"
-  top_k: 5
+  strategy: "semantic"   # "semantic" или "hybrid"
+  top_k: 10
   score_threshold: 0.0
+  rrf_k: 60
+  bm25_k1: 1.5
+  bm25_b: 0.75
 
 # Настройки логирования
 logging:

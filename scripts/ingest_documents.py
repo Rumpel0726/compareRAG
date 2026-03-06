@@ -80,6 +80,31 @@ def parse_arguments():
         help="Уровень логирования"
     )
 
+    parser.add_argument(
+        "--embedding-model",
+        type=str,
+        default=None,
+        help="Модель эмбеддингов (переопределяет конфиг). "
+             "Пример: text-embedding-qwen3-embedding-0.6b. "
+             "Имя коллекции автоматически дополняется суффиксом модели."
+    )
+
+    parser.add_argument(
+        "--add-eos-token",
+        action="store_true",
+        default=False,
+        help="Добавлять EOS-токен в конец каждого текста перед эмбеддингом. "
+             "Нужно для некоторых моделей (например qwen3-embedding)."
+    )
+
+    parser.add_argument(
+        "--eos-token",
+        type=str,
+        default=None,
+        help="EOS-токен для добавления (по умолчанию из конфига: </s>). "
+             "Пример для Qwen3: '<|endoftext|>'"
+    )
+
     return parser.parse_args()
 
 
@@ -287,9 +312,27 @@ def main():
         # Загрузка конфигурации
         logger.info("Загрузка конфигурации...")
         config = load_config(args.config)
+
+        # Переопределение модели эмбеддингов (если задана через CLI)
+        if args.embedding_model:
+            config.lm_studio.embedding_model = args.embedding_model
+            model_id = config.lm_studio.embedding_model_id
+            config.chromadb.collection_name = f"{config.chromadb.collection_name}_{model_id}"
+            logger.info(f"Модель эмбеддингов (CLI): {args.embedding_model}")
+            logger.info(f"Коллекция (с суффиксом модели): {config.chromadb.collection_name}")
+
+        if args.add_eos_token:
+            config.lm_studio.add_eos_token = True
+            logger.info("EOS-токен включён")
+        if args.eos_token:
+            config.lm_studio.eos_token = args.eos_token
+            logger.info(f"EOS-токен: {args.eos_token}")
+
         logger.info(f"Стратегия чанкинга: {config.chunking.strategy}")
         logger.info(f"Размер чанка: {config.chunking.chunk_size}")
         logger.info(f"Перекрытие: {config.chunking.chunk_overlap}")
+        logger.info(f"Модель эмбеддингов: {config.lm_studio.embedding_model}")
+        logger.info(f"Коллекция: {config.chromadb.collection_name}")
 
         # Инициализация компонентов
         logger.info("Инициализация компонентов...")

@@ -12,11 +12,14 @@ from ..core.base_vector_store import BaseVectorStore
 from ..utils.exceptions import RetrievalError
 
 from .semantic_retriever import SemanticRetriever
+from .bm25_retriever import BM25Retriever
+from .hybrid_retriever import HybridRetriever
 
 
 # Реестр доступных ретриверов
 RETRIEVER_REGISTRY: Dict[str, Type[BaseRetriever]] = {
     "semantic": SemanticRetriever,
+    "bm25": BM25Retriever,
 }
 
 
@@ -36,8 +39,8 @@ class RetrieverFactory:
         Создает ретривер по типу.
 
         Args:
-            retriever_type: Тип ретривера ("semantic")
-            embedder: Генератор эмбеддингов
+            retriever_type: Тип ретривера ("semantic", "bm25")
+            embedder: Генератор эмбеддингов (не используется для bm25)
             vector_store: Векторное хранилище
             **kwargs: Параметры для ретривера
 
@@ -67,11 +70,18 @@ class RetrieverFactory:
         retriever_class = RETRIEVER_REGISTRY[retriever_type]
 
         try:
-            retriever = retriever_class(
-                embedder=embedder,
-                vector_store=vector_store,
-                **kwargs
-            )
+            if retriever_type == "bm25":
+                # BM25 не использует embedder
+                retriever = retriever_class(
+                    vector_store=vector_store,
+                    **kwargs
+                )
+            else:
+                retriever = retriever_class(
+                    embedder=embedder,
+                    vector_store=vector_store,
+                    **kwargs
+                )
             logger.info(f"Создан ретривер: {retriever}")
             return retriever
         except Exception as e:
@@ -86,7 +96,7 @@ class RetrieverFactory:
         Returns:
             Список названий ретриверов
         """
-        return list(RETRIEVER_REGISTRY.keys())
+        return list(RETRIEVER_REGISTRY.keys()) + ["hybrid"]
 
     @staticmethod
     def register_retriever(name: str, retriever_class: Type[BaseRetriever]) -> None:
@@ -117,6 +127,10 @@ def create_retriever_from_config(
     """
     Создает ретривер из конфигурации.
 
+    Стратегия поиска определяется полем config.retrieval.strategy:
+      - "semantic" — только векторный поиск (SemanticRetriever)
+      - "hybrid"   — векторный + BM25 с RRF fusion (HybridRetriever)
+
     Args:
         config: Объект конфигурации с полями retrieval
         embedder: Генератор эмбеддингов
@@ -124,11 +138,49 @@ def create_retriever_from_config(
 
     Returns:
         Экземпляр BaseRetriever
+
+    Raises:
+        RetrievalError: Если стратегия неизвестна
     """
-    return RetrieverFactory.create(
-        retriever_type="semantic",  # По умолчанию семантический поиск
-        embedder=embedder,
-        vector_store=vector_store,
-        top_k=config.retrieval.top_k,
-        relevance_threshold=config.retrieval.score_threshold
-    )
+    strategy = config.retrieval.strategy.lower()
+    top_k = config.retrieval.top_k
+
+    if strategy == "semantic":
+        return RetrieverFactory.create(
+            retriever_type="semantic",
+            embedder=embedder,
+            vector_store=vector_store,
+            top_k=top_k,
+            relevance_threshold=config.retrieval.score_threshold,
+        )
+
+    elif strategy == "hybrid":
+        # Каждый sub-ретривер получает candidate_k для лучшего покрытия при fusion
+        candidate_k = top_k * 3
+
+        semantic = SemanticRetriever(
+            embedder=embedder,
+            vector_store=vector_store,
+            top_k=candidate_k,
+            relevance_threshold=0.0,  # фильтрация выполняется после RRF
+        )
+
+        bm25 = BM25Retriever(
+            vector_store=vector_store,
+            top_k=candidate_k,
+            k1=config.retrieval.bm25_k1,
+            b=config.retrieval.bm25_b,
+        )
+
+        return HybridRetriever(
+            semantic_retriever=semantic,
+            bm25_retriever=bm25,
+            rrf_k=config.retrieval.rrf_k,
+            top_k=top_k,
+        )
+
+    else:
+        raise RetrievalError(
+            f"Неизвестная стратегия поиска: '{strategy}'. "
+            f"Доступные: semantic, hybrid"
+        )

@@ -15,6 +15,7 @@ except ImportError:
 
 from ..core.base_chunker import BaseChunker, Document, Chunk
 from ..utils.exceptions import ChunkingError
+from ..utils.page_extractor import extract_page_ranges, determine_page_number
 
 
 class LangChainChunker(BaseChunker):
@@ -99,12 +100,36 @@ class LangChainChunker(BaseChunker):
             # Используем LangChain для разбиения
             chunks_text = self.text_splitter.split_text(document.text)
 
+            # Извлекаем все маркеры страниц из полного текста документа
+            page_ranges = extract_page_ranges(document.text)
+
             chunks = []
+            current_position = 0  # Отслеживаем позицию в документе
+
             for idx, chunk_text in enumerate(chunks_text):
                 # Создаем метаданные для чанка
                 chunk_metadata = document.metadata.copy() if document.metadata else {}
                 chunk_metadata["chunk_index"] = idx
                 chunk_metadata["chunk_size"] = len(chunk_text)
+
+                # Находим позицию чанка в документе
+                chunk_start = document.text.find(chunk_text, current_position)
+                if chunk_start == -1:
+                    # Если не нашли точное совпадение, используем текущую позицию
+                    chunk_start = current_position
+
+                # Определяем номер страницы на основе позиции чанка
+                page_number = determine_page_number(chunk_start, chunk_text, page_ranges)
+                if page_number is not None:
+                    chunk_metadata["page_number"] = page_number
+                else:
+                    logger.warning(
+                        f"Не удалось определить page_number для chunk {idx} "
+                        f"в {document.metadata.get('file_name', 'unknown')}"
+                    )
+
+                # Обновляем текущую позицию
+                current_position = chunk_start + len(chunk_text)
 
                 # Генерируем ID чанка
                 chunk_id = self._generate_chunk_id(document, idx)

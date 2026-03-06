@@ -24,11 +24,21 @@ class Source(BaseModel):
     score: Optional[float] = None
 
 
+class ChunkData(BaseModel):
+    """Данные чанка."""
+    text: str
+    file_name: str
+    chunk_id: str
+    score: Optional[float] = None
+    metadata: dict
+
+
 class ChatResponse(BaseModel):
     """Ответ чата."""
     query: str
     answer: str
     sources: List[str]
+    chunks: List[ChunkData]
     retrieval_time: float
     generation_time: float
     total_time: float

@@ -26,6 +26,8 @@ class LMStudioEmbedder(BaseEmbedder):
         timeout: int = 120,
         max_retries: int = 3,
         retry_delay: float = 1.0,
+        add_eos_token: bool = False,
+        eos_token: str = "</s>",
         **kwargs
     ):
         """
@@ -37,6 +39,8 @@ class LMStudioEmbedder(BaseEmbedder):
             timeout: Таймаут запросов в секундах
             max_retries: Максимальное количество попыток
             retry_delay: Задержка между попытками в секундах
+            add_eos_token: Добавлять EOS-токен в конец каждого текста
+            eos_token: EOS-токен (зависит от модели, например </s> или <|endoftext|>)
             **kwargs: Дополнительные параметры
         """
         super().__init__(**kwargs)
@@ -46,12 +50,15 @@ class LMStudioEmbedder(BaseEmbedder):
         self.timeout = timeout
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        self.add_eos_token = add_eos_token
+        self.eos_token = eos_token
 
         # Endpoint для эмбеддингов (OpenAI compatible)
         self.embeddings_endpoint = f"{self.url}/v1/embeddings"
 
         logger.info(
-            f"LMStudioEmbedder инициализирован: url={self.url}, model={self.model}"
+            f"LMStudioEmbedder инициализирован: url={self.url}, model={self.model}, "
+            f"add_eos_token={self.add_eos_token}"
         )
 
         # Проверяем доступность API
@@ -126,6 +133,10 @@ class LMStudioEmbedder(BaseEmbedder):
             EmbeddingError: Если все попытки не удались
         """
         last_error = None
+
+        # Добавляем EOS-токен если требуется моделью (например qwen3-embedding)
+        if self.add_eos_token:
+            texts = [t + self.eos_token for t in texts]
 
         for attempt in range(self.max_retries):
             try:
@@ -237,9 +248,8 @@ class LMStudioEmbedder(BaseEmbedder):
         try:
             test_embedding = self.embed_query("test")
             return len(test_embedding)
-        except Exception:
-            # Для nomic-embed-text-v1.5 размерность 768
-            return 768
+        except Exception as e:
+            raise EmbeddingError(f"Не удалось определить размерность эмбеддингов модели {self.model}: {e}")
 
     def __repr__(self) -> str:
         return (

@@ -124,6 +124,23 @@ class BaseVectorStore(ABC):
         self.add_documents(chunks, embeddings, ids)
         self._document_count += len(chunks)
 
+    def get_all_chunks(self) -> List[Chunk]:
+        """
+        Возвращает все хранимые чанки.
+
+        Используется для построения BM25 индекса.
+        Переопределить в подклассах.
+
+        Returns:
+            Список всех чанков в хранилище
+
+        Raises:
+            NotImplementedError: Если метод не поддерживается
+        """
+        raise NotImplementedError(
+            f"{self.__class__.__name__} не поддерживает get_all_chunks()"
+        )
+
     def similarity_search_with_relevance_scores(
         self,
         query_embedding: List[float],

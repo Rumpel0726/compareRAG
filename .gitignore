@@ -81,3 +81,5 @@ desktop.ini
 # Web server cache
 web/__pycache__/
 web/api/__pycache__/
+
+nul

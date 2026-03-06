@@ -1,0 +1,889 @@
+Chunk 0:
+
+[Страница 1]
+99
+© КОЛЛЕКТИВ АВТОРОВ, 2018
+УДК 616.831-02:616.94
+Галиб С.М., Свиридов С.В., Веденина И.В., Некрасова В.С.
+СЕПСИС-ИНДУЦИРОВАННАЯ ЭНЦЕФАЛОПАТИЯ
+ФГБОУ ВО «РНИМУ им. Н.И. Пирогова» Минздрава России, 117997, г. Москва
+ ◆ Представлен обзор литературы по теме сепсис-индуцированная энцефалопатия (СИЭ). СИЭ – это нарушение ког-
+нитивных функций, часто встречаемое при сепсисе и не связанное с воспалением центральной нервной системы. Она 
+является актуальной проблемой на фоне увеличения числа больных с
+---
+Chunk 1:
+льной проблемой на фоне увеличения числа больных с инфекцией и сепсисом. Основным патофизио-
+логическим механизмом СИЭ считается нарушение гематоэнцефалического барьера, а также повышение концентра-
+ция ароматических аминокислот. Клиническая симптоматика СИЭ характеризуется нарушением уровня сознания, а 
+также нарушением сна, дефицитом внимания, делирием вплоть до комы. Для подтверждения диагноза СИЭ исполь-
+зуют различные диагностические шкалы, инструментальные и лабораторные методы диагностики. В лечении 
+---
+Chunk 2:
+ьные и лабораторные методы диагностики. В лечении данной 
+патологии ключевыми моментами является устранение инфекции и коррекции метаболических нарушений.
+Ключевые слова: обзор; сепсис-индуцированная энцефалопатия; сепсис; гемато-энцефалический барьер.
+Для цитирования: Галиб С.М., Свиридов С.В., Веденина И.В.Сепсис индуцированная энцефалопатия. Российский меди-
+цинский журнал. 2018; 24(2): 99-103. DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Для корреспонденции: Галиб Софья Мустафаевна, аспиран
+---
+Chunk 3:
+ корреспонденции: Галиб Софья Мустафаевна, аспирант кафедры анестезиологии и реаниматологии лечебного фа-
+культета ФГБОУ ВО «РНИМУ им. Н.И. Пирогова» Минздрава России, 117997, г. Москва, Е-mail: dr-galib-sm@yandex.ru
+Rhalib S.M., Sviridov S.V ., Vedenina I.V . 
+THE SEPSIS-INDUCED ENCEPHALOPATHY 
+The N.I. Pirogov Russian national research medical university of the Ministry of Health of the Russian Federation,  
+117997, Moscow, Russian Federation
+ ◆ The article presents a review of publications concerning sep
+---
+Chunk 4:
+e presents a review of publications concerning sepsis-induced encephalopathy. The sepsis-induced encephalopathy 
+is a disorder of cognitive functions frequently occurring in sepsis without any relationship with inflammation central nervous 
+system. This condition is an actual problem against the background of increasing of number of patients with infection and sep-
+sis. The main pathophysiologic mechanism of sepsis-induced encephalopathy is considered derangement of hematoencephalic 
+barrier and also increa
+---
+Chunk 5:
+ement of hematoencephalic 
+barrier and also increasing of concentration of aromatic amino acids. The clinical symptomatic of hematoencephalic barrier is 
+characterized by disorder of consciousness level and also by disorders of sleep, deficiency of attention, delirium down to coma. 
+To confirm diagnosis of sepsis-induced encephalopathy various diagnostic scales are applied and instrumental and laboratory 
+diagnostic techniques. In treatment of the given pathology key positions are elimination of infection a
+---
+Chunk 6:
+ology key positions are elimination of infection and correction of meta-
+bolic disorders.
+Keywords: sepsis-induced encephalopathy; sepsis; hematoencephalic barrier.
+For citation: Rhalib S.M., Sviridov S.V ., Vedenina I.V . The sepsis-induced encephalopathy. Rossiiskii meditsinskii zhurnal (Medical 
+Journal of the Russian Federation, Russian journal). 2018; 24(2): 99-103. (In Russ.)  
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+For correspondence: Sofiya M. Rhalib, post-graduate student of the 
+---
+Chunk 7:
+e: Sofiya M. Rhalib, post-graduate student of the chair anesthesiology and resuscitation science of the medical 
+faculty «The N.I. Pirogov Russian national research medical university», 117997, Moscow, E-mail: dr-galib-sm@yandex.ru
+Conflict of interest. The authors declare no conflict of interest.
+Acknowledgments. The study had no sponsorship.
+Received 14.12.17
+Accepted 26.12.17
+Сепсис-индуцированная энцефалопатия (СИЭ) – это 
+нарушение когнитивных функций, часто встречаемое 
+при сепсисе и не связанное с во
+---
+Chunk 8:
+часто встречаемое 
+при сепсисе и не связанное с воспалением централь -
+ной нервной системы (ЦНС). СИЭ сопровождается 
+беспокойством, нарушением ориентации, внимания, 
+концентрации, эпизодами делирия, летаргическим со -
+стоянием вплоть до потери сознания и комы. По данным 
+T. Goftonetal эти нарушения встречаются у 70% больных 
+с системным воспалительным ответом [1]. Считается, 
+что данный процесс является обратимым, но сепсис мо
+-
+жет сопровождаться очаговым поражением головного 
+мозга (ГМ). Таким образом, С
+---
+Chunk 9:
+поражением головного 
+мозга (ГМ). Таким образом, СИЭ часто предшествует 
+яркая клиническая картина сепсиса, что является пуско
+-
+вым фактором для поиска локализации очага поражения.
+Патофизиологические аспекты развития СИЭ
+Пусковым механизмом СИЭ считается нарушение 
+гематоэнцефалического барьера (ГЭБ), которое проис -
+ходит вследствие активации эндотелия [2]. Она сопро -
+вождается нарушением функций ЦНС из-за изменения 
+церебральной микроциркуляции, тем самым нарушая 
+транспортировку кислорода, метаболитов
+---
+Chunk 10:
+ым нарушая 
+транспортировку кислорода, метаболитов и питатель -
+ных веществ через ГЭБ и позволяет нейротоксическим 
+веществам как медиаторам воспаления проникать в па
+-
+ренхиму ГМ. Этот процесс доказан с помощью гистопа-
+тологических методов исследования [3, 4] и МРТ [5–7]. 
+Липополисахариды (ЛПС) и провоспалительные ци-
+токины активируют проявление на эндотелии рецепто -
+ров CD40, Е-селектин, VCAM 1, E-CAM1 и синтезцикло -
+оксигеназы [8]. ЛПС стимулируют проявление на эндо-
+телии рецепторов на ИЛ-1, ФНОα, 
+---
+Chunk 11:
+оявление на эндо-
+телии рецепторов на ИЛ-1, ФНОα, синтез ИЛ-1β, ИЛ-6 и 
+ФНОα, активацию окиси азота [9]. В ряде исследований 
+показано, что у больных с СИЭ наблюдается снижение 
+мозгового кровотока и церебрального потребления О 2, 
+но без признаков церебральной ишемии, что доказыва -
+ет эффективность ауторегуляции мозгового кровотока в 
+целом (способность к поддержанию относительно по
+-
+стоянного церебрального кровотока в условиях различ -
+ного артериального давления) и цереброваскулярной 
+реактивности на С
+---
+Chunk 12:
+ давления) и цереброваскулярной 
+реактивности на СО
+2 [10]. Доказано, что интратекаль -
+ное введение ИЛ-1 снижает уровень бодрствования [11], 
+тогда как введение ФНОα снижает мозговой кровоток 
+Российский медицинский журнал. 2018; 24 (2) 
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Обзоры
+
+[Страница 2]
+100
+и церебральное потребление О 2 [12]. K. Moller и соавт. 
+в исследованиях с участием добровольцев показали, что 
+внутривенное введение эндотоксина Е. сoli вызывало че-
+рез несколько часов обр
+---
+Chunk 13:
+ксина Е. сoli вызывало че-
+рез несколько часов обратимую клиническую картину 
+сепсиса. Полученная гемодинамическая картина не отли
+-
+чалась от клинической картины при септическом шоке: 
+гипердинамический шок с уменьшением систолической 
+функции миокарда [13]. В двух исследованиях более при
+-
+цельно изучено влияние такого введения на ГМ. Объём 
+мозгового кровотока сохранялся, но отмечалась тенден
+-
+ция к уменьшению церебрального потребления кисло -
+рода, даже при значительном увеличении уровня ФНО, 
+ИЛ-1 ИЛ-
+---
+Chunk 14:
+ при значительном увеличении уровня ФНО, 
+ИЛ-1 ИЛ-6 и клинической картине гипердинамического 
+шока. Эти результаты показывают, с одной стороны, от
+-
+сутствие гипоперфузии ГМ, с другой – сохранение адек-
+ватной вазореактивности и церебральной ауторегуляции.
+Нарушение целостности ГЭБ как последствие ак -
+тивации эндотелия доказано с помощью техники окра -
+шивания, гранулоцитарной миграции и электронной 
+микроскопии в различных экспериментальных иссле -
+дованиях. Активация системы комплементов и выброс 
+ФНО иг
+---
+Chunk 15:
+х. Активация системы комплементов и выброс 
+ФНО играют большую роль в этом патологическом про
+-
+цессе, при подавлении которого уменьшается воспале -
+ние и церебральный отёк [14]. По данным исследования 
+H. Toklu и соавт. глутамат также играет большую роль в 
+проницаемости ГЭБ [15]. Как показывают исследования 
+T. Sharshar и соавт., на магниторезонансной томограмме 
+пациентов с септическим шоком видны три вида патоло
+-
+гических изменений [6]:
+ ◆ лейкоэнцефалопатия;
+ ◆ ишемические и геморрагические изменения,
+---
+Chunk 16:
+патия;
+ ◆ ишемические и геморрагические изменения, проис -
+ходящие вследствие коагулопатии;
+ ◆ гемодинамическое повреждение мозга.
+W. Bartynski и соавт. отмечают, что у семи пациентов 
+после реабилитации при контрольной МРТ выявляет -
+ся поражение белого вещества ГМ, также у пациентов 
+с септическим шоком развивается синдром обратимой 
+задней энцефалопатии[16].
+Нарушение доставки О
+2, нутриентов и метаболитов 
+провоцирует состояние окислительного стресса, уве -
+личение содержания недоокисленых форм кислород
+---
+Chunk 17:
+е -
+личение содержания недоокисленых форм кислорода 
+(свободных радикалов) в крови, нарушение работы ми -
+тохондрий (в основном локализованных в области гип -
+покампа и коры) [17]. Свободные радикалы и NO инги -
+бируют дыхательную цепь митохондрий [18]. Указанные 
+патологические процессы потенцируются выбросом NO 
+и провоспалительных цитокинов, гипоксемией и гипер
+-
+гликемией [19].
+Большинство исследований, посвящённых изучению 
+дисфункции митохондрий при сепсисе, выполняется 
+на экспериментальных моделях ж
+---
+Chunk 18:
+псисе, выполняется 
+на экспериментальных моделях животных, у которых 
+так же, как у человека, окислительный стресс ведёт к 
+апоптозу. У крысы с сепсисом нейротропный апоптоз 
+происходит из-за выброса цитохрома с [20], который в 
+свою очередь обусловлен снижением трансмембрально
+-
+го потенциала митохондрий вследствие открытия мито-
+хондриальных пор и повышения проницаемости мито -
+хондриальной мембраны. Процесс апоптоза может быть 
+также запущен при высокой концентрации NO, глутама-
+та, цитокинов, глюкозы и 
+---
+Chunk 19:
+онцентрации NO, глутама-
+та, цитокинов, глюкозы и ФНО [21]. В литературе об -
+суждают вопросы значимости фермента индуцибельная 
+синтаза оксида азота (iNOS) для выработки NO [22].
+За последние годы накоплен большой клинический 
+и экспериментальный материал о роли ароматических 
+аминокислот (АА) в нейропередаче. Известно, что фени-
+лаланин, тирозин, триптофан являются ароматическими 
+предшественниками нейромедиаторов (допамина и серо-
+тонина) в периферической и центральной нервной систе-
+ме. По результатам и
+---
+Chunk 20:
+ и центральной нервной систе-
+ме. По результатам исследования P. Pandharipande и соавт. 
+[23] диагностика когнитивной дисфункции у больных в 
+тяжёлом состоянии связана с увеличением концентрации 
+тирозина и триптофана по отношению к общей концен
+-
+трации аминокислот. Введение триптофана или фенила-
+ланина снижает уровень бодрствования [11]. Увеличение 
+концентрации в крови АА и их соотношение с амино -
+кислотами с разветвлёнными боковыми цепями может 
+нарушать их проходимость через ГЭБ и синтез нейроме
+-
+ди
+---
+Chunk 21:
+ть их проходимость через ГЭБ и синтез нейроме
+-
+диаторов [24]. Это является одной из гипотез, в частно -
+сти, патофизиологии печёночной энцефалопатии. Такие 
+же изменения наблюдаются при сепсисе. Соотношение 
+АА и аминокислот с разветвлёнными боковыми цепями 
+больше у больных СИЭ  с сепсисом, чем у больных без 
+сепсиса [25]. Также это соотношение выше у больных с 
+септическим шоком и СИЭ, чем у больных с сепсисом. В 
+исследовании B. Mizock и соавт. [24] показано различие 
+между пациентами с СИЭ и пациентами
+---
+Chunk 22:
+зано различие 
+между пациентами с СИЭ и пациентами с печёночной эн
+-
+цефалопатией: у больных с сепсисом в ликворе и в крови 
+был нарушен только уровень фенилаланина, тогда как у 
+пациентов с печёночной энцефалопатией уровень всех 
+АА был повышен. Не исключено, что это может быть свя
+-
+зано с нарушением функции печени при сепсисе.
+Клинические проявления СИЭ
+Классическая клиническая картинка СИЭ характери-
+зуется нарушением уровня сознания, а также нарушени-
+ем сна, дефицитом внимания, возможностью развития 
+
+---
+Chunk 23:
+м сна, дефицитом внимания, возможностью развития 
+делирия вплоть до комы, при этом делирий встречает
+-
+ся наиболее часто [26]. В англоязычной литературе при 
+описании СИЭ используется термин sepsis delirium [27]: 
+нарушение ориентации в пространстве и во времени, 
+реверсия циркадного ритма, расстройство и дезоргани
+-
+зация мышления, галлюцинации [28]. В литературе ши-
+роко описаны факторы риска СИЭ. C. Ract представила 
+наиболее значимые факторы в виде табл. 1 [29].
+Для подтверждения диагноза СИЭ важно испо
+---
+Chunk 24:
+ 1 [29].
+Для подтверждения диагноза СИЭ важно использо -
+вать различные диагностические шкалы, инструмен -
+тальные и лабораторные методы диагностики.
+Диагностические критерии СИЭ
+Диагностика СИЭ основывается на ежедневной 
+оценке неврологического статуса. Для этого можно ис -
+пользовать различные психо-неврологические шкалы. 
+В 2013 г. Американская психиатрическая ассоциация 
+опубликовала отработанную версию диагностических 
+критериев делирия Diagnostic and Statistical Manual of 
+Mental Disorders (5
+thed.) 
+---
+Chunk 25:
+Statistical Manual of 
+Mental Disorders (5
+thed.) – DSM-5:
+ ◆ A. Нарушение сознания (угнетение, способность фо-
+кусировать внимание, поддерживать и переводить 
+его с одного объекта на другой).
+ ◆ B. Быстрое изменение когнитивных функций (в те -
+чение нескольких часов или суток) и нестабильное 
+состояние в течение суток.
+ ◆ C. Нарушение ещё одной когнитивной функции: па
+-
+мяти, речи, восприятия, дезориентации, галлюцина -
+ции.
+ ◆ D. А и С не связаны с другими патологиями нервной 
+системы.
+ ◆ E. Очевидная вза
+---
+Chunk 26:
+ патологиями нервной 
+системы.
+ ◆ E. Очевидная взаимосвязь между выявляемыми на
+-
+рушениями (клинический осмотр, сбор анамнеза, 
+диагностика) и соматической патологией.
+Medical Journal of the Russian Federation, Russian Journal. 2018; 24 (2)
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Reviews
+
+[Страница 3]
+101
+Для диагностики делирия также могут быть исполь -
+зованы такие шкалы, как CAM-ICU (Confusion Asses-
+sment Method in Intensive Care Unit) – шкала диагностики 
+делирия в отделении интенсив
+---
+Chunk 27:
+ – шкала диагностики 
+делирия в отделении интенсивной терапии (см. схему) и 
+ICDSC (intensive care delirium screening check list) – про-
+токол скринингового обследования на делирий в отделе-
+нии интенсивной терапии (табл. 2), демонстрирующие 
+адекватные диагностические результаты у реанимаци -
+онных больных [30]. Также для оценки уровня сознания 
+и возбуждения пациентов используется шкала Ричмонда 
+(табл. 3) [31]. Эти шкалы рекомендованы Американским 
+обществом критической медицины (SCCM) как рутин
+-
+ное об
+---
+Chunk 28:
+вом критической медицины (SCCM) как рутин
+-
+ное обследование у подобных пациентов.
+При любом нарушении уровня сознания следует 
+провести развернутый неврологический осмотр, для 
+того чтобы не упустить очаговую симптоматику, пато
+-
+логические рефлексы или менингеальные симптомы. 
+При наличии очаговой симптоматики следует сделать 
+МРТ головного мозга. При судорожном синдроме поми
+-
+мо МРТ требуется сделать ЭЭГ, а при менингеальных 
+симп томах – люмбальную пункцию для исключения 
+первичных повреждений ГМ [5]. 
+---
+Chunk 29:
+цию для исключения 
+первичных повреждений ГМ [5]. При СИЭ электриче
+-
+Таблица 1
+Факторы риска развития делирия
+Предрасполагающие факторы риска Пусковые факторы риска
+• Возраст;
+• ранее существующие когнитивные нарушения, 
+деменция;
+• нарушение зрения, слуха;
+• курение, употребление алкоголя и наркотиков;
+• недостаток питания (гипоальбуминемия);
+• тяжесть состояния при поступлении, дегидратация
+• Хирургическое вмешательство (вид и длительность операции,  
+интраоперационные кровопотеря и гипоксемия);
+• гипокс
+---
+Chunk 30:
+раоперационные кровопотеря и гипоксемия);
+• гипоксемия, гиперкапния;
+• анемия;
+• метаболические нарушения;
+• печёночная, почечная недостаточность, патология эндокринной системы;
+• внутричерепные изменения (опухоли, инфекционные, сосудистые,  
+травматические);
+• сепсис, лихорадка;
+• стресс
+Шкала диагностики делирия в отделении интенсивной терапии CAM-ICU.
+1. Острота или волнообразность изменений психического статуса:
+• Имеются ли изменения психического статуса относительно  
+исходного уровня?
+ИЛИ
+• Отмечалис
+---
+Chunk 31:
+а относительно  
+исходного уровня?
+ИЛИ
+• Отмечались ли волнообразные изменения психического статуса  
+в течение последних 24 часов?
+НЕТ CAM-ICU отрицательный
+НЕТ ДЕЛИРИЯ
+ДА
+2. Нарушение внимания:
+• Буквенный тест «Сжимайте мою руку каждый раз, когда я скажу 
+"А"» – прочитайте буквы: АБРАКАДАБРА; буквы произносятся 
+отдельно с паузой 3 с; ошибкой считается, если пациент  
+не сжимает руку на букву «А».
+ИЛИ
+• Выполнить визуальный тест с картинками.
+Ошибки CAM-ICU отрицательный
+НЕТ ДЕЛИРИЯ
+> 2 ошибок
+3. Измен
+---
+Chunk 32:
+ICU отрицательный
+НЕТ ДЕЛИРИЯ
+> 2 ошибок
+3. Измененный уровень сознания:
+• Определить уровень сознания по шкале RASS в данный момент.
+RASS ≠ 0 CAM-ICU положительный
+ДЕЛИРИЙ
+  RASS = 0
+4. Дезорганизация мышления:
+Вопросы ДА/НЕТ:
+• Камень будет держаться на воде?
+• Рыба живет в море?
+• Один килограмм больше двух?
+• Молотком можно забить гвоздь?
+Команды пациенту:
+• Покажите это количество пальцев (держите два пальца перед 
+пациентом).
+• Теперь сделайте то же другой рукой (не повторяйте количество 
+пальцев).
+
+---
+Chunk 33:
+другой рукой (не повторяйте количество 
+пальцев).
+Если пациент не может двигать обеими руками, для второй части 
+команды попросите пациента:
+• Добавьте еще один палец.
+> 1 ошибки
+  0–1 ошибка CAM-ICU отрицательный
+НЕТ ДЕЛИРИЯ
+Российский медицинский журнал. 2018; 24 (2) 
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Обзоры
+
+[Страница 4]
+102
+Таблица 2
+Протокол скринингового обследования на делирий  
+в ОРИТ (ICDSC)
+Показатель Баллы
+Измененный уровень сознания Да – 1 Нет – 0
+Сниженное внимание Да – 
+---
+Chunk 34:
+ь сознания Да – 1 Нет – 0
+Сниженное внимание Да – 1 Нет – 0
+Дезориентация Да –1 Нет – 0
+Галлюцинации, бред, психоз Да – 1 Нет – 0
+Психомоторное возбуждение или блокада 
+произвольной активности
+Да – 1 Нет – 0
+Неадекватная речь, настроение Да – 1 Нет – 0
+Нарушение цикла сон – бодрствование Да – 1 Нет – 0
+Неустойчивый, меняющийся в течение 
+суток уровень сознания
+Да – 1 Нет – 0
+Сумма ≥ 4 соответствует делирию.
+Таблица 3
+Шкала Ричмонда RASS
+Баллы Термин Описание
++4 Агрессивен Пациент агрессивен, возникают эпизо
+---
+Chunk 35:
+
++4 Агрессивен Пациент агрессивен, возникают эпизоды 
+выраженного психомоторного возбужде-
+ния, возможно нанесение физического 
+ущерба медицинскому персоналу
++3 Выраженная 
+ажитация 
+Пациент агрессивен, удаляет катетеры, 
+зонды, дренажи, трубки
++2 Ажитация Частая нецеленаправленная двигатель-
+ная активность, «борьба» с респирато-
+ром при проведении ИВЛ
++1 Беспокойство Пациент беспокоен, иногда испуган, но 
+неагрессивен, а двигательная активность 
+не имеет деструктивной направленности
+0 Бодрствует, спокоен, 
+---
+Chunk 36:
+структивной направленности
+0 Бодрствует, спокоен, внимателен
+-1 Сонлив Потеря внимательности, но при вербаль-
+ном контакте не закрывает глаза дольше 
+10 с
+-2 Легкая  
+седация
+При вербальном контакте закрывает 
+глаза меньше, чем через 10 с
+-3 Умеренная 
+седация
+Любое движение (но не зрительный 
+контакт) в ответ на голос
+-4 Глубокая 
+седация
+Никакой реакции на голос, но есть 
+какие-либо движения на физическую 
+стимуляцию
+-5 Отсутствие 
+пробуждения
+Никакой реакции на голос и физическую 
+стимуляцию
+ская активно
+---
+Chunk 37:
+ции на голос и физическую 
+стимуляцию
+ская активность ГМ нарушена. ЭЭГ является самым 
+чувствительным методом исследования [32, 33]. G. 
+Young и соавт. изучили раннее (48 ч) ЭЭГ у 69 паци -
+ентов с лихорадкой и положительным бактериальным 
+посевом крови. При этом аномальная ЭЭГ была выяв -
+лена у 50% пациентов с сепсисом без неврологической 
+симптоматики и у всех пациентов с СИЭ. Сепсис ведёт 
+к изменениям электрической активности ГМ. В зависи
+-
+мости от тяжести процесса на ЭЭГ появляются тета-, 
+дельта-, т
+---
+Chunk 38:
+ести процесса на ЭЭГ появляются тета-, 
+дельта-, трехфазные волны вплоть до паттерна «вспыш-
+ка–подавление» [33]. Эти аномалии также присутствуют 
+у больных с энцефалопатиями других этиологий. При 
+непрерывной регистрации ЭЭГ у больных с сепсисом 
+наблюдаются несудорожные припадки и периодические 
+разряды. Проявление таких признаков ассоциировано с 
+неблагоприятным прогнозом [34]. D. Nguyen и соавт. до
+-
+казали, что при тяжёлом сепсисе или септическом шоке 
+увеличивается сывороточная концентрация белка S100
+---
+Chunk 39:
+увеличивается сывороточная концентрация белка S100 
+B и нейронеспецифическая энолаза (NSE), специфичная 
+для тканей ЦНС [35]. Эти показатели не связаны с тя
+-
+жестью состояния больного или его ЭЭГ. На магниторе-
+зонансной томограмме больных с СИЭ можно увидеть 
+признаки инфаркта ГМ, Press синдрома или очаговой/
+диффузной лейкоэнцефалопатии [5, 6]. BIS- мониторинг 
+неэффективен в оценке степени угнетения сознания у 
+больных с сепсисом [36].
+МРТ, ЭЭГ и другие специфические методы диагно
+-
+стики не отменяют ру
+---
+Chunk 40:
+специфические методы диагно
+-
+стики не отменяют рутинное обследование. Стандарт -
+ные анализы крови помогают исключить метаболиче -
+ские нарушения и наблюдать за их изменениями. При 
+установленной печёночной или почечной недостаточно-
+сти лекарственные препараты должны быть точно рас -
+считаны, чтобы их эффект не превратился в токсичный.
+Тактические схемы лечения СИЭ
+Лечение СИЭ является комплексным. Оно направле-
+но на устранение сепсиса, борьбу с полиорганной недо-
+статочностью и коррекцию метаболических 
+---
+Chunk 41:
+ной недо-
+статочностью и коррекцию метаболических нарушений. 
+С фармакологической точки зрения следует, с одной сто-
+роны, ограничить приём нейротоксичных препаратов и 
+внимательно титровать остальные, с другой – обеспе -
+чить адекватное обезболивание, устранить нарушение 
+сна. Были получены результаты, свидетельствующие о 
+том, что инсулинотерапия [37], применение глюкокорти
+-
+костероидов [38] и протеина C [39] при лечении сепсиса 
+положительно влияют на патофизиологические меха
+-
+низмы СИЭ, такие как нару
+---
+Chunk 42:
+тофизиологические меха
+-
+низмы СИЭ, такие как нарушение проницаемости ГЭБ, 
+окислительный стресс и нейронный апоптоз. При этом 
+их влияние на тяжесть и частоту встречаемости СИЭ 
+клинически не доказано. Экспериментальные вариан
+-
+ты терапии направлены на предотвращение нарушения 
+целостности ГЭБ и активацию индуцибельного NO. 
+Целостность ГЭБ улучшается после примения serum 
+amyloid protein [40], сульфата магния [41], рилусола, 
+ингибиторов кальциевых каналов и удаления циркули
+-
+рующих цитокинов[15]. В ход
+---
+Chunk 43:
+в и удаления циркули
+-
+рующих цитокинов[15]. В ходе испытаний на крысах с 
+сепсисом доказано, что ингибирование iNOS снижает 
+нейронный апоптоз, индуцированный ЛПС [42]. 
+Заключение
+Таким образом, сепсис-индуцированная энцефало -
+патия является одним из ключевых аспектов сепсиса и 
+заслуживает особого внимания, а также требует специ
+-
+альной оценки состояния больного по общепринятым 
+в анестезиологии и реаниматологии шкалам. Критерии 
+подбора лекарственной терапии зависят от тяжести и 
+степени когнитивных р
+---
+Chunk 44:
+ерапии зависят от тяжести и 
+степени когнитивных расстройств и нарушения созна
+-
+ния у пациентов.
+Финансирование. Исследование не имело спонсор -
+ской поддержки.
+Конфликт интересов. Авторы заявляют об отсут -
+ствии конфликта интересов.
+ЛИТЕР АТУР А ( п.п. 1-29, 31-42 см. REFERENCES)
+30. Попугаев К.А., Савин И.А., Лубнин А.Ю., Горячев А.С., Соколо-
+ва Е.Ю., Зайцев О.С. Делирий в реаниматологической практике. 
+Анестезиология и реаниматология. 2012; 57(4): 19-27.
+REFERENCES
+1. Gofton T.E., Young G.B. Sepsis-as
+---
+Chunk 45:
+7.
+REFERENCES
+1. Gofton T.E., Young G.B. Sepsis-associated encephalopathy. Nat. 
+Rev. Neurol. 2012; 8(10): 557-66.
+Medical Journal of the Russian Federation, Russian Journal. 2018; 24 (2)
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Reviews
+
+[Страница 5]
+103
+2. Chaudhry N., Duggal A.K. Sepsis Associated Encephalopathy. Adv. 
+Med. 2014; 2014: 762320.
+3. Papadopoulos M.C., Lamb F.J., Moss R.F., Davies D.C., Tighe D., 
+Bennett E.D. Faecal peritonitis causes oedema and neuronal injury in 
+pig cereb
+---
+Chunk 46:
+is causes oedema and neuronal injury in 
+pig cerebral cortex. Clin. Sci. (Lond). 1999; 96(5): 461-6. 
+4. Sharshar T., Annane D., de la Grandmaison G., Brouland J.P., Hop-
+kinson N.S., Françoise G. The neuropathology of septic shock. Brain 
+Pathol. 2004; 14(1): 21-33.
+5. Piazza O., Cotena S., De Robertis E., Caranci F., Tufano R. Sepsis 
+associated encephalopathy studied by MRI and cerebral spinal fluid 
+S100B measurement. Neurochem. Res. 2009; 34(7): 1289-92.
+6. Sharshar T., Carlier R., Bernard F., Guidoux 
+---
+Chunk 47:
+.
+6. Sharshar T., Carlier R., Bernard F., Guidoux C., Brouland J.P., Nar-
+di O. Brain lesions in septic shock: a magnetic resonance imaging 
+study. Intensive Care Med. 2007; 33(5): 798-806. 
+7. Stubbs D.J., Yamamoto A.K., Menon D.K. Imaging in sepsis-asso-
+cia ted encephalopathy—insights and opportunities. Nat. Rev. Neurol. 
+2013; 9(10): 551-61.
+8. Su C.M., Cheng H.H., Tsai T.C., Hsiao S.Y ., Tsai N.W., Chang W.N. 
+et al. Elevated Serum Vascular Cell Adhesion Molecule-1 Is Associ-
+ated with Septic Encephalo
+---
+Chunk 48:
+n Molecule-1 Is Associ-
+ated with Septic Encephalopathy in Adult Community-Onset Severe 
+Sepsis Patients. Biomed. Res. Int. 2014; 2014: 598762.
+9. Vallieres L., Rivest S. Regulation of the genes encoding interleu -
+kin-6, its receptor, and gp130 in the rat brain in response to the im-
+mune activator lipopolysaccharide and the proinflammatory cytokine 
+interleukin-1beta. J. Neurochem. 1997; 69(4): 1668-83.
+10. Goodson C.M., Rosenblatt K., Rivera-Lara L., Nyquist P., 
+Hogue C.W. Cerebral Blood Flow Autoregula
+---
+Chunk 49:
+ist P., 
+Hogue C.W. Cerebral Blood Flow Autoregulation in Sepsis for the 
+Intensivist: Why Its Monitoring May Be the Future of Individualized 
+Care. J. Intensive Care Med. 2018; 33(2): 63-73.
+11. Papadopoulos M.C., Davies D.C., Moss R.F., Tighe D., Bennett E.D. 
+Pathophysiology of septic encephalopathy: a review. Crit. Care Med. 
+2000; 28(8): 3019-24.
+12. Tureen J. Effect of recombinant human tumor necrosis factor-alpha 
+on cerebral oxygen uptake, cerebrospinal fluid lactate, and cerebral 
+blood flow in the
+---
+Chunk 50:
+nal fluid lactate, and cerebral 
+blood flow in the rabbit: role of nitric oxide. J. Clin. Invest. 1995; 
+95(3): 1086-91.
+13. Moller K., Strauss G.I., Qvist J., Fonsmark L., Knudsen G.M., Lars-
+en F.S. et al. Cerebral blood flow and oxidative metabolism during 
+human endotoxemia. J. Cereb. Blood Flow. Metab. 2002; 22(10): 
+1262-70.
+14. Flierl M.A., Stahel P.F., Rittirsch D., Huber-Lang M., Niederbi -
+chler A.D., Hoesel L.M. et al. Inhibition of complement C5a prevents 
+breakdown of the blood-brain barrier an
+---
+Chunk 51:
+ prevents 
+breakdown of the blood-brain barrier and pituitary dysfunction in 
+experimental sepsis. Crit. Care. 2010; 13(1): R12.
+15. Toklu H.Z., Uysal M.K., Kabasakal L., Sirvanci S., Ercan F., Kaya M. 
+The effects of riluzole on neurological, brain biochemical, and histo-
+logical changes in early and late term of sepsis in rats. J. Surg. Res. 
+2009; 152(2): 238-48.
+16. Bartynski W.S., Boardman J.F., Zeigler Z.R., Shadduck R.K., Lister 
+J. Posterior reversible encephalopathy syndrome in infection, sepsis, 
+
+---
+Chunk 52:
+le encephalopathy syndrome in infection, sepsis, 
+and shock. AJNR Am. J. Neuroradiol. 2006; 27(10): 2179-90.
+17. Berg R.M.G., Møller K., Bailey D.M. Neuro-oxidative-nitrosative 
+stress in sepsis. J. Cereb. Blood Flow Metab. 2011; 31(7): 1532-44. 
+Avila J.C., Ritter C., Sonneville R., Sharshar T., Dal-
+Pizzol F. Bioenergetics, mitochondrial dysfunction, and oxidative 
+stress in the pathophysiology of septic encephalopathy. Shock. 2013; 
+39(Suppl. 1): 10-6.
+19. Jacob A., Brorson J.R., Alexander J.J. Septic en
+---
+Chunk 53:
+. Jacob A., Brorson J.R., Alexander J.J. Septic encephalopathy: in-
+flammation in man and mouse. Neurochem. Int. 2011; 58(4): 472-6.
+20. Semmler A., Okulla T., Sastre M., Dumitrescu-Ozimek L., Heneka 
+M.T. Systemic inflammation induces apoptosis with variable vulner-
+ability of different brain regions. J. Chem. Neuranatomy. 2005; 30(2-
+3): 144-57. 
+21. Sharshar T., Gray F., Lorin de la Grandmaison G., Hopkinson N.S., 
+Ross E., Dorandeu A. et al. Apoptosis of neurons in cardiovascular 
+autonomic centres trig
+---
+Chunk 54:
+ neurons in cardiovascular 
+autonomic centres triggered by inducible nitric oxide synthase after 
+death from septic shock. Lancet. 2003; 362(9398): 1799-805.
+22. Polito A., Brouland J.P., Porcher R., Sonneville R., Siami S., Stevens 
+R.D. et al. Hyperglycaemia and apoptosis of microglial cells in hu-
+man septic shock. Crit. Care. 2011; 15(3): R131.
+23. Pandharipande P., Morandi A., Adams J.R., Thompson J.L., Shin-
+tani A.K., Ely E.W. Plasma Tryptophan and Tyrosine levels are In-
+dependent Risk Factors for T
+---
+Chunk 55:
+rosine levels are In-
+dependent Risk Factors for Transitioning to Delirium in Critically 
+Ill Mechanically Ventilated Patients: a pilot investigation. Intensive 
+Care Med. 2009; 35(11): 1886-92. 
+24. Mizock B.A., Sabelli H.C., Dubin A., Javaid J.I., Poulos A., Rackow 
+E.C. Septic encephalopathy. Evidence for altered phenylalanine me-
+tabolism and comparison with hepatic encephalopathy. Arch. Intern. 
+Med. 1990; 150(2): 443-9.
+25. Basler T., Meier-Hellmann A., Bredle D., Reinhart K. Amino acid 
+imbalance ear
+---
+Chunk 56:
+, Bredle D., Reinhart K. Amino acid 
+imbalance early in septic encephalopathy. Intensive Care Med. 2002; 
+28(3): 293-8.
+26. Ziaja M. Septic Encephalopathy. Curr. Neurol. Neurosci. Rep. 2013; 
+13(10): 383. 
+27. Ely E.W., Margolin R., Francis J., May L., Truman B., Dittus R. et 
+al. Evaluation of delirium in critically ill patients: validation of the 
+Confusion Assessment Method for the Intensive Care Unit (CAM-
+ICU). Crit. Care Med. 2001; 29(7): 1370-9.
+28. Wilson J.X., Young G.B. Progress in clinical neuros
+---
+Chunk 57:
+ilson J.X., Young G.B. Progress in clinical neurosciences: Sepsis-
+associated encephalopathy: evolving concepts. Can. J. Neurol. Sci. 
+2003; 30(2): 98-105.
+29. Ract C., Encéphalopathies septiques, Communications Scientifiques 
+MAPAR Editions: Paris. p. 293-300.
+30. Popugaev K.A., Savin I.A., Lubnin A.Yu., Goryachev A.S., Soko-
+lova E.Yu., Zaytsev O.S. Delirium in resuscitation practice. Anestezi-
+ologiya i reanimatologiya. 2012; 57(4): 19-27. (in Russian)
+31. Ely E.W., Truman B., Shintani A., Thomason J.W.,
+---
+Chunk 58:
+. Ely E.W., Truman B., Shintani A., Thomason J.W., Wheeler A.P., 
+Gordon S. et al. Monitoring sedation status overtime in ICU patients: 
+reliability and validity of the Richmond Agitation-Sedation Scale 
+(RASS). JAMA. 2003; 289(22): 2983-91. 
+32. Hosokawa K., Gaspard N., Su F., Oddo M., Vincent J.L., Tacco -
+ne F.S. Clinical neurophysiological assessment of sepsis-associated 
+brain dysfunction: a systematic review. Crit. Care. 2014; 18(6): 674. 
+33. Young G.B., Bolton C.F., Archibald Y .M., Austin T.W., Wel
+---
+Chunk 59:
+B., Bolton C.F., Archibald Y .M., Austin T.W., Wells G.A. 
+The electroencephalogram in sepsis-associated encephalopathy. J. 
+Clin. Neurophysiol. 1992; 9(1): 145-52.
+34. Oddo M., Carrera E., Claassen J., Mayer S.A., Hirsch L.J. Continu-
+ous electroencephalography in the medical intensive care unit. Crit. 
+Care Med. 2009; 37(6): 2051-6.
+35. Nguyen D.N., Spapen H., Su F., Schiettecatte J., Shi L., Hachimi-
+Idrissi S. et al. Elevated serum levels of S-100β protein and neuron-
+specific enolase are associated wit
+---
+Chunk 60:
+in and neuron-
+specific enolase are associated with brain injury in patients with se-
+vere sepsis and septic shock. Crit. Care Med. 2006; 34(7): 1967-74.
+36. Ely E.W., Truman B., Manzi D.J., Sigl J.C., Shintani A., Ber -
+nard G.R. Consciousness monitoring in ventilated patients: bispec-
+tral EEG monitors arousal not delirium. Intensive Care Med. 2004; 
+30(8): 1537-4. 
+37. Andersen S.K., Gjedsted J., Christiansen C., Tønnesen E. The roles 
+of insulin and hyperglycemia in sepsis pathogenesis. J. Leukoc. Biol.
+---
+Chunk 61:
+rglycemia in sepsis pathogenesis. J. Leukoc. Biol. 
+2004; 75(3): 413-21. 
+38. Annane D. Glucocorticoids in the treatment of severe sepsis and sep-
+tic shock. Curr. Opin. Crit. Care. 2005; 11(5): 449-53. 
+39. Bernard G.R., Vincent J.L., Laterre P.F., LaRosa S.P., Dhainaut J.F., 
+Lopez-Rodriguez A., et al. Efficacy and safety of recombinant hu-
+man activated protein C for severe sepsis. N. Engl. J. Med. 2001; 
+344(10): 699-709. 
+40. Veszelka S., Urbányi Z., Pázmány T., Németh L., Obál I., Dung N.T. 
+et al. Hu
+---
+Chunk 62:
+zmány T., Németh L., Obál I., Dung N.T. 
+et al. Human serum amyloid P component attenuates the bacterial 
+lipopolysaccharide-induced increase in blood-brain barrier perme-
+ability in mice. Neurosci. Lett. 2003; 352(1): 57-60. 
+41. Esen F., Erdem T., Aktan D., Orhan M., Kaya M., Eraksoy H. et al. 
+Effect of magnesium sulfate administration on bloodbrain barrier in 
+a rat model of intraperitoneal sepsis: a randomized controlled experi-
+mental study. Crit. Care. 2005; 9(1): R18-23. 
+42. Kadoi Y ., Goto F. Sele
+---
+Chunk 63:
+. 2005; 9(1): R18-23. 
+42. Kadoi Y ., Goto F. Selective inducible nitric oxide inhibition can re-
+store hemodynamics, but does not improve neurological dysfunction 
+in experimentally-induced septic shock in rats. Anesth. Analg. 2004; 
+99(1): 212-20.
+Поступила 14.12.17
+Принята к печати 26.12.17
+Российский медицинский журнал. 2018; 24 (2) 
+DOI http://dx.doi.org/10.18821/0869-2106-2018-24-2-99-103
+Обзоры
+---

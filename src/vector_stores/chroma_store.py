@@ -121,17 +121,28 @@ class ChromaStore(BaseVectorStore):
             documents = [chunk.text for chunk in chunks]
             metadatas = [chunk.metadata for chunk in chunks]
 
-            # Добавляем в ChromaDB
-            self.collection.add(
-                ids=ids,
-                embeddings=embeddings,
-                documents=documents,
-                metadatas=metadatas
-            )
+            # ChromaDB имеет ограничение на размер батча (~5461)
+            # Разбиваем на батчи по 2000 для безопасности
+            BATCH_SIZE = 2000
+            total_added = 0
+
+            for i in range(0, len(chunks), BATCH_SIZE):
+                batch_end = min(i + BATCH_SIZE, len(chunks))
+
+                # Добавляем батч в ChromaDB
+                self.collection.add(
+                    ids=ids[i:batch_end],
+                    embeddings=embeddings[i:batch_end],
+                    documents=documents[i:batch_end],
+                    metadatas=metadatas[i:batch_end]
+                )
+
+                total_added += (batch_end - i)
+                logger.debug(f"Добавлено {batch_end - i} документов в ChromaDB (всего {total_added}/{len(chunks)})")
 
             self._document_count += len(chunks)
 
-            logger.debug(f"Добавлено {len(chunks)} документов в ChromaDB")
+            logger.info(f"Успешно добавлено {len(chunks)} документов в ChromaDB")
 
         except Exception as e:
             logger.error(f"Ошибка добавления документов: {e}")
@@ -250,6 +261,35 @@ class ChromaStore(BaseVectorStore):
                 "collection_name": self.collection_name,
                 "error": str(e)
             }
+
+    def get_all_chunks(self) -> List[Chunk]:
+        """
+        Возвращает все хранимые чанки.
+
+        Используется для построения BM25 индекса.
+
+        Returns:
+            Список всех чанков в коллекции
+
+        Raises:
+            VectorStoreError: Если не удалось получить чанки
+        """
+        try:
+            data = self.collection.get(include=["documents", "metadatas"])
+
+            chunks = [
+                Chunk(text=doc, metadata=meta, chunk_id=doc_id)
+                for doc_id, doc, meta in zip(
+                    data["ids"], data["documents"], data["metadatas"]
+                )
+            ]
+
+            logger.debug(f"Получено {len(chunks)} чанков из ChromaDB для BM25 индекса")
+            return chunks
+
+        except Exception as e:
+            logger.error(f"Ошибка получения всех чанков: {e}")
+            raise VectorStoreError(f"Не удалось получить все чанки: {e}")
 
     def reset(self) -> None:
         """
