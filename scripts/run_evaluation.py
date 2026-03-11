@@ -16,6 +16,7 @@ import time
 import argparse
 from pathlib import Path
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from loguru import logger
 
@@ -29,10 +30,18 @@ from src.vector_stores.factory import create_vector_store_from_config
 from src.retrieval.factory import create_retriever_from_config
 from src.llm.lm_studio_client import LMStudioClient
 from src.agents.orchestrator import SimpleRAGOrchestrator
-from src.evaluation.questions import EVAL_QUESTIONS
+from src.evaluation.questions import EVAL_QUESTIONS as EVAL_QUESTIONS_MEDICAL
+from src.evaluation.questions_civil_code import EVAL_QUESTIONS_CIVIL_CODE
+from src.evaluation.questions_postgresql import EVAL_QUESTIONS_POSTGRESQL
 from src.evaluation.retrieval_metrics import compute_all
 from src.evaluation.generation_metrics import LLMJudge
 from src.utils.logging_config import setup_logging
+
+DOMAIN_QUESTIONS = {
+    "medical":    EVAL_QUESTIONS_MEDICAL,
+    "civil_code": EVAL_QUESTIONS_CIVIL_CODE,
+    "postgresql": EVAL_QUESTIONS_POSTGRESQL,
+}
 
 
 def get_embedding_folder_and_abbrev(embedding_model: str) -> tuple[str, str]:
@@ -181,6 +190,7 @@ def initialize_rag(
     embedding_model: str = None,
     add_eos_token: bool = False,
     eos_token: str = None,
+    timeout: int = None,
 ):
     """Инициализация компонентов RAG --- по паттерну web/app.py."""
     logger.info(f"Загрузка конфигурации: {config_path}")
@@ -200,6 +210,9 @@ def initialize_rag(
     if eos_token:
         config.lm_studio.eos_token = eos_token
         logger.info(f"EOS-токен: {eos_token}")
+    if timeout is not None:
+        config.lm_studio.timeout = timeout
+        logger.info(f"Таймаут LLM (CLI): {timeout}s")
 
     logger.info("Инициализация эмбеддера...")
     embedder = create_embedder_from_config(config)
@@ -244,6 +257,75 @@ def initialize_rag(
 
 
 
+def process_question(args: tuple) -> dict:
+    """Обрабатывает один вопрос в отдельном потоке. Возвращает словарь с результатами."""
+    idx, eq, orchestrator, judge, top_k, verbose = args
+
+    out = {"idx": idx, "eq": eq, "error": None, "ret_metrics": None, "gen_scores": None,
+           "result": None, "metric_mode": None, "verbose_lines": []}
+
+    try:
+        result = orchestrator.query(eq.question, k=top_k)
+    except Exception as e:
+        out["error"] = str(e)
+        return out
+
+    out["result"] = result
+
+    # Verbose: буферизуем строки для вывода в правильном порядке
+    if verbose:
+        lines = []
+        lines.append("")
+        lines.append(f"  ВОПРОС: {eq.question}")
+        lines.append(f"  {'─' * 56}")
+        lines.append(f"  ЧАНКИ (top-{top_k}):")
+        scores = result.get("scores", [])
+        for i, chunk in enumerate(result["chunks"][:top_k], 1):
+            file_name = chunk.get("file_name", "Unknown")
+            page = chunk.get("metadata", {}).get("page_number", "?")
+            score = scores[i - 1] if i - 1 < len(scores) else 0.0
+            text = chunk.get("text", "").strip()
+            lines.append(f"  [{i:02d}] {file_name} | стр.{page} | score={score:.4f}")
+            for line in text.splitlines():
+                lines.append(f"       {line}")
+        lines.append(f"  {'─' * 56}")
+        lines.append(f"  ОТВЕТ:")
+        for line in result.get("answer", "").splitlines():
+            lines.append(f"  {line}")
+        lines.append(f"  {'─' * 56}")
+        out["verbose_lines"] = lines
+
+    # Retrieval metrics
+    if eq.has_page_annotations():
+        ret_metrics = compute_all(
+            retrieved_chunks=result["chunks"],
+            expected_pages=eq.expected_pages,
+            k=top_k
+        )
+        out["metric_mode"] = "page-based"
+    else:
+        expected_pages_fallback = {src: [999] for src in eq.expected_sources}
+        ret_metrics = compute_all(
+            retrieved_chunks=result["chunks"],
+            expected_pages=expected_pages_fallback,
+            k=top_k
+        )
+        out["metric_mode"] = "file-based"
+    out["ret_metrics"] = ret_metrics
+
+    # Generation metrics (LLM Judge)
+    context = "\n\n".join([chunk["text"] for chunk in result["chunks"]])
+    gen_scores = judge.evaluate(
+        query=eq.question,
+        answer=result["answer"],
+        context=context,
+        reference_answer=eq.reference_answer,
+    )
+    out["gen_scores"] = gen_scores
+
+    return out
+
+
 def run_evaluation(
     config_path: str,
     top_k: int,
@@ -251,12 +333,17 @@ def run_evaluation(
     add_eos_token: bool = False,
     eos_token: str = None,
     verbose: bool = False,
+    domain: str = "medical",
+    workers: int = 4,
+    timeout: int = None,
 ) -> None:
     """Главный цикл оценки."""
     orchestrator, llm_client, config = initialize_rag(
-        config_path, top_k, embedding_model, add_eos_token, eos_token
+        config_path, top_k, embedding_model, add_eos_token, eos_token, timeout
     )
     judge = LLMJudge(llm_client=llm_client)
+
+    EVAL_QUESTIONS = DOMAIN_QUESTIONS[domain]
 
     # Загружаем эталонные ответы и привязываем к вопросам
     gt_path = PROJECT_ROOT / "src" / "evaluation" / "ground_truth.json"
@@ -283,78 +370,57 @@ def run_evaluation(
     all_retrieval: list[dict] = []
     all_generation: list[dict] = []
 
-    for idx, eq in enumerate(EVAL_QUESTIONS, 1):
+    total_q = len(EVAL_QUESTIONS)
+    vprint(f"Запуск {total_q} вопросов в {workers} потоке(ах)...")
+
+    task_args = [
+        (idx, eq, orchestrator, judge, top_k, verbose)
+        for idx, eq in enumerate(EVAL_QUESTIONS, 1)
+    ]
+
+    # Параллельная обработка вопросов
+    completed_results: list[dict] = []
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        future_to_idx = {executor.submit(process_question, args): args[0] for args in task_args}
+        for future in as_completed(future_to_idx):
+            res = future.result()
+            completed_results.append(res)
+            vprint(f"  [{len(completed_results)}/{total_q} готово] вопрос {res['idx']}")
+
+    # Сортируем по исходному порядку перед логированием
+    completed_results.sort(key=lambda r: r["idx"])
+
+    # Логируем результаты последовательно в правильном порядке
+    for res in completed_results:
+        idx = res["idx"]
+        eq = res["eq"]
+
         eval_log("")
-        eval_log(f"--- Question {idx}/{len(EVAL_QUESTIONS)} ---")
+        eval_log(f"--- Question {idx}/{total_q} ---")
         eval_log(f"Q: {eq.question}")
         eval_log(f"Expected sources: {eq.expected_sources}")
 
-        # -- RAG query --
-        try:
-            result = orchestrator.query(eq.question, k=top_k)
-        except Exception as e:
-            eval_log(f"ERROR: запрос не удался: {e}")
-            logger.error(f"Question {idx}: {e}")
+        if res["error"]:
+            eval_log(f"ERROR: запрос не удался: {res['error']}")
+            logger.error(f"Question {idx}: {res['error']}")
             continue
 
-        # -- Verbose: чанки и ответ в консоль --
-        if verbose:
-            vprint()
-            vprint(f"  ВОПРОС: {eq.question}")
-            vprint(f"  {'─' * 56}")
-            vprint(f"  ЧАНКИ (top-{top_k}):")
-            scores = result.get("scores", [])
-            for i, chunk in enumerate(result["chunks"][:top_k], 1):
-                file_name = chunk.get("file_name", "Unknown")
-                page = chunk.get("metadata", {}).get("page_number", "?")
-                score = scores[i - 1] if i - 1 < len(scores) else 0.0
-                text = chunk.get("text", "").strip()
-                vprint(f"  [{i:02d}] {file_name} | стр.{page} | score={score:.4f}")
-                for line in text.splitlines():
-                    vprint(f"       {line}")
-            vprint(f"  {'─' * 56}")
-            vprint(f"  ОТВЕТ:")
-            for line in result.get("answer", "").splitlines():
-                vprint(f"  {line}")
-            vprint(f"  {'─' * 56}")
+        # Verbose: выводим буферизованные строки в порядке вопросов
+        if verbose and res["verbose_lines"]:
+            for line in res["verbose_lines"]:
+                vprint(line)
 
-        # -- Retrieval metrics --
-        # eval_log(f"Retrieved chunks (top-{top_k}):")
-        # for i, chunk in enumerate(result["chunks"][:top_k], 1):
-        #     file_name = chunk.get("file_name", "Unknown")
-        #     page_number = chunk.get("metadata", {}).get("page_number", "?")
-        #     score = result.get('scores', [])[i-1] if i-1 < len(result.get('scores', [])) else 0.0
-        #     text_preview = chunk.get("text", "")[:80].replace("\n", " ")
-        #     eval_log(f"  [{i}] file={file_name[:40]} | page={page_number} | score={score:.4f}")
-        #     eval_log(f"      text: {text_preview}...")
+        result = res["result"]
+        ret_metrics = res["ret_metrics"]
+        metric_mode = res["metric_mode"]
+        gen_scores = res["gen_scores"]
 
-        # Выбор формата ground truth (поддержка обратной совместимости)
         if eq.has_page_annotations():
-            # Новый формат: page-based
             eval_log(f"Используется PAGE-BASED релевантность")
             eval_log(f"Expected pages: {eq.expected_pages}")
-
-            ret_metrics = compute_all(
-                retrieved_chunks=result["chunks"],
-                expected_pages=eq.expected_pages,
-                k=top_k
-            )
-            metric_mode = "page-based"
         else:
-            # Старый формат: file-based (для обратной совместимости)
             eval_log(f"Используется FILE-BASED релевантность (legacy)")
             eval_log(f"Expected sources: {eq.expected_sources}")
-
-            # Конвертируем expected_sources в expected_pages
-            # Используем page=999 как wildcard (любая страница из этого файла)
-            expected_pages_fallback = {src: [999] for src in eq.expected_sources}
-
-            ret_metrics = compute_all(
-                retrieved_chunks=result["chunks"],
-                expected_pages=expected_pages_fallback,
-                k=top_k
-            )
-            metric_mode = "file-based"
 
         all_retrieval.append(ret_metrics)
 
@@ -366,17 +432,8 @@ def run_evaluation(
             f"NDCG@{top_k}={ret_metrics['ndcg_at_k']:.4f}"
         )
 
-        # -- Generation metrics (LLM Judge) --
         judge_mode = "reference-based" if eq.reference_answer else "context-based"
         eval_log(f"Generation | Running LLM Judge ({judge_mode})...")
-        context = "\n\n".join([chunk["text"] for chunk in result["chunks"]])
-
-        gen_scores = judge.evaluate(
-            query=eq.question,
-            answer=result["answer"],
-            context=context,
-            reference_answer=eq.reference_answer,
-        )
 
         if gen_scores:
             all_generation.append(gen_scores)
@@ -479,6 +536,27 @@ def main():
         default=False,
         help="Подробный вывод в консоль: вопрос, найденные чанки и ответ для каждого вопроса.",
     )
+    parser.add_argument(
+        "--domain",
+        type=str,
+        default="medical",
+        choices=["medical", "civil_code", "postgresql"],
+        help="Домен вопросов для оценки: medical (по умолчанию), civil_code, postgresql.",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
+        help="Количество параллельных потоков для обработки вопросов (default: 4, max: 8). "
+             "Используйте 1 для последовательного режима.",
+    )
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=None,
+        help="Таймаут LLM-запросов в секундах (переопределяет конфиг, default: 120). "
+             "Увеличьте до 300-600 при больших промтах или очередях из нескольких потоков.",
+    )
     args = parser.parse_args()
 
     # Резолв config относительно PROJECT_ROOT
@@ -504,6 +582,9 @@ def main():
         add_eos_token=args.add_eos_token,
         eos_token=args.eos_token,
         verbose=args.verbose,
+        domain=args.domain,
+        workers=args.workers,
+        timeout=args.timeout,
     )
 
 

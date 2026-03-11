@@ -10,56 +10,36 @@ venv\Scripts\activate
 
 ## Индексация документов
 
-### Базовый запуск (модель из конфига)
+### Медицинские статьи
 ```bash
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml
+python scripts/ingest_documents.py --config configs/strategies/medical/baseline.yaml --data-dir data/Medical_articles --reset
+
+python scripts/ingest_documents.py --config configs/strategies/medical/large_chunks.yaml --data-dir data/Medical_articles --reset
+
+python scripts/ingest_documents.py --config configs/strategies/medical/small_chunks.yaml --data-dir data/Medical_articles --reset
 ```
 
-### С указанием модели эмбеддингов (используется на практике)
+### Гражданский кодекс РФ
 ```bash
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --reset
+python scripts/ingest_documents.py --config configs/strategies/civil_code/baseline.yaml --data-dir data/Civil_Code --reset
+```
+
+### Документация PostgreSQL
+```bash
+python scripts/ingest_documents.py --config configs/strategies/postgresql/baseline.yaml --data-dir data/PostrgreSQL --reset
+```
+
+### С указанием модели эмбеддингов
+```bash
+# bge-m3
+python scripts/ingest_documents.py --config configs/strategies/medical/baseline.yaml --data-dir data/Medical_articles --embedding-model text-embedding-bge-m3 --reset
+
+# qwen3-embedding (требует EOS-токен)
+python scripts/ingest_documents.py --config configs/strategies/medical/baseline.yaml --data-dir data/Medical_articles --embedding-model text-embedding-qwen3-embedding-0.6b --add-eos-token --eos-token "<|endoftext|>" --reset
 ```
 
 > `--reset` очищает коллекцию перед индексацией (обязателен при смене модели или переиндексации).
 > При `--embedding-model` имя коллекции автоматически получает суффикс: `medical_docs_baseline_bge`.
-
-### Все три стратегии
-```bash
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --reset
-
-python scripts/ingest_documents.py \
-    --config configs/strategies/large_chunks.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --reset
-
-python scripts/ingest_documents.py \
-    --config configs/strategies/small_chunks.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --reset
-```
-
-### С другой моделью эмбеддингов
-```bash
-# nomic (из конфига по умолчанию)
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml \
-    --reset
-
-# qwen3-embedding (требует EOS-токен)
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-qwen3-embedding-0.6b \
-    --add-eos-token \
-    --eos-token "<|endoftext|>" \
-    --reset
-```
 
 ### Все аргументы ingest_documents.py
 | Аргумент | По умолчанию | Описание |
@@ -81,59 +61,44 @@ python scripts/ingest_documents.py \
 > что использовались при индексации — иначе evaluation будет искать в другой коллекции или
 > генерировать несовместимые векторы.
 
-### Базовый запуск
+### Медицинские статьи
 ```bash
-python scripts/run_evaluation.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --top-k 10
+
+python scripts/run_evaluation.py --config configs/strategies/medical/large_chunks.yaml --domain medical --top-k 10
+
+python scripts/run_evaluation.py --config configs/strategies/medical/small_chunks.yaml --domain medical --top-k 10
 ```
 
-### С указанием top-k
+### Гражданский кодекс РФ
 ```bash
-python scripts/run_evaluation.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --top-k 10
+python scripts/run_evaluation.py --config configs/strategies/civil_code/baseline.yaml --domain civil_code --top-k 10
 ```
 
-### С qwen3-embedding (EOS-токен обязателен — как при индексации)
+### Документация PostgreSQL
 ```bash
-python scripts/run_evaluation.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-qwen3-embedding-0.6b \
-    --add-eos-token \
-    --eos-token "<|endoftext|>" \
-    --top-k 10
+python scripts/run_evaluation.py --config configs/strategies/postgresql/baseline.yaml --domain postgresql --top-k 10
 ```
 
-### Сравнение всех трёх стратегий
+### С указанием модели эмбеддингов
 ```bash
-python scripts/run_evaluation.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --top-k 10
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --embedding-model text-embedding-bge-m3 --top-k 10
 
-python scripts/run_evaluation.py \
-    --config configs/strategies/large_chunks.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --top-k 10
-
-python scripts/run_evaluation.py \
-    --config configs/strategies/small_chunks.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --top-k 10
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --embedding-model text-embedding-qwen3-embedding-0.6b --add-eos-token --eos-token "<|endoftext|>" --top-k 10
 ```
 
-> Результаты записываются в `logs/evaluation_<YYYY-MM-DD>.log`.
+> Результаты записываются в `experiments/{retrieval}/{emb_folder}/{chunk_strategy}/{chunk_size}/`.
 
 ### Все аргументы run_evaluation.py
 | Аргумент | По умолчанию | Описание |
 |----------|-------------|----------|
 | `--config` | `configs/strategies/baseline.yaml` | Путь к YAML конфигурации |
+| `--domain` | `medical` | Домен вопросов: `medical` / `civil_code` / `postgresql` |
 | `--top-k` | `10` | Количество чанков для поиска |
 | `--embedding-model` | из конфига | Переопределить модель эмбеддингов |
 | `--add-eos-token` | `False` | Добавить EOS-токен |
 | `--eos-token` | `</s>` | EOS-токен |
+| `--verbose` | `False` | Подробный вывод чанков и ответов в консоль |
 
 ---
 
@@ -172,22 +137,16 @@ cd web && python app.py
 venv\Scripts\activate
 
 # 2. Убедиться что LM Studio запущен на http://127.0.0.1:1234
-#    с моделями: text-embedding-bge-m3 и qwen/qwen3-14b
+#    с моделями: text-embedding-nomic-embed-text-v1.5 и qwen/qwen3-14b
 
 # 3. Индексировать документы (один раз или при смене модели/чанкинга)
-python scripts/ingest_documents.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --reset
+python scripts/ingest_documents.py --config configs/strategies/medical/baseline.yaml --data-dir data/Medical_articles --reset
 
 # 4. Запустить веб-интерфейс
 cd web && python app.py
 
 # 5. Оценить качество (в другом терминале)
-python scripts/run_evaluation.py \
-    --config configs/strategies/baseline.yaml \
-    --embedding-model text-embedding-bge-m3 \
-    --top-k 10
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --top-k 10
 ```
 
 ---
@@ -196,10 +155,12 @@ python scripts/run_evaluation.py \
 
 При использовании `--embedding-model` суффикс добавляется автоматически:
 
-| Конфиг + модель | Коллекция |
-|----------------|-----------|
-| `baseline` + `bge-m3` | `medical_docs_baseline_bge` |
-| `large_chunks` + `bge-m3` | `medical_docs_large_bge` |
-| `small_chunks` + `bge-m3` | `medical_docs_small_bge` |
-| `baseline` + `nomic` (из конфига) | `medical_docs_baseline_nomic` |
-| `baseline` + `qwen3-embedding-0.6b` | `medical_docs_baseline_qwen3` |
+| Домен | Конфиг + модель | Коллекция |
+|-------|----------------|-----------|
+| medical | `medical/baseline` + `nomic` (из конфига) | `medical_docs_baseline_nomic` |
+| medical | `medical/baseline` + `bge-m3` | `medical_docs_baseline_bge` |
+| medical | `medical/baseline` + `qwen3-embedding-0.6b` | `medical_docs_baseline_qwen3` |
+| medical | `medical/large_chunks` + `bge-m3` | `medical_docs_large_bge` |
+| medical | `medical/small_chunks` + `bge-m3` | `medical_docs_small_bge` |
+| civil_code | `civil_code/baseline` (nomic из конфига) | `civil_code_baseline_nomic` |
+| postgresql | `postgresql/baseline` (nomic из конфига) | `postgresql_baseline_nomic` |

@@ -16,9 +16,20 @@
 
 ```bash
 venv\Scripts\activate
-python scripts/ingest_documents.py --config configs/strategies/baseline.yaml
+
+# Медицинские статьи
+python scripts/ingest_documents.py --config configs/strategies/medical/baseline.yaml --data-dir data/Medical_articles
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical
+
+# Гражданский кодекс РФ
+python scripts/ingest_documents.py --config configs/strategies/civil_code/baseline.yaml --data-dir data/Civil_Code --reset
+python scripts/run_evaluation.py --config configs/strategies/civil_code/baseline.yaml --domain civil_code
+
+# Документация PostgreSQL
+python scripts/ingest_documents.py --config configs/strategies/postgresql/baseline.yaml --data-dir data/PostrgreSQL --reset
+python scripts/run_evaluation.py --config configs/strategies/postgresql/baseline.yaml --domain postgresql
+
 cd web && python app.py                           # → http://localhost:8000
-python scripts/run_evaluation.py                  # → logs/evaluation_<date>.log
 ```
 
 ---
@@ -44,10 +55,20 @@ compareRAG/
 ├── configs/
 │   ├── default.yaml                  # базовая конфигурация
 │   └── strategies/
-│       ├── baseline.yaml             # chunk_size=512,  overlap=50,  collection=medical_docs_baseline
-│       ├── large_chunks.yaml         # chunk_size=1024, overlap=100, collection=medical_docs_large
-│       └── small_chunks.yaml         # chunk_size=256,  overlap=25,  collection=medical_docs_small
-├── data/                             # 10 медицинских PDF (русский язык, 4.9 MB)
+│       ├── medical/                  # Медицинские статьи (data/Medical_articles/)
+│       │   ├── baseline.yaml         # chunk_size=512,  collection=medical_docs_baseline
+│       │   ├── large_chunks.yaml     # chunk_size=1024, collection=medical_docs_large
+│       │   ├── small_chunks.yaml     # chunk_size=256,  collection=medical_docs_small
+│       │   ├── sentence_{baseline,large,small}.yaml
+│       │   └── semantic_chunker_{baseline,large,small}.yaml
+│       ├── civil_code/               # Гражданский кодекс РФ (data/Civil_Code/)
+│       │   └── baseline.yaml         # chunk_size=512, collection=civil_code_baseline
+│       └── postgresql/               # Документация PostgreSQL ч.1–2 (data/PostrgreSQL/)
+│           └── baseline.yaml         # chunk_size=512, collection=postgresql_baseline
+├── data/
+│   ├── Medical_articles/             # медицинские PDF (русский язык)
+│   ├── Civil_Code/                   # gkodeksrf.pdf (~600 стр.)
+│   └── PostrgreSQL/                  # postgres_part1_2.pdf (~600 стр.)
 ├── src/
 │   ├── core/
 │   │   ├── base_chunker.py           # Document, Chunk dataclasses; BaseChunker ABC
@@ -82,7 +103,9 @@ compareRAG/
 │   │   ├── synthesis_agent.py        # Генерация ответа: контекст из chunks → LLM → текст
 │   │   └── orchestrator.py           # SimpleRAGOrchestrator.query() — координация всего pipeline
 │   ├── evaluation/
-│   │   ├── questions.py              # 10 EvalQuestion (question, expected_sources=имя PDF)
+│   │   ├── questions.py              # EvalQuestion + EVAL_QUESTIONS (медицинский домен)
+│   │   ├── questions_civil_code.py   # EVAL_QUESTIONS_CIVIL_CODE (10 вопросов по ГК РФ)
+│   │   ├── questions_postgresql.py   # EVAL_QUESTIONS_POSTGRESQL (10 вопросов по PostgreSQL)
 │   │   ├── retrieval_metrics.py      # precision_at_k, recall_at_k, MRR, ndcg_at_k, compute_all()
 │   │   └── generation_metrics.py     # LLMJudge: 4 критерия (1–5), парсит JSON из ответа LLM
 │   └── utils/
@@ -171,10 +194,12 @@ retriever     = create_retriever_from_config(config, embedder, vector_store)
 
 **Запуск:**
 ```bash
-python scripts/run_evaluation.py --config configs/strategies/baseline.yaml --top-k 5
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --top-k 5
+python scripts/run_evaluation.py --config configs/strategies/civil_code/baseline.yaml --domain civil_code --top-k 5
+python scripts/run_evaluation.py --config configs/strategies/postgresql/baseline.yaml --domain postgresql --top-k 5
 ```
 
-**Как работает:** 10 вопросов из `questions.py` прогоняются через полный RAG pipeline. Retrieval-метрики считаются по source-level: `expected_sources` (имя PDF) сравнивается с `file_name` из retrieved chunks через set-пересечение — **точное строковое совпадение**. Generation-метрики — LLM-as-Judge через тот же LM Studio (4 критерия, шкала 1–5).
+**Как работает:** вопросы из файла домена прогоняются через полный RAG pipeline. Retrieval-метрики считаются по source-level: `expected_sources` (имя PDF) сравнивается с `file_name` из retrieved chunks через set-пересечение — **точное строковое совпадение**. Generation-метрики — LLM-as-Judge через тот же LM Studio (4 критерия, шкала 1–5).
 
 **Результаты (2026-02-05):**
 

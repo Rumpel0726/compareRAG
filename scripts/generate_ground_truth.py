@@ -2,15 +2,16 @@
 """
 Генерация эталонных ответов (ground truth) для 30 вопросов оценки RAG.
 
-Использует модель liquid/lfm2-24b-a2b через LM Studio для генерации
+Использует Claude Sonnet 4.6 через polza.ai (OpenAI-compatible API) для генерации
 подробных ответов на основе конкретных страниц из PDF-документов.
 
 Запуск из корня проекта:
-    python scripts/generate_ground_truth.py
-    python scripts/generate_ground_truth.py --output src/evaluation/ground_truth.json
-    python scripts/generate_ground_truth.py --data-dir data/ --lm-url http://127.0.0.1:1234
+    python scripts/generate_ground_truth.py --api-key <ключ>
+    python scripts/generate_ground_truth.py  # ключ из POLZA_AI_API_KEY
+    python scripts/generate_ground_truth.py --resume  # пропустить уже готовые
 """
 
+import os
 import sys
 import json
 import argparse
@@ -18,18 +19,18 @@ import time
 from pathlib import Path
 
 import pypdf
+from openai import OpenAI
 
 # Корень проекта (scripts/ -> compareRAG/)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.evaluation.questions import EVAL_QUESTIONS
-from src.llm.lm_studio_client import LMStudioClient
 
-# Модель для генерации эталонных ответов (лучше основной RAG-модели)
-JUDGE_MODEL = "liquid/lfm2-24b-a2b"
+JUDGE_MODEL = "anthropic/claude-sonnet-4.6"
+POLZA_BASE_URL = "https://polza.ai/api/v1"
 DEFAULT_OUTPUT = PROJECT_ROOT / "src" / "evaluation" / "ground_truth.json"
-DEFAULT_DATA_DIR = PROJECT_ROOT / "data"
+DEFAULT_DATA_DIR = PROJECT_ROOT / "data" / "Medical_articles"
 
 
 def extract_pages_text(pdf_path: Path, page_numbers: list[int]) -> str:
@@ -80,7 +81,7 @@ def build_context_for_question(eq, data_dir: Path) -> str:
     return "\n\n---\n\n".join(context_parts)
 
 
-def generate_reference_answer(client: LMStudioClient, question: str, context: str) -> str | None:
+def generate_reference_answer(client: OpenAI, model: str, question: str, context: str) -> str | None:
     """
     Генерирует эталонный ответ на вопрос по предоставленному контексту.
     """
@@ -94,9 +95,7 @@ def generate_reference_answer(client: LMStudioClient, question: str, context: st
 Фрагменты документа:
 {context}
 
-Вопрос: {question}
-
-/no_think"""
+Вопрос: {question}"""
 
     messages = [
         {
@@ -111,11 +110,13 @@ def generate_reference_answer(client: LMStudioClient, question: str, context: st
     ]
 
     try:
-        answer = client.generate(
+        completion = client.chat.completions.create(
+            model=model,
             messages=messages,
             temperature=0.1,
             max_tokens=1000,
         )
+        answer = completion.choices[0].message.content
         return answer.strip() if answer else None
     except Exception as e:
         print(f"  Ошибка генерации: {e}")
@@ -137,9 +138,9 @@ def main():
         help=f"Директория с PDF-файлами (default: {DEFAULT_DATA_DIR})",
     )
     parser.add_argument(
-        "--lm-url",
-        default="http://127.0.0.1:1234",
-        help="URL LM Studio API (default: http://127.0.0.1:1234)",
+        "--api-key",
+        default=None,
+        help="API ключ polza.ai (default: env POLZA_AI_API_KEY)",
     )
     parser.add_argument(
         "--model",
@@ -156,22 +157,18 @@ def main():
     output_path = Path(args.output)
     data_dir = Path(args.data_dir)
 
-    print(f"Модель:    {args.model}")
-    print(f"LM Studio: {args.lm_url}")
-    print(f"Data dir:  {data_dir}")
-    print(f"Output:    {output_path}")
+    api_key = args.api_key or os.environ.get("POLZA_AI_API_KEY") or ""
+    if not api_key:
+        print("Ошибка: не задан API ключ. Используйте --api-key или POLZA_AI_API_KEY.")
+        sys.exit(1)
+
+    print(f"Модель:  {args.model}")
+    print(f"API URL: {POLZA_BASE_URL}")
+    print(f"Data dir: {data_dir}")
+    print(f"Output:  {output_path}")
     print()
 
-    # Инициализируем клиент
-    print("Подключение к LM Studio...")
-    client = LMStudioClient(
-        url=args.lm_url,
-        model=args.model,
-        temperature=0.1,
-        max_tokens=1000,
-        timeout=180,
-    )
-    print("Соединение установлено.\n")
+    client = OpenAI(base_url=POLZA_BASE_URL, api_key=api_key)
 
     # Загружаем уже сгенерированные результаты (если --resume)
     existing: dict[str, str] = {}
@@ -213,7 +210,7 @@ def main():
 
         # Генерируем эталонный ответ
         t0 = time.time()
-        reference_answer = generate_reference_answer(client, eq.question, context)
+        reference_answer = generate_reference_answer(client, args.model, eq.question, context)
         elapsed = time.time() - t0
 
         if reference_answer:
