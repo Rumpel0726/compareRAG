@@ -14,10 +14,8 @@ from loguru import logger
 from ..llm.lm_studio_client import LMStudioClient
 from ..llm.prompts import (
     create_answer_evaluation_prompt,
-    create_answer_evaluation_with_reference_prompt,
+    create_answer_evaluation_academic_prompt,
 )
-
-JUDGE_CRITERIA = ("correctness", "relevance", "completeness", "coherence")
 
 
 class LLMJudge:
@@ -52,13 +50,15 @@ class LLMJudge:
             или None при ошибке парсинга / генерации.
         """
         if reference_answer:
-            prompt = create_answer_evaluation_with_reference_prompt(
-                query=query, answer=answer, reference_answer=reference_answer
+            prompt = create_answer_evaluation_academic_prompt(
+                query=query, answer=answer, context=context, reference_answer=reference_answer
             )
+            expected_keys = ("answer_correctness", "faithfulness", "answer_relevancy", "completeness")
         else:
             prompt = create_answer_evaluation_prompt(
                 query=query, answer=answer, context=context
             )
+            expected_keys = ("correctness", "relevance", "completeness", "coherence")
 
         messages = [
             {"role": "system", "content": "Ты — эксперт по оценке качества текста. Отвечай ТОЛЬКО валидным JSON без дополнительных комментариев."},
@@ -71,13 +71,13 @@ class LLMJudge:
                 temperature=0.1,
                 max_tokens=500
             )
-            return self._parse_scores(raw_response)
+            return self._parse_scores(raw_response, expected_keys)
 
         except Exception as e:
             logger.warning(f"LLMJudge ошибка генерации: {e}")
             return None
 
-    def _parse_scores(self, raw: str) -> Optional[Dict[str, int]]:
+    def _parse_scores(self, raw: str, expected_keys: tuple) -> Optional[Dict[str, int]]:
         """
         Извлекает JSON из ответа LLM.
 
@@ -97,7 +97,7 @@ class LLMJudge:
         try:
             data = json.loads(json_str)
             scores = {}
-            for key in JUDGE_CRITERIA:
+            for key in expected_keys:
                 val = data.get(key)
                 if val is None:
                     logger.warning(f"LLMJudge: отсутствует поле '{key}' в ответе")

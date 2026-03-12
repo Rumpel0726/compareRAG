@@ -82,21 +82,21 @@ class ChonkieChunker(BaseChunker):
             page_ranges = extract_page_ranges(document.text)
 
             chunks = []
-            current_position = 0  # Отслеживаем позицию в документе
 
-            for idx, chunk_text in enumerate(chunks_data):
-                chunk_text_str = str(chunk_text)
+            for idx, chonkie_chunk in enumerate(chunks_data):
+                chunk_text_str = chonkie_chunk.text if hasattr(chonkie_chunk, 'text') else str(chonkie_chunk)
 
                 # Создаем метаданные для чанка
                 chunk_metadata = document.metadata.copy() if document.metadata else {}
                 chunk_metadata["chunk_index"] = idx
                 chunk_metadata["chunk_size"] = len(chunk_text_str)
 
-                # Находим позицию чанка в документе
-                chunk_start = document.text.find(chunk_text_str, current_position)
-                if chunk_start == -1:
-                    # Если не нашли точное совпадение, используем текущую позицию
-                    chunk_start = current_position
+                # Используем start_index из Chonkie для точного определения позиции
+                chunk_start = getattr(chonkie_chunk, 'start_index', None)
+                if chunk_start is None:
+                    chunk_start = document.text.find(chunk_text_str)
+                    if chunk_start == -1:
+                        chunk_start = 0
 
                 # Определяем номер страницы на основе позиции чанка
                 page_number = determine_page_number(chunk_start, chunk_text_str, page_ranges)
@@ -107,9 +107,6 @@ class ChonkieChunker(BaseChunker):
                         f"Не удалось определить page_number для chunk {idx} "
                         f"в {document.metadata.get('file_name', 'unknown')}"
                     )
-
-                # Обновляем текущую позицию
-                current_position = chunk_start + len(chunk_text_str)
 
                 # Генерируем ID чанка
                 chunk_id = self._generate_chunk_id(document, idx)

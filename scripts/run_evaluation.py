@@ -346,7 +346,12 @@ def run_evaluation(
     EVAL_QUESTIONS = DOMAIN_QUESTIONS[domain]
 
     # Загружаем эталонные ответы и привязываем к вопросам
-    gt_path = PROJECT_ROOT / "src" / "evaluation" / "ground_truth.json"
+    _GT_FILES = {
+        "medical":    "ground_truth.json",
+        "civil_code": "ground_truth_civil_code.json",
+        "postgresql": "ground_truth_postgresql.json",
+    }
+    gt_path = PROJECT_ROOT / "src" / "evaluation" / _GT_FILES.get(domain, "ground_truth.json")
     gt_map = load_ground_truth(gt_path)
     for eq in EVAL_QUESTIONS:
         eq.reference_answer = gt_map.get(eq.question)
@@ -437,11 +442,20 @@ def run_evaluation(
 
         if gen_scores:
             all_generation.append(gen_scores)
+            
+            # Determine which keys are present (for logging fallback)
+            corr = gen_scores.get("answer_correctness", gen_scores.get("correctness"))
+            faith = gen_scores.get("faithfulness", "N/A")
+            rel = gen_scores.get("answer_relevancy", gen_scores.get("relevance"))
+            comp = gen_scores.get("completeness")
+            coh = gen_scores.get("coherence", "N/A")
+
             eval_log(
-                f"Generation | Correctness={gen_scores['correctness']} | "
-                f"Relevance={gen_scores['relevance']} | "
-                f"Completeness={gen_scores['completeness']} | "
-                f"Coherence={gen_scores['coherence']}"
+                f"Generation | Answer Correctness={corr} | "
+                f"Faithfulness={faith} | "
+                f"Answer Relevancy={rel} | "
+                f"Completeness={comp} | "
+                f"Coherence={coh}"
             )
         else:
             eval_log("Generation | ERROR: не удалось получить оценку от LLM Judge")
@@ -476,16 +490,18 @@ def run_evaluation(
 
     if all_generation:
         n = len(all_generation)
-        avg_corr = sum(m["correctness"]  for m in all_generation) / n
-        avg_rel  = sum(m["relevance"]    for m in all_generation) / n
-        avg_comp = sum(m["completeness"] for m in all_generation) / n
-        avg_coh  = sum(m["coherence"]    for m in all_generation) / n
+        avg_corr = sum(m.get("answer_correctness", m.get("correctness", 0)) for m in all_generation) / n
+        avg_faith = sum(m.get("faithfulness", 0) for m in all_generation if "faithfulness" in m) / max(1, sum(1 for m in all_generation if "faithfulness" in m))
+        avg_rel  = sum(m.get("answer_relevancy", m.get("relevance", 0)) for m in all_generation) / n
+        avg_comp = sum(m.get("completeness", 0) for m in all_generation) / n
+        avg_coh  = sum(m.get("coherence", 0) for m in all_generation if "coherence" in m) / max(1, sum(1 for m in all_generation if "coherence" in m))
 
         eval_log(f"Generation (avg, {n} questions):", results=True)
-        eval_log(f"  Correctness:   {avg_corr:.2f}", results=True)
-        eval_log(f"  Relevance:     {avg_rel:.2f}", results=True)
-        eval_log(f"  Completeness:  {avg_comp:.2f}", results=True)
-        eval_log(f"  Coherence:     {avg_coh:.2f}", results=True)
+        eval_log(f"  Answer Correctness: {avg_corr:.2f}", results=True)
+        if avg_faith > 0: eval_log(f"  Faithfulness:       {avg_faith:.2f}", results=True)
+        eval_log(f"  Answer Relevancy:   {avg_rel:.2f}", results=True)
+        eval_log(f"  Completeness:       {avg_comp:.2f}", results=True)
+        if avg_coh > 0: eval_log(f"  Coherence:          {avg_coh:.2f}", results=True)
     else:
         eval_log("Generation: нет данных (все оценки не удались)", results=True)
 
