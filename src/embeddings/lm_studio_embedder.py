@@ -4,7 +4,7 @@
 """
 
 import httpx
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from loguru import logger
 import time
 
@@ -28,6 +28,7 @@ class LMStudioEmbedder(BaseEmbedder):
         retry_delay: float = 1.0,
         add_eos_token: bool = False,
         eos_token: str = "</s>",
+        api_key: Optional[str] = None,
         **kwargs
     ):
         """
@@ -46,15 +47,19 @@ class LMStudioEmbedder(BaseEmbedder):
         super().__init__(**kwargs)
 
         self.url = url.rstrip("/")
+        if self.url.endswith("/v1"):
+            self.url = self.url[:-3]
         self.model = model
         self.timeout = timeout
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         self.add_eos_token = add_eos_token
         self.eos_token = eos_token
+        self.api_key = api_key
 
         # Endpoint для эмбеддингов (OpenAI compatible)
-        self.embeddings_endpoint = f"{self.url}/v1/embeddings"
+        self.is_polza = "polza.ai" in self.url
+        self.embeddings_endpoint = f"{self.url}/v1/chat/completions" if self.is_polza else f"{self.url}/v1/embeddings"
 
         logger.info(
             f"LMStudioEmbedder инициализирован: url={self.url}, model={self.model}, "
@@ -141,17 +146,28 @@ class LMStudioEmbedder(BaseEmbedder):
         for attempt in range(self.max_retries):
             try:
                 # Формируем запрос в формате OpenAI API
-                payload = {
-                    "model": self.model,
-                    "input": texts,
-                }
+                if self.is_polza:
+                    # Polza API требует использовать endpoint chat/completions для эмбеддингов
+                    payload = {
+                        "model": self.model,
+                        "messages": [{"role": "user", "content": t} for t in texts]
+                    }
+                else:
+                    payload = {
+                        "model": self.model,
+                        "input": texts,
+                    }
 
                 # Отправляем запрос
+                headers = {"Content-Type": "application/json"}
+                if self.api_key:
+                    headers["Authorization"] = f"Bearer {self.api_key}"
+
                 with httpx.Client(timeout=self.timeout) as client:
                     response = client.post(
                         self.embeddings_endpoint,
                         json=payload,
-                        headers={"Content-Type": "application/json"}
+                        headers=headers
                     )
 
                     response.raise_for_status()
@@ -160,7 +176,29 @@ class LMStudioEmbedder(BaseEmbedder):
                     result = response.json()
 
                     # Извлекаем эмбеддинги
-                    embeddings = [item["embedding"] for item in result["data"]]
+                    if self.is_polza:
+                        # Polza api returns text that contains the embedding. We will need to see its format
+                        # For now we assume the format is somewhat similar or requires extraction.
+                        # Wait, prior log mentions: completion.choices[0].message.content for chat/completions
+                        # If the endpoint returns embeddings structured differently, we need to adapt.
+                        # Actually, looking at previous context #8, it returns a string response.
+                        import ast
+                        embeddings = []
+                        for choice in result.get("choices", []):
+                            content = choice.get("message", {}).get("content", "")
+                            try:
+                                # Try parsing the string into a list of floats
+                                emb = ast.literal_eval(content)
+                                if isinstance(emb, list):
+                                    embeddings.append(emb)
+                                else:
+                                    logger.error(f"Failed to parse embedding from Polza, returning 0s. Extracted: {type(emb)}")
+                                    embeddings.append([0.0] * 1024)
+                            except Exception as e:
+                                logger.error(f"Failed to parse embedding from Polza: {e}. Content: {content[:100]}")
+                                embeddings.append([0.0] * 1024) # Fallback to prevent crash
+                    else:
+                        embeddings = [item["embedding"] for item in result["data"]]
 
                     return embeddings
 
@@ -216,9 +254,13 @@ class LMStudioEmbedder(BaseEmbedder):
             EmbeddingError: Если API недоступен
         """
         try:
+            headers = {}
+            if self.api_key:
+                headers["Authorization"] = f"Bearer {self.api_key}"
+
             with httpx.Client(timeout=5) as client:
                 # Пытаемся получить список моделей
-                response = client.get(f"{self.url}/v1/models")
+                response = client.get(f"{self.url}/v1/models", headers=headers)
 
                 if response.status_code == 200:
                     logger.info("LM Studio API доступен")

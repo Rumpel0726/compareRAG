@@ -27,6 +27,7 @@ class LMStudioClient:
         timeout: int = 120,
         max_retries: int = 3,
         retry_delay: float = 1.0,
+        api_key: Optional[str] = None,
         **kwargs
     ):
         """
@@ -43,12 +44,15 @@ class LMStudioClient:
             **kwargs: Дополнительные параметры
         """
         self.url = url.rstrip("/")
+        if self.url.endswith("/v1"):
+            self.url = self.url[:-3]
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.timeout = timeout
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        self.api_key = api_key
 
         # Endpoint для chat completions (OpenAI compatible)
         self.chat_endpoint = f"{self.url}/v1/chat/completions"
@@ -184,11 +188,15 @@ class LMStudioClient:
                 }
 
                 # Отправляем запрос
+                headers = {"Content-Type": "application/json"}
+                if self.api_key:
+                    headers["Authorization"] = f"Bearer {self.api_key}"
+
                 with httpx.Client(timeout=self.timeout) as client:
                     response = client.post(
                         self.chat_endpoint,
                         json=payload,
-                        headers={"Content-Type": "application/json"}
+                        headers=headers
                     )
 
                     response.raise_for_status()
@@ -242,9 +250,13 @@ class LMStudioClient:
             LLMError: Если API недоступен
         """
         try:
+            headers = {}
+            if self.api_key:
+                headers["Authorization"] = f"Bearer {self.api_key}"
+
             with httpx.Client(timeout=5) as client:
                 # Пытаемся получить список моделей
-                response = client.get(f"{self.url}/v1/models")
+                response = client.get(f"{self.url}/v1/models", headers=headers)
 
                 if response.status_code == 200:
                     logger.info("LM Studio API доступен")
@@ -271,8 +283,12 @@ class LMStudioClient:
             Словарь с информацией
         """
         try:
+            headers = {}
+            if self.api_key:
+                headers["Authorization"] = f"Bearer {self.api_key}"
+
             with httpx.Client(timeout=5) as client:
-                response = client.get(f"{self.url}/v1/models")
+                response = client.get(f"{self.url}/v1/models", headers=headers)
 
                 if response.status_code == 200:
                     return response.json()

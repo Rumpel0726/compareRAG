@@ -102,6 +102,28 @@ python scripts/run_evaluation.py --config configs/strategies/medical/baseline.ya
 
 ---
 
+## Генерация вопросов и ground truth
+
+### Гражданский кодекс РФ
+```bash
+python scripts/generate_civil_code_questions.py --api-key <ключ>
+python scripts/generate_civil_code_questions.py  # ключ из POLZA_AI_API_KEY
+python scripts/generate_civil_code_questions.py --resume  # продолжить с checkpoint
+```
+
+### Документация PostgreSQL
+```bash
+python scripts/generate_postgresql_questions.py --api-key <ключ>
+python scripts/generate_postgresql_questions.py  # ключ из POLZA_AI_API_KEY
+python scripts/generate_postgresql_questions.py --resume  # продолжить с checkpoint
+```
+
+> Скрипты генерируют 20 лёгких (1 страница) + 10 средних (3 страницы) вопросов.
+> Выход: `src/evaluation/questions_*.py` + `src/evaluation/ground_truth_*.json`.
+> API: Polza AI (`qwen/qwen3-235b-a22b`), ключ через `--api-key` или `POLZA_AI_API_KEY`.
+
+---
+
 ## Веб-приложение
 
 ### Запуск с семантическим поиском (по умолчанию)

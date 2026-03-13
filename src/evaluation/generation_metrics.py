@@ -61,7 +61,7 @@ class LLMJudge:
             expected_keys = ("correctness", "relevance", "completeness", "coherence")
 
         messages = [
-            {"role": "system", "content": "Ты — эксперт по оценке качества текста. Отвечай ТОЛЬКО валидным JSON без дополнительных комментариев."},
+            {"role": "system", "content": "Ты — эксперт по оценке качества текста. Отвечай ТОЛЬКО валидным JSON без дополнительных комментариев. /no_think"},
             {"role": "user", "content": prompt}
         ]
 
@@ -69,7 +69,7 @@ class LLMJudge:
             raw_response = self.llm_client.generate(
                 messages=messages,
                 temperature=0.1,
-                max_tokens=500
+                max_tokens=2000
             )
             return self._parse_scores(raw_response, expected_keys)
 
@@ -84,6 +84,9 @@ class LLMJudge:
         Обрабатывает обёртки ```json ... ```,
         а также случай когда JSON окружён произвольным текстом.
         """
+        # Убираем <think>...</think> блоки (qwen3 thinking mode)
+        raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
+
         # Попытка 1: markdown-блок ```json ... ```
         match = re.search(r"```(?:json)?\s*(.*?)\s*```", raw, re.DOTALL)
         if match:

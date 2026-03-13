@@ -7,6 +7,7 @@
 """
 
 import argparse
+import os
 import sys
 from pathlib import Path
 from typing import List
@@ -87,6 +88,20 @@ def parse_arguments():
         help="Модель эмбеддингов (переопределяет конфиг). "
              "Пример: text-embedding-qwen3-embedding-0.6b. "
              "Имя коллекции автоматически дополняется суффиксом модели."
+    )
+
+    parser.add_argument(
+        "--api-key",
+        type=str,
+        default=None,
+        help="API ключ для внешних провайдеров эмбеддингов."
+    )
+
+    parser.add_argument(
+        "--url",
+        type=str,
+        default=None,
+        help="Базовый URL для API эмбеддингов, например: https://api.polza.ru/v1"
     )
 
     parser.add_argument(
@@ -317,9 +332,19 @@ def main():
         if args.embedding_model:
             config.lm_studio.embedding_model = args.embedding_model
             model_id = config.lm_studio.embedding_model_id
-            config.chromadb.collection_name = f"{config.chromadb.collection_name}_{model_id}"
+            safe_model_id = model_id.replace("/", "_").replace("-", "_")
+            config.chromadb.collection_name = f"{config.chromadb.collection_name}_{safe_model_id}"
             logger.info(f"Модель эмбеддингов (CLI): {args.embedding_model}")
             logger.info(f"Коллекция (с суффиксом модели): {config.chromadb.collection_name}")
+
+        api_key = args.api_key or os.environ.get("POLZA_API_KEY") or os.environ.get("LM_STUDIO_API_KEY")
+        if api_key:
+            config.lm_studio.api_key = api_key
+            logger.info("Установлен API ключ эмбеддера (CLI или ENV)")
+
+        if args.url:
+            config.lm_studio.url = args.url
+            logger.info(f"URL API эмбеддера (CLI): {args.url}")
 
         if args.add_eos_token:
             config.lm_studio.add_eos_token = True

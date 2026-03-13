@@ -233,6 +233,12 @@ def main():
         type=str,
         help="ID вопросов для аннотации (например: 1,2,3). По умолчанию - все вопросы"
     )
+    parser.add_argument(
+        "--api-key",
+        type=str,
+        default=None,
+        help="API ключ для внешних провайдеров LLM."
+    )
     args = parser.parse_args()
 
     # Загружаем конфигурацию
@@ -248,7 +254,8 @@ def main():
         model=config.lm_studio.llm_model,
         temperature=0.1,
         max_tokens=200,
-        timeout=120
+        timeout=120,
+        api_key=args.api_key or config.lm_studio.api_key
     )
 
     data_dir = PROJECT_ROOT / args.data_dir

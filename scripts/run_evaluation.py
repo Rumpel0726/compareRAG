@@ -55,6 +55,8 @@ def get_embedding_folder_and_abbrev(embedding_model: str) -> tuple[str, str]:
     name = embedding_model.lower()
     if name.startswith("text-embedding-"):
         name = name[len("text-embedding-"):]
+    if "/" in name:
+        name = name.split("/")[-1]
     parts = name.split("-")
     base = parts[0]
 
@@ -188,9 +190,15 @@ def initialize_rag(
     config_path: str,
     top_k: int,
     embedding_model: str = None,
+    api_key: str = None,
+    url: str = None,
+    llm_url: str = None,
+    embedder_url: str = None,
+    llm_model: str = None,
     add_eos_token: bool = False,
     eos_token: str = None,
     timeout: int = None,
+    args = None
 ):
     """Инициализация компонентов RAG --- по паттерну web/app.py."""
     logger.info(f"Загрузка конфигурации: {config_path}")
@@ -200,7 +208,9 @@ def initialize_rag(
     if embedding_model:
         config.lm_studio.embedding_model = embedding_model
         model_id = config.lm_studio.embedding_model_id
-        config.chromadb.collection_name = f"{config.chromadb.collection_name}_{model_id}"
+        # Убираем недопустимые для ChromaDB символы (слэши и тире могут вызвать проблемы, заменяем на _ и обрезаем, если нужно)
+        safe_model_id = model_id.replace("/", "_").replace("-", "_")
+        config.chromadb.collection_name = f"{config.chromadb.collection_name}_{safe_model_id}"
         logger.info(f"Модель эмбеддингов (CLI): {embedding_model}")
         logger.info(f"Коллекция (с суффиксом модели): {config.chromadb.collection_name}")
 
@@ -213,6 +223,21 @@ def initialize_rag(
     if timeout is not None:
         config.lm_studio.timeout = timeout
         logger.info(f"Таймаут LLM (CLI): {timeout}s")
+    if api_key:
+        config.lm_studio.api_key = api_key
+        logger.info("Установлен API ключ из параметров CLI")
+    if url:
+        config.lm_studio.url = url
+        logger.info(f"URL API (общий, CLI): {url}")
+    if llm_url:
+        config.lm_studio.llm_url = llm_url
+        logger.info(f"URL LLM API (CLI): {llm_url}")
+    if embedder_url:
+        config.lm_studio.embedder_url = embedder_url
+        logger.info(f"URL Embedder API (CLI): {embedder_url}")
+    if llm_model:
+        config.lm_studio.llm_model = llm_model
+        logger.info(f"Модель генерации (CLI): {llm_model}")
 
     logger.info("Инициализация эмбеддера...")
     embedder = create_embedder_from_config(config)
@@ -238,11 +263,12 @@ def initialize_rag(
 
     logger.info("Инициализация LLM клиента...")
     llm_client = LMStudioClient(
-        url=config.lm_studio.url,
+        url=config.lm_studio.llm_url or config.lm_studio.url,
         model=config.lm_studio.llm_model,
         temperature=config.lm_studio.temperature,
         max_tokens=config.lm_studio.max_tokens,
         timeout=config.lm_studio.timeout,
+        api_key=config.lm_studio.api_key,
     )
 
     logger.info("Инициализация orchestrator...")
@@ -330,6 +356,11 @@ def run_evaluation(
     config_path: str,
     top_k: int,
     embedding_model: str = None,
+    api_key: str = None,
+    url: str = None,
+    llm_url: str = None,
+    embedder_url: str = None,
+    llm_model: str = None,
     add_eos_token: bool = False,
     eos_token: str = None,
     verbose: bool = False,
@@ -339,7 +370,17 @@ def run_evaluation(
 ) -> None:
     """Главный цикл оценки."""
     orchestrator, llm_client, config = initialize_rag(
-        config_path, top_k, embedding_model, add_eos_token, eos_token, timeout
+        config_path=config_path, 
+        top_k=top_k, 
+        embedding_model=embedding_model, 
+        api_key=api_key, 
+        url=url, 
+        llm_url=llm_url,
+        embedder_url=embedder_url,
+        llm_model=llm_model, 
+        add_eos_token=add_eos_token, 
+        eos_token=eos_token, 
+        timeout=timeout
     )
     judge = LLMJudge(llm_client=llm_client)
 
@@ -533,6 +574,36 @@ def main():
              "Имя коллекции автоматически дополняется суффиксом модели."
     )
     parser.add_argument(
+        "--api-key",
+        type=str,
+        default=None,
+        help="API ключ для внешних провайдеров LLM (переопределяет конфиг)."
+    )
+    parser.add_argument(
+        "--url",
+        type=str,
+        default=None,
+        help="Базовый URL для LLM API (общий), например: https://api.polza.ru/v1"
+    )
+    parser.add_argument(
+        "--llm-url",
+        type=str,
+        default=None,
+        help="Специфичный URL для LLM генерации. Переопределяет общий --url."
+    )
+    parser.add_argument(
+        "--embedder-url",
+        type=str,
+        default=None,
+        help="Специфичный URL для эмбеддингов. Переопределяет общий --url."
+    )
+    parser.add_argument(
+        "--llm-model",
+        type=str,
+        default=None,
+        help="Название модели для генерации в LLM API, например: qwen/qwen3-14b"
+    )
+    parser.add_argument(
         "--add-eos-token",
         action="store_true",
         default=False,
@@ -587,6 +658,12 @@ def main():
     temp_config = load_config(str(config_path))
     if args.embedding_model:
         temp_config.lm_studio.embedding_model = args.embedding_model
+    if args.api_key:
+        temp_config.lm_studio.api_key = args.api_key
+    if args.url:
+        temp_config.lm_studio.url = args.url
+    if args.llm_model:
+        temp_config.lm_studio.llm_model = args.llm_model
 
     full_path, results_path = build_experiment_log_paths(PROJECT_ROOT, temp_config)
     setup_experiment_logging(full_path, results_path)
@@ -595,6 +672,11 @@ def main():
         config_path=str(config_path),
         top_k=args.top_k,
         embedding_model=args.embedding_model,
+        api_key=args.api_key,
+        url=args.url,
+        llm_url=args.llm_url,
+        embedder_url=args.embedder_url,
+        llm_model=args.llm_model,
         add_eos_token=args.add_eos_token,
         eos_token=args.eos_token,
         verbose=args.verbose,

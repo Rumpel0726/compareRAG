@@ -8,22 +8,30 @@ from pydantic import Field
 from pydantic_settings import BaseSettings
 from pathlib import Path
 import yaml
+import os
 
 
 class LMStudioConfig(BaseSettings):
     """Конфигурация для LM Studio."""
 
-    url: str = Field(default="http://127.0.0.1:1234", description="URL LM Studio API")
+    url: str = Field(default="http://127.0.0.1:1234", description="URL LM Studio API (общий)")
+    llm_url: Optional[str] = Field(default=None, description="URL для генерации (переопределяет общий)")
+    embedder_url: Optional[str] = Field(default=None, description="URL для эмбеддингов (переопределяет общий)")
     llm_model: str = Field(default="qwen/qwen3-14b", description="Модель для генерации")
     embedding_model: str = Field(default="text-embedding-nomic-embed-text-v1.5", description="Модель для эмбеддингов")
     temperature: float = Field(default=0.7, ge=0.0, le=2.0, description="Температура генерации")
     max_tokens: int = Field(default=2000, ge=1, description="Максимальное количество токенов")
     timeout: int = Field(default=120, description="Таймаут запросов в секундах")
+    api_key: Optional[str] = Field(
+        default_factory=lambda: os.getenv("POLZA_API_KEY") or os.getenv("OPENAI_API_KEY") or os.getenv("LM_STUDIO_API_KEY") or None,
+        description="API ключ (необязательно, например для внешних API)"
+    )
     add_eos_token: bool = Field(default=False, description="Добавлять EOS-токен в конец каждого текста перед эмбеддингом")
     eos_token: str = Field(default="</s>", description="EOS-токен для добавления (зависит от модели)")
 
     class Config:
         env_prefix = "LM_STUDIO_"
+        extra = "ignore"
 
     @property
     def embedding_model_id(self) -> str:
@@ -36,6 +44,8 @@ class LMStudioConfig(BaseSettings):
         name = self.embedding_model.lower()
         if name.startswith("text-embedding-"):
             name = name[len("text-embedding-"):]
+        if "/" in name:
+            name = name.split("/")[-1]
         return name.split("-")[0]
 
 
@@ -48,6 +58,7 @@ class ChromaDBConfig(BaseSettings):
 
     class Config:
         env_prefix = "CHROMADB_"
+        extra = "ignore"
 
 
 class ChunkingConfig(BaseSettings):
@@ -59,6 +70,7 @@ class ChunkingConfig(BaseSettings):
 
     class Config:
         env_prefix = "CHUNKING_"
+        extra = "ignore"
 
 
 class RetrievalConfig(BaseSettings):
@@ -73,6 +85,7 @@ class RetrievalConfig(BaseSettings):
 
     class Config:
         env_prefix = "RETRIEVAL_"
+        extra = "ignore"
 
 
 class LoggingConfig(BaseSettings):
@@ -85,6 +98,7 @@ class LoggingConfig(BaseSettings):
 
     class Config:
         env_prefix = "LOG_"
+        extra = "ignore"
 
 
 class RAGConfig(BaseSettings):
@@ -102,9 +116,11 @@ class RAGConfig(BaseSettings):
     results_dir: str = Field(default="./results", description="Директория для результатов")
 
     class Config:
+        env_prefix = ""
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = False
+        extra = "ignore"
 
     @classmethod
     def from_yaml(cls, yaml_path: str) -> "RAGConfig":

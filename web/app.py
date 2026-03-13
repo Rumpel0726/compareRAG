@@ -81,7 +81,8 @@ async def lifespan(app: FastAPI):
             model=config.lm_studio.llm_model,
             temperature=config.lm_studio.temperature,
             max_tokens=config.lm_studio.max_tokens,
-            timeout=config.lm_studio.timeout
+            timeout=config.lm_studio.timeout,
+            api_key=config.lm_studio.api_key
         )
 
         logger.info("Инициализация orchestrator...")
