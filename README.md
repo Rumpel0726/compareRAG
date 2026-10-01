@@ -191,5 +191,3 @@ Python · LangChain · ChromaDB · Chonkie · rank-bm25 · pymorphy3 · sentence
 ## Автор
 
 Илья Калинин · [GitHub](https://github.com/Rumpel0726) · i_kalinin_04@mail.ru
-
-Лицензия MIT.
