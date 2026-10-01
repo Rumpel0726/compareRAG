@@ -1,0 +1,326 @@
+2026-03-14 12:40:01 | ============================================================
+2026-03-14 12:40:01 | EVALUATION RUN: 2026-03-14 12:40:01
+2026-03-14 12:40:01 | Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\langchain_baseline.yaml
+2026-03-14 12:40:01 | Model:       qwen/qwen3-14b
+2026-03-14 12:40:01 | Embeddings:  text-embedding-qwen3-embedding-0.6b
+2026-03-14 12:40:01 | Collection:  postgresql_langchain_512_qwen3
+2026-03-14 12:40:01 | Top-k:       10
+2026-03-14 12:40:01 | Questions:   30
+2026-03-14 12:40:01 | Ground truth: 30/30 эталонных ответов загружено
+2026-03-14 12:40:01 | ============================================================
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 1/30 ---
+2026-03-14 12:42:04 | Q: Как в PostgreSQL создать внешний ключ, который связывает таблицу weather с таблицей cities?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [14]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.5912
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.29s | generation=9.16s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 2/30 ---
+2026-03-14 12:42:04 | Q: Как в PostgreSQL переопределить правило сортировки для выражения?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [40]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.28s | generation=6.35s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 3/30 ---
+2026-03-14 12:42:04 | Q: Какая команда используется для изменения владельца таблицы в PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [66]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.3333 | R@10=1.0000 | MRR=0.3333 | NDCG@10=0.5706
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.3s | generation=5.6s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 4/30 ---
+2026-03-14 12:42:04 | Q: Какой командой можно создать правило для автоматического направления новых строк в дочернюю таблицу measurement_y2006m02?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [91, 92]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.2500 | R@10=0.5000 | MRR=0.5000 | NDCG@10=0.6340
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.27s | generation=4.77s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 5/30 ---
+2026-03-14 12:42:04 | Q: Как избежать дублирующихся наборов группировок в запросе с ROLLUP?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [118]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8070
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=7.84s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 6/30 ---
+2026-03-14 12:42:04 | Q: Какой байт при выводе дублируется в режиме escape для типа данных bytea?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [144]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9197
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=4.61s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 7/30 ---
+2026-03-14 12:42:04 | Q: Какой оператор в PostgreSQL используется для проверки, содержит ли один документ jsonb другой документ?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [170]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=4.95s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 8/30 ---
+2026-03-14 12:42:04 | Q: Как создать ограничение-исключение для предотвращения пересечения диапазонов в таблице reservation?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [196]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=6.84s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 9/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL позволяет извлекать подстроку, соответствующую регулярному выражению, и возвращать N-е вхождение?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [222, 240]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.4500 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.6241
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=5.99s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 10/30 ---
+2026-03-14 12:42:04 | Q: Как определяется жадность регулярного выражения, образованного из двух или более ветвей, соединённых оператором |?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [248]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.21s | generation=8.91s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 11/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL эквивалентна SQL-совместимой конструкции 'время AT TIME ZONE часовой_пояс'?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [274]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.24s | generation=3.08s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 12/30 ---
+2026-03-14 12:42:04 | Q: Какой параметр функций xpath и xpath_exists в PostgreSQL используется для определения пространств имён?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [300]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.3333 | R@10=1.0000 | MRR=0.3333 | NDCG@10=0.5000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.26s | generation=5.31s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 13/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL преобразует строковое значение JSON в целое число?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [326]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.2500 | R@10=1.0000 | MRR=0.2500 | NDCG@10=0.4307
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=3.96s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 14/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL является стандартным SQL аналогом bool_and?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [352, 354]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.21s | generation=3.71s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 15/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL используется для восстановления команды создания функции или процедуры?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [378]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.1429 | R@10=1.0000 | MRR=0.1429 | NDCG@10=0.3333
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=3.32s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 16/30 ---
+2026-03-14 12:42:04 | Q: Какая функция в PostgreSQL используется для обновления статистики на уровне таблиц, особенно после восстановления?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [404, 405]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.1250 | R@10=0.5000 | MRR=0.2500 | NDCG@10=0.4307
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=7.22s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 17/30 ---
+2026-03-14 12:42:04 | Q: Какой тип индекса создается по умолчанию при использовании команды CREATE INDEX в PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [430]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.23s | generation=3.69s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 18/30 ---
+2026-03-14 12:42:04 | Q: Какая функция PostgreSQL используется для выделения фрагментов документа с выделенными словами из запроса при полнотекстовом поиске?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [456]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=4.11s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 19/30 ---
+2026-03-14 12:42:04 | Q: Какая команда используется для просмотра шаблонов текстового поиска в PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [482]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.1429 | R@10=1.0000 | MRR=0.1429 | NDCG@10=0.3333
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | ERROR: не удалось получить оценку от LLM Judge
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=3.25s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 20/30 ---
+2026-03-14 12:42:04 | Q: Какую дополнительную информацию выводит команда EXPLAIN ANALYZE для узлов Index Scan в PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [508]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.2000 | R@10=1.0000 | MRR=0.2000 | NDCG@10=0.3869
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=10.9s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 21/30 ---
+2026-03-14 12:42:04 | Q: Как приведение типов данных влияет на использование интервалов в рамках оконных функций PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [39, 40]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.7000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8529
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=4 | Faithfulness=3 | Answer Relevancy=5 | Completeness=3 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=25.03s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 22/30 ---
+2026-03-14 12:42:04 | Q: Какие методы используются для автоматического направления вставляемых данных в дочерние таблицы при секционировании через наследование, и какие особенности у каждого подхода?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [92, 93, 94]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0333 | R@10=0.3333 | MRR=0.1000 | NDCG@10=0.2891
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=2 | Faithfulness=3 | Answer Relevancy=4 | Completeness=2 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.21s | generation=11.68s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 23/30 ---
+2026-03-14 12:42:04 | Q: Как в PostgreSQL задается точность (p) для типов данных времени и даты, и как это влияет на ввод и хранение значений?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [145, 146, 147]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.4444 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.6395
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=4 | Faithfulness=3 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.22s | generation=9.81s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 24/30 ---
+2026-03-14 12:42:04 | Q: Как псевдотипы и типы-псевдонимы OID взаимодействуют в функциях PostgreSQL, и как это влияет на зависимости объектов?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [198, 199, 200]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.6667 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.9469
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.21s | generation=9.92s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 25/30 ---
+2026-03-14 12:42:04 | Q: Какие функции форматирования данных и коды форматирования даты/времени доступны в PostgreSQL?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [252, 253]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=11.74s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 26/30 ---
+2026-03-14 12:42:04 | Q: Как параметры tableforest, nulls и targetns влияют на формат XML-документов, генерируемых функциями PostgreSQL, и как эти документы могут быть использованы в сочетании с XML-схемами и XSLT-преобразованиями?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [304, 305, 306]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.4167 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.8066
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=16.88s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 27/30 ---
+2026-03-14 12:42:04 | Q: Какие функции в PostgreSQL позволяют вычислять ранги и процентили в контексте агрегации и оконных функций, и как они различаются по применению?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [357, 358, 359]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0833 | R@10=0.3333 | MRR=0.2500 | NDCG@10=0.4307
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.21s | generation=42.47s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 28/30 ---
+2026-03-14 12:42:04 | Q: Какие встроенные функции PostgreSQL позволяют управлять рекомендательными блокировками и предотвращать ненужные обновления строк, и как они применяются?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [410, 411, 412]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.1333 | R@10=0.6667 | MRR=0.2000 | NDCG@10=0.4144
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=11.69s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 29/30 ---
+2026-03-14 12:42:04 | Q: Как стандартный анализатор PostgreSQL обрабатывает составные слова с дефисами и как это взаимодействует с конфигурацией словарей для полнотекстового поиска?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [463, 464, 465]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=3 | Faithfulness=3 | Answer Relevancy=4 | Completeness=2 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=13.7s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | --- Question 30/30 ---
+2026-03-14 12:42:04 | Q: Какие типы расширенной статистики доступны в PostgreSQL и для каких целей они применяются?
+2026-03-14 12:42:04 | Expected sources: ['postgres_part1_2.pdf']
+2026-03-14 12:42:04 | Используется PAGE-BASED релевантность
+2026-03-14 12:42:04 | Expected pages: {'postgres_part1_2.pdf': [516, 517, 518]}
+2026-03-14 12:42:04 | Retrieval (page-based) | AP@10=0.0000 | R@10=0.0000 | MRR=0.0000 | NDCG@10=0.0000
+2026-03-14 12:42:04 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 12:42:04 | Generation | Answer Correctness=3 | Faithfulness=2 | Answer Relevancy=4 | Completeness=2 | Coherence=N/A
+2026-03-14 12:42:04 | Timing | retrieval=0.2s | generation=8.1s
+2026-03-14 12:42:04 | 
+2026-03-14 12:42:04 | ============================================================
+2026-03-14 12:42:04 | SUMMARY
+2026-03-14 12:42:04 | ============================================================
+2026-03-14 12:42:04 | Retrieval (avg, 30 questions):
+2026-03-14 12:42:04 |   MAP@10:        0.2402
+2026-03-14 12:42:04 |   Recall@10:     0.5222
+2026-03-14 12:42:04 |   MRR:               0.3067
+2026-03-14 12:42:04 |   NDCG@10:       0.3647
+2026-03-14 12:42:04 | Generation (avg, 29 questions):
+2026-03-14 12:42:04 |   Answer Correctness: 4.69
+2026-03-14 12:42:04 |   Faithfulness:       4.52
+2026-03-14 12:42:04 |   Answer Relevancy:   4.90
+2026-03-14 12:42:04 |   Completeness:       4.48
+2026-03-14 12:42:04 | Total time: 122.8s
+2026-03-14 12:42:04 | ============================================================

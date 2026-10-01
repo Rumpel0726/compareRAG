@@ -1,0 +1,326 @@
+2026-03-14 01:46:37 | ============================================================
+2026-03-14 01:46:37 | EVALUATION RUN: 2026-03-14 01:46:37
+2026-03-14 01:46:37 | Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\baseline.yaml
+2026-03-14 01:46:37 | Model:       qwen/qwen3-14b
+2026-03-14 01:46:37 | Embeddings:  text-embedding-multilingual-e5-large-instruct
+2026-03-14 01:46:37 | Collection:  civil_code_baseline_e5
+2026-03-14 01:46:37 | Top-k:       10
+2026-03-14 01:46:37 | Questions:   30
+2026-03-14 01:46:37 | Ground truth: 30/30 эталонных ответов загружено
+2026-03-14 01:46:37 | ============================================================
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 1/30 ---
+2026-03-14 01:48:37 | Q: Какие виды сделок с имуществом подопечного не может совершать опекун без предварительного разрешения органа опеки и попечительства?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [17]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9747
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.43s | generation=7.09s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 2/30 ---
+2026-03-14 01:48:37 | Q: Какие сведения должен содержать учредительный договор полного товарищества согласно статье 70 Гражданского кодекса РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [50]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8845
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.39s | generation=5.53s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 3/30 ---
+2026-03-14 01:48:37 | Q: Какие лица могут быть учредителями учреждения согласно Гражданскому кодексу РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [83]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.5912
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.52s | generation=5.66s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 4/30 ---
+2026-03-14 01:48:37 | Q: Какой минимальный процент участников гражданско-правового сообщества должен отправить документы для принятия решения без проведения заседания?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [116]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9453
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.48s | generation=5.03s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 5/30 ---
+2026-03-14 01:48:37 | Q: Можно ли продать земельный участок, находящийся в пожизненном наследуемом владении?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [149]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9668
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.23s | generation=6.67s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 6/30 ---
+2026-03-14 01:48:37 | Q: Какие имущества автоматически считаются находящимися в залоге согласно статье 345 ГК РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [182]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=2 | Faithfulness=3 | Answer Relevancy=4 | Completeness=1 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.22s | generation=8.6s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 7/30 ---
+2026-03-14 01:48:37 | Q: Как определяется текущая цена при возмещении убытков при досрочном расторжении договора?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [215]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.6462
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.26s | generation=5.59s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 8/30 ---
+2026-03-14 01:48:37 | Q: Какие действия может предпринять покупатель, если товар передан без тары или в ненадлежащей упаковке?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [248]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8338
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.25s | generation=8.67s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 9/30 ---
+2026-03-14 01:48:37 | Q: Какой срок предусмотрен для уведомления плательщика ренты о выкупе постоянной ренты?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [281]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9911
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.26s | generation=5.27s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 10/30 ---
+2026-03-14 01:48:37 | Q: При каких условиях подрядчик может продать результат работы, если заказчик уклоняется от его принятия?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [314]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.22s | generation=5.15s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 11/30 ---
+2026-03-14 01:48:37 | Q: Как определяется период начисления процентов на сумму банковского вклада?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [347]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9931
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=8.21s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 12/30 ---
+2026-03-14 01:48:37 | Q: Какой срок хранения невостребованной вещи устанавливает ломбард до её продажи?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [380]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8772
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.28s | generation=7.73s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 13/30 ---
+2026-03-14 01:48:37 | Q: Какова ответственность доверительного управляющего за действия переданного им права управления другому лицу?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [413]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8629
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.2s | generation=7.16s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 14/30 ---
+2026-03-14 01:48:37 | Q: Как определяются доли наследников, если в завещании не указаны их части имущества?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [446]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9325
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=5.85s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 15/30 ---
+2026-03-14 01:48:37 | Q: Как определяется личный закон юридического лица согласно статье 1202 ГК РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [479]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.7980
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.24s | generation=6.74s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 16/30 ---
+2026-03-14 01:48:37 | Q: Кто может быть зарегистрирован в качестве патентного поверенного в Российской Федерации?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [512]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9829
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.29s | generation=4.73s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 17/30 ---
+2026-03-14 01:48:37 | Q: Какие элементы включает знак правовой охраны смежных прав согласно статье 1305 ГК РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [545]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.2s | generation=10.26s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 18/30 ---
+2026-03-14 01:48:37 | Q: На каком языке должно подаваться заявление о выдаче патента на изобретение, полезную модель или промышленный образец, и какие требования к другим документам заявки?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [578]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9197
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.23s | generation=8.99s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 19/30 ---
+2026-03-14 01:48:37 | Q: Какой срок установлен для использования приоритета первой заявки на патент на селекционное достижение, поданной в иностранном государстве, согласно Гражданскому кодексу РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [611]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=5.62s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 20/30 ---
+2026-03-14 01:48:37 | Q: В течение какого срока можно оспорить регистрацию товарного знака, если правовая охрана предоставлена с нарушением требований пунктов 6, 7 и 10 статьи 1483 ГК РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [644]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=1 | Faithfulness=3 | Answer Relevancy=3 | Completeness=1 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=5.56s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 21/30 ---
+2026-03-14 01:48:37 | Q: Каковы особенности субсидиарной ответственности участников при преобразовании полного товарищества в общество и в случае обязательств полного товарищества?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [49, 50, 51]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.5556 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.8855
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.24s | generation=9.08s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 22/30 ---
+2026-03-14 01:48:37 | Q: Каковы сроки исковой давности для требований о признании недействительными ничтожных и оспоримых сделок, а также решений собраний, и как определяется начало их течения согласно Гражданскому кодексу РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [115, 116, 117]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.3333 | R@10=0.3333 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=3 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.23s | generation=9.52s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 23/30 ---
+2026-03-14 01:48:37 | Q: Какие последствия замены предмета залога предусмотрены законом, и как это влияет на обязанности сторон по страхованию и сохранности имущества?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [181, 182, 183]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.8333 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9804
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.23s | generation=11.24s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 24/30 ---
+2026-03-14 01:48:37 | Q: Какие последствия наступают, если продавец передал товар без необходимой комплектации, и какие действия должен предпринять покупатель для защиты своих прав?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [247, 248, 249]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.4444 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.8212
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.22s | generation=9.32s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 25/30 ---
+2026-03-14 01:48:37 | Q: Какие последствия наступают, если заказчик уклоняется от приемки выполненной работы по договору подряда, и какие права имеет подрядчик в этой ситуации?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [313, 314, 315]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.3889 | R@10=1.0000 | MRR=0.3333 | NDCG@10=0.6040
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=3 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.22s | generation=8.2s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 26/30 ---
+2026-03-14 01:48:37 | Q: Какие обязательные реквизиты должны содержать двойное и простое складские свидетельства, и в чем различия их правового режима согласно статьям 913 и 917 ГК РФ?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [379, 380, 381]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.5556 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.9667
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=12.48s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 27/30 ---
+2026-03-14 01:48:37 | Q: Какие последствия наступают при разглашении тайны совместного завещания супругов до открытия наследства, и как это влияет на обязательства супругов по завещанию?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [445, 446, 447]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.5000 | R@10=0.6667 | MRR=1.0000 | NDCG@10=0.9727
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=10.7s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 28/30 ---
+2026-03-14 01:48:37 | Q: Какие органы уполномочены рассматривать споры, связанные с защитой интеллектуальных прав в административном порядке, и кто устанавливает правила их рассмотрения?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [511, 512, 513]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.8056 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=8.52s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 29/30 ---
+2026-03-14 01:48:37 | Q: Каковы последствия непользования патентом на изобретение, выданным по государственному контракту, в течение двух лет для Российской Федерации и исполнителя, а также как регулируется передача исключительного права в этом случае?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [577, 578, 579]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.3333 | R@10=0.3333 | MRR=1.0000 | NDCG@10=0.8772
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=10.62s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | --- Question 30/30 ---
+2026-03-14 01:48:37 | Q: Каковы основания досрочного прекращения правовой охраны коллективного знака и как они связаны с оспариванием регистрации товарных знаков?
+2026-03-14 01:48:37 | Expected sources: ['gkodeksrf.pdf']
+2026-03-14 01:48:37 | Используется PAGE-BASED релевантность
+2026-03-14 01:48:37 | Expected pages: {'gkodeksrf.pdf': [643, 644, 645]}
+2026-03-14 01:48:37 | Retrieval (page-based) | AP@10=0.6667 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9608
+2026-03-14 01:48:37 | Generation | Running LLM Judge (reference-based)...
+2026-03-14 01:48:37 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-14 01:48:37 | Timing | retrieval=0.21s | generation=22.76s
+2026-03-14 01:48:37 | 
+2026-03-14 01:48:37 | ============================================================
+2026-03-14 01:48:37 | SUMMARY
+2026-03-14 01:48:37 | ============================================================
+2026-03-14 01:48:37 | Retrieval (avg, 30 questions):
+2026-03-14 01:48:37 |   MAP@10:        0.8139
+2026-03-14 01:48:37 |   Recall@10:     0.9111
+2026-03-14 01:48:37 |   MRR:               0.9444
+2026-03-14 01:48:37 |   NDCG@10:       0.9089
+2026-03-14 01:48:37 | Generation (avg, 30 questions):
+2026-03-14 01:48:37 |   Answer Correctness: 4.57
+2026-03-14 01:48:37 |   Faithfulness:       4.57
+2026-03-14 01:48:37 |   Answer Relevancy:   4.90
+2026-03-14 01:48:37 |   Completeness:       4.50
+2026-03-14 01:48:37 | Total time: 119.5s
+2026-03-14 01:48:37 | ============================================================

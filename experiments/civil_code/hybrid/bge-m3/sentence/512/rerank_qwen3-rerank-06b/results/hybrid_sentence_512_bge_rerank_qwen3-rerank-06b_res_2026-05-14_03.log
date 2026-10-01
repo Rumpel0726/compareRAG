@@ -1,0 +1,11 @@
+2026-05-14 13:41:22 | ============================================================
+2026-05-14 13:41:22 | EVALUATION RUN: 2026-05-14 13:41:22
+2026-05-14 13:41:22 | Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_baseline.yaml
+2026-05-14 13:41:22 | Model:       qwen/qwen3-14b
+2026-05-14 13:41:22 | Embeddings:  text-embedding-bge-m3
+2026-05-14 13:41:22 | Collection:  civil_code_sentence_512_bge
+2026-05-14 13:41:22 | Top-k:       10
+2026-05-14 13:41:22 | Reranker:    Qwen/Qwen3-Reranker-0.6B (top_n=20)
+2026-05-14 13:41:22 | Questions:   30
+2026-05-14 13:41:22 | Ground truth: 30/30 эталонных ответов загружено
+2026-05-14 13:41:22 | ============================================================

@@ -75,7 +75,7 @@ desktop.ini
 *.swp
 *.swo
 
-# Data (раскомментируйте если не хотите коммитить PDF документы)
+# Data (СЂР°СЃРєРѕРјРјРµРЅС‚РёСЂСѓР№С‚Рµ РµСЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ РєРѕРјРјРёС‚РёС‚СЊ PDF РґРѕРєСѓРјРµРЅС‚С‹)
 # data/*.pdf
 
 # Web server cache
@@ -83,3 +83,7 @@ web/__pycache__/
 web/api/__pycache__/
 
 nul
+
+# Experiment logs are committed (checked: no API keys)
+!experiments/**/results/
+!experiments/**/*.log

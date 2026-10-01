@@ -1,0 +1,327 @@
+2026-03-20 21:17:07 | ============================================================
+2026-03-20 21:17:07 | EVALUATION RUN: 2026-03-20 21:17:07
+2026-03-20 21:17:07 | Config:      C:\ragAI\compareRAG\configs\strategies\medical\recursive_baseline.yaml
+2026-03-20 21:17:07 | Model:       qwen/qwen3-14b
+2026-03-20 21:17:07 | Embeddings:  text-embedding-bge-m3
+2026-03-20 21:17:07 | Collection:  medical_docs_recursive_512_bge
+2026-03-20 21:17:07 | Top-k:       10
+2026-03-20 21:17:07 | Questions:   30
+2026-03-20 21:17:07 | Ground truth: 29/30 эталонных ответов загружено
+2026-03-20 21:17:07 | ============================================================
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 1/30 ---
+2026-03-20 21:21:15 | Q: Какой процент пациентов с паховыми грыжами в исследовании перенесли ТАРР герниопластику?
+2026-03-20 21:21:15 | Expected sources: ['analiz-struktury-hirurgicheskih-vmeshatelstv-pri-pahovyh-gryzhah-v-usloviyah-vysokopotokovogo-gerniologicheskogo-tsentra.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'analiz-struktury-hirurgicheskih-vmeshatelstv-pri-pahovyh-gryzhah-v-usloviyah-vysokopotokovogo-gerniologicheskogo-tsentra.pdf': [1, 3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.8333 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8159
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.29s | generation=16.97s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 2/30 ---
+2026-03-20 21:21:15 | Q: Какова средняя концентрация VEGF-A у детей с болезнью Вильсона–Коновалова?
+2026-03-20 21:21:15 | Expected sources: ['izmeneniya-faktorov-angiogeneza-i-markerov-endotelialnoy-disfunktsii-pri-bolezni-vilsona-konovalova-u-detey-i-podrostkov.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izmeneniya-faktorov-angiogeneza-i-markerov-endotelialnoy-disfunktsii-pri-bolezni-vilsona-konovalova-u-detey-i-podrostkov.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.7779
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.3s | generation=8.66s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 3/30 ---
+2026-03-20 21:21:15 | Q: Какова частота достижения сфероэквивалента в диапазоне ± 0,5 Дптр после имплантации ИОЛ AT LISA tri 839MP?
+2026-03-20 21:21:15 | Expected sources: ['binokulyarnaya-implantatsiya-novoy-trifokalnoy-difraktsionnoy-intraokulyarnoy-linzy-dlya-korrektsii-presbiopii.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'binokulyarnaya-implantatsiya-novoy-trifokalnoy-difraktsionnoy-intraokulyarnoy-linzy-dlya-korrektsii-presbiopii.pdf': [1, 4]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.5833 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.7687
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.31s | generation=19.82s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 4/30 ---
+2026-03-20 21:21:15 | Q: Какова частота биполярного аффективного расстройства II типа в общей популяции согласно данным, приведённым в статье?
+2026-03-20 21:21:15 | Expected sources: ['bipolyarnoe-affektivnoe-rasstroystvo-ii-tipa.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'bipolyarnoe-affektivnoe-rasstroystvo-ii-tipa.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8804
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.3s | generation=10.85s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 5/30 ---
+2026-03-20 21:21:15 | Q: Какова средняя острота зрения спустя 3 месяца после операции частичной DMEK?
+2026-03-20 21:21:15 | Expected sources: ['chastichnaya-transplantatsiya-destsemetovoy-membrany-s-endoteliem-i-dmek.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'chastichnaya-transplantatsiya-destsemetovoy-membrany-s-endoteliem-i-dmek.pdf': [1, 3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.3667 | R@10=1.0000 | MRR=0.3333 | NDCG@10=0.6636
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.21s | generation=10.94s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 6/30 ---
+2026-03-20 21:21:15 | Q: Какова была экспрессия гена hBD-2 у пациентов с здоровым пародонтом до шинирования?
+2026-03-20 21:21:15 | Expected sources: ['diagnostika-i-profilaktika-zabolevaniy-parodonta-u-bolnyh-s-perelomami-nizhney-chelyusti.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'diagnostika-i-profilaktika-zabolevaniy-parodonta-u-bolnyh-s-perelomami-nizhney-chelyusti.pdf': [1, 2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.0625 | R@10=0.5000 | MRR=0.1250 | NDCG@10=0.3155
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.24s | generation=15.58s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 7/30 ---
+2026-03-20 21:21:15 | Q: Какая доза дигоксина рекомендуется для пациентов с массой тела более 85 кг?
+2026-03-20 21:21:15 | Expected sources: ['digoksin-u-bolnyh-s-hronicheskoy-serdechnoy-nedostatochnostyu-pro-i-contra.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'digoksin-u-bolnyh-s-hronicheskoy-serdechnoy-nedostatochnostyu-pro-i-contra.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9197
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.2s | generation=14.54s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 8/30 ---
+2026-03-20 21:21:15 | Q: Какова концентрация PICP у пациентов с нормальным весом на 1-е сутки заболевания?
+2026-03-20 21:21:15 | Expected sources: ['dinamika-markerov-fibrozirovaniya-s-uchetom-osobennostey-metabolicheskogo-fenotipa-u-patsientov-s-infarktom-mikarda.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'dinamika-markerov-fibrozirovaniya-s-uchetom-osobennostey-metabolicheskogo-fenotipa-u-patsientov-s-infarktom-mikarda.pdf': [3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.2500 | R@10=1.0000 | MRR=0.2500 | NDCG@10=0.4307
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=7.08s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 9/30 ---
+2026-03-20 21:21:15 | Q: Какое значение внутриглазного давления (ВГД) было зафиксировано у пациента К. на следующий день после операции субтотальной витрэктомии и имплантации интраокулярной линзы?
+2026-03-20 21:21:15 | Expected sources: ['dreniruyuschaya-autoklapannaya-limbosklerektomiya-v-lechenii-posttravmaticheskoy-glaukomy.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'dreniruyuschaya-autoklapannaya-limbosklerektomiya-v-lechenii-posttravmaticheskoy-glaukomy.pdf': [1, 2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.8333 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9797
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=1 | Faithfulness=3 | Answer Relevancy=4 | Completeness=1 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.22s | generation=11.21s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 10/30 ---
+2026-03-20 21:21:15 | Q: Какова общая внутриутробная смертность в III группе животных, подвергнутых воздействию пестицидов и диоксидов серы и азота?
+2026-03-20 21:21:15 | Expected sources: ['embrionalnyy-i-postnatalnyy-gistogenez-zubov-u-krys-v-usloviyah-zagryazneniya-okruzhayuschey-sredy.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'embrionalnyy-i-postnatalnyy-gistogenez-zubov-u-krys-v-usloviyah-zagryazneniya-okruzhayuschey-sredy.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.2s | generation=10.92s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 11/30 ---
+2026-03-20 21:21:15 | Q: Какой объем инфузионной терапии потребовался пациентам без гемофильтрации через 72 часа?
+2026-03-20 21:21:15 | Expected sources: ['gemofiltratsiya-pri-infuzionnoy-terapii-tyazhelogo-ostrogo-pankreatita.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'gemofiltratsiya-pri-infuzionnoy-terapii-tyazhelogo-ostrogo-pankreatita.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.2000 | R@10=1.0000 | MRR=0.2000 | NDCG@10=0.4556
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=1 | Faithfulness=5 | Answer Relevancy=5 | Completeness=1 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=24.73s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 12/30 ---
+2026-03-20 21:21:15 | Q: Какова концентрация цефотаксима в плазме крови кроликов через 1,5 часа после введения гиалуронидазы и антибиотика?
+2026-03-20 21:21:15 | Expected sources: ['gialuronidaza-eksperimentalnoe-podtverzhdenie-svoystv-endolimfaticheskogo-provodnika.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'gialuronidaza-eksperimentalnoe-podtverzhdenie-svoystv-endolimfaticheskogo-provodnika.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.6330
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=3 | Faithfulness=4 | Answer Relevancy=5 | Completeness=3 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.21s | generation=15.07s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 13/30 ---
+2026-03-20 21:21:15 | Q: Какова продолжительность химиотерапии для пациентов с «малыми» формами туберкулеза органов дыхания согласно таблице 1?
+2026-03-20 21:21:15 | Expected sources: ['himioterapiya-tuberkuleza-organov-dyhaniya-u-detey-i-podrostkov-nauchnye-podhody-k-resheniyu-problemy.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'himioterapiya-tuberkuleza-organov-dyhaniya-u-detey-i-podrostkov-nauchnye-podhody-k-resheniyu-problemy.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.1111 | R@10=1.0000 | MRR=0.1111 | NDCG@10=0.3618
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.22s | generation=30.78s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 14/30 ---
+2026-03-20 21:21:15 | Q: Какой процент населения старше 60 лет будет в мире к 2050 году?
+2026-03-20 21:21:15 | Expected sources: ['integratsiya-stomatologicheskoy-determinanty-v-programmu-aktivnogo-dolgoletiya.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'integratsiya-stomatologicheskoy-determinanty-v-programmu-aktivnogo-dolgoletiya.pdf': [1, 2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.6000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.7904
+2026-03-20 21:21:15 | Generation | Running LLM Judge (context-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=3 | Faithfulness=N/A | Answer Relevancy=4 | Completeness=2 | Coherence=4
+2026-03-20 21:21:15 | Timing | retrieval=0.21s | generation=21.79s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 15/30 ---
+2026-03-20 21:21:15 | Q: Какова масса тела девочки 17 лет при поступлении в клинику 3 апреля 2014 года?
+2026-03-20 21:21:15 | Expected sources: ['intestinalnaya-limfangiektaziya.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'intestinalnaya-limfangiektaziya.pdf': [3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.1429 | R@10=1.0000 | MRR=0.1429 | NDCG@10=0.3333
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.21s | generation=25.6s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 16/30 ---
+2026-03-20 21:21:15 | Q: Какой процент населения в Йемене, Ираке и Сирии составляет уровень бедности?
+2026-03-20 21:21:15 | Expected sources: ['issledovanie-mediko-sotsialnyh-aspektov-zabolevaemosti-sredi-vzroslogo-i-detskogo-naseleniya-v-arabskih-stranah-blizhnego-vostoka.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'issledovanie-mediko-sotsialnyh-aspektov-zabolevaemosti-sredi-vzroslogo-i-detskogo-naseleniya-v-arabskih-stranah-blizhnego-vostoka.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.5000 | R@10=1.0000 | MRR=0.5000 | NDCG@10=0.6380
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=8.46s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 17/30 ---
+2026-03-20 21:21:15 | Q: Какие 90%-ные доверительные интервалы были получены для AUC0-t и Cmax амлодипина в исследовании биоэквивалентности препаратов Амлодипин+Валсартан и Эксфорж®?
+2026-03-20 21:21:15 | Expected sources: ['issledovanie-sravnitelnoy-farmakokinetiki-i-bioekvivalentnosti-preparatov-amlodipin-valsartan-i-eksforzh.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'issledovanie-sravnitelnoy-farmakokinetiki-i-bioekvivalentnosti-preparatov-amlodipin-valsartan-i-eksforzh.pdf': [1, 2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.6111 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8015
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.2s | generation=34.32s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 18/30 ---
+2026-03-20 21:21:15 | Q: Какова концентрация VEGF-A у детей с болезнью Вильсона–Коновалова, согласно результатам исследования?
+2026-03-20 21:21:15 | Expected sources: ['izmeneniya-faktorov-angiogeneza-i-markerov-endotelialnoy-disfunktsii-pri-bolezni-vilsona-konovalova-u-detey-i-podrostkov.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izmeneniya-faktorov-angiogeneza-i-markerov-endotelialnoy-disfunktsii-pri-bolezni-vilsona-konovalova-u-detey-i-podrostkov.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.7977
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.21s | generation=26.6s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 19/30 ---
+2026-03-20 21:21:15 | Q: Какой объем синовиальной жидкости был определен при пальпации коленного сустава пациента в сентябре, через полгода после начала заболевания?
+2026-03-20 21:21:15 | Expected sources: ['izolirovannyy-tuberkulez-sinovialnoy-obolochki-kolennogo-sustava.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izolirovannyy-tuberkulez-sinovialnoy-obolochki-kolennogo-sustava.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9668
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=4.72s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 20/30 ---
+2026-03-20 21:21:15 | Q: Какова заболеваемость детей, проживающих в курящих семьях?
+2026-03-20 21:21:15 | Expected sources: ['izuchenie-osobenostey-semi-s-rebenkom-doshkolnogo-vozrasta.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izuchenie-osobenostey-semi-s-rebenkom-doshkolnogo-vozrasta.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8772
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=30.87s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 21/30 ---
+2026-03-20 21:21:15 | Q: Какой процент пациентов в группе наблюдения через 6 месяцев после обучения начал регулярно принимать гипотензивные лекарственные средства?
+2026-03-20 21:21:15 | Expected sources: ['izuchenie-otdalennyh-rezultatov-profilakticheskoy-pomoschi-patsientam-rabotosposobnogo-vozrasta-s-arterialnoy-gipertoniey-pri-uchastii-srednih-meditsinskih-rabotnikov.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izuchenie-otdalennyh-rezultatov-profilakticheskoy-pomoschi-patsientam-rabotosposobnogo-vozrasta-s-arterialnoy-gipertoniey-pri-uchastii-srednih-meditsinskih-rabotnikov.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9753
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=13.48s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 22/30 ---
+2026-03-20 21:21:15 | Q: Какой процент пациентов, лечившихся три и более месяцев в отделении сестринского ухода, составляют по данным исследования?
+2026-03-20 21:21:15 | Expected sources: ['izuchenie-udovletvorennosti-patsientami-i-ih-rodstvennikami-kachestvom-usloviy-prebyvaniya-v-otdelenii-sestrinskogo-uhoda.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'izuchenie-udovletvorennosti-patsientami-i-ih-rodstvennikami-kachestvom-usloviy-prebyvaniya-v-otdelenii-sestrinskogo-uhoda.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=13.95s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 23/30 ---
+2026-03-20 21:21:15 | Q: Какова медиана выживаемости без метастазов при применении апалутамида по сравнению с плацебо в исследовании SPARTAN?
+2026-03-20 21:21:15 | Expected sources: ['kastratsionno-rezistentnyy-rak-predstatelnoy-zhelezy-novye-perspektivy-lekarstvennoy-terapii.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'kastratsionno-rezistentnyy-rak-predstatelnoy-zhelezy-novye-perspektivy-lekarstvennoy-terapii.pdf': [3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8900
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.24s | generation=16.79s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 24/30 ---
+2026-03-20 21:21:15 | Q: Какова эффективность прекращения бактериовыделения у больных с сахарным диабетом 1-го типа при лечении туберкулёза лёгких с множественной лекарственной устойчивостью возбудителя?
+2026-03-20 21:21:15 | Expected sources: ['klinicheskie-proyavleniya-i-effektivnost-lecheniya-tuberkulyoza-lyogkih-s-mnozhestvennoy-lekarstvennoy-ustoychivostyu-vozbuditelya-u-bolnyh-saharnym-diabetom.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'klinicheskie-proyavleniya-i-effektivnost-lecheniya-tuberkulyoza-lyogkih-s-mnozhestvennoy-lekarstvennoy-ustoychivostyu-vozbuditelya-u-bolnyh-saharnym-diabetom.pdf': [1, 3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.7000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9651
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=4 | Faithfulness=4 | Answer Relevancy=5 | Completeness=4 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.2s | generation=18.15s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 25/30 ---
+2026-03-20 21:21:15 | Q: Какой процент детей, рожденных с очень низкой массой тела (ОНМТ), имеет недостаточный прирост массы тела в первые месяцы жизни?
+2026-03-20 21:21:15 | Expected sources: ['klinicheskiy-polimorfizm-pri-narusheniyah-v-rabote-pischevaritelnoy-sistemy-i-metody-ih-korrektsii-u-detey-rannego-vozrasta-rodivshihsya-s-ekstremalno-nizkoy-i-ochen-nizkoy-massoy-tela-v-katamneze.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'klinicheskiy-polimorfizm-pri-narusheniyah-v-rabote-pischevaritelnoy-sistemy-i-metody-ih-korrektsii-u-detey-rannego-vozrasta-rodivshihsya-s-ekstremalno-nizkoy-i-ochen-nizkoy-massoy-tela-v-katamneze.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8072
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=14.77s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 26/30 ---
+2026-03-20 21:21:15 | Q: Какого размера был комедоновый невус у пациентки А. на момент обращения в 32 года?
+2026-03-20 21:21:15 | Expected sources: ['klinika-diagnostika-i-lechenie-vrozhdennogo-komedonovogo-nevusa.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'klinika-diagnostika-i-lechenie-vrozhdennogo-komedonovogo-nevusa.pdf': [2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.8074
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=2 | Faithfulness=4 | Answer Relevancy=4 | Completeness=1 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=15.75s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 27/30 ---
+2026-03-20 21:21:15 | Q: Какова концентрация цефоперазона в крови через 20 минут после его введения?
+2026-03-20 21:21:15 | Expected sources: ['kliniko-farmakokineticheskie-paralleli-perioperatsionnoy-antibiotikoprofilaktiki-v-abdominalnoy-hirurgii.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'kliniko-farmakokineticheskie-paralleli-perioperatsionnoy-antibiotikoprofilaktiki-v-abdominalnoy-hirurgii.pdf': [1, 2]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9833
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.2s | generation=11.35s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 28/30 ---
+2026-03-20 21:21:15 | Q: Какой процент пациентов с острым нарушением мозгового кровообращения имеет риск тромбоэмболии?
+2026-03-20 21:21:15 | Expected sources: ['kliniko-fiziologicheskie-pokazateli-ispolzovaniya-preryvistoy-pnevmokompressii-dlya-profilaktiki-tromboza-glubokih-ven-i-tromboembolii-lyogochnyh-arteriy.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'kliniko-fiziologicheskie-pokazateli-ispolzovaniya-preryvistoy-pnevmokompressii-dlya-profilaktiki-tromboza-glubokih-ven-i-tromboembolii-lyogochnyh-arteriy.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=1.0000
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.23s | generation=14.84s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 29/30 ---
+2026-03-20 21:21:15 | Q: Какой препарат был назначен пациентке в составе терапии при комплексном регионарном болевом синдроме?
+2026-03-20 21:21:15 | Expected sources: ['kompleksnyy-regionarnyy-bolevoy-sindrom.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'kompleksnyy-regionarnyy-bolevoy-sindrom.pdf': [3]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=0.1667 | R@10=1.0000 | MRR=0.1667 | NDCG@10=0.3562
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=13.83s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | --- Question 30/30 ---
+2026-03-20 21:21:15 | Q: Какой процент пациентов, получающих гипотензивную терапию, достигают целевых значений артериального давления в реальной амбулаторной практике?
+2026-03-20 21:21:15 | Expected sources: ['lechenie-patsientov-s-arterialnoy-gipertenziey-v-realnoy-ambulatornoy-praktike.pdf']
+2026-03-20 21:21:15 | Используется PAGE-BASED релевантность
+2026-03-20 21:21:15 | Expected pages: {'lechenie-patsientov-s-arterialnoy-gipertenziey-v-realnoy-ambulatornoy-praktike.pdf': [1]}
+2026-03-20 21:21:15 | Retrieval (page-based) | AP@10=1.0000 | R@10=1.0000 | MRR=1.0000 | NDCG@10=0.9709
+2026-03-20 21:21:15 | Generation | Running LLM Judge (reference-based)...
+2026-03-20 21:21:15 | Generation | Answer Correctness=5 | Faithfulness=5 | Answer Relevancy=5 | Completeness=5 | Coherence=N/A
+2026-03-20 21:21:15 | Timing | retrieval=0.19s | generation=21.12s
+2026-03-20 21:21:15 | 
+2026-03-20 21:21:15 | ============================================================
+2026-03-20 21:21:15 | SUMMARY
+2026-03-20 21:21:15 | ============================================================
+2026-03-20 21:21:15 | Retrieval (avg, 30 questions):
+2026-03-20 21:21:15 |   MAP@10:        0.6987
+2026-03-20 21:21:15 |   Recall@10:     0.9833
+2026-03-20 21:21:15 |   MRR:               0.7443
+2026-03-20 21:21:15 |   NDCG@10:       0.7654
+2026-03-20 21:21:15 | Generation (avg, 30 questions):
+2026-03-20 21:21:15 |   Answer Correctness: 4.43
+2026-03-20 21:21:15 |   Faithfulness:       4.79
+2026-03-20 21:21:15 |   Answer Relevancy:   4.90
+2026-03-20 21:21:15 |   Completeness:       4.30
+2026-03-20 21:21:15 |   Coherence:          4.00
+2026-03-20 21:21:15 | Total time: 247.9s
+2026-03-20 21:21:15 | ============================================================

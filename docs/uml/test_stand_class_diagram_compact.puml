@@ -1,0 +1,122 @@
+@startuml compareRAG_test_stand_compact
+' Компактная UML-диаграмма классов стенда compareRAG (для вставки в ВКР).
+' Показывает модульную архитектуру: паттерны "Стратегия" + "Фабрика",
+' конвейер обработки запроса и подсистему оценки.
+
+title Экспериментальный стенд compareRAG (упрощённая диаграмма классов)
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam linetype ortho
+skinparam nodesep 25
+skinparam ranksep 35
+skinparam class {
+    BackgroundColor #FDFDFD
+    BorderColor #444444
+    ArrowColor #444444
+}
+hide empty members
+
+' ---------- Конвейер обработки запроса ----------
+class SimpleRAGOrchestrator {
+    +query(q, k): Dict
+}
+class SynthesisAgent
+class LMStudioClient
+
+' ---------- Стратегии (абстракции + фабрики) ----------
+abstract class BaseChunker {
+    +chunk(doc): List<Chunk>
+}
+note bottom of BaseChunker
+  Chonkie (Token / Sentence /
+  Semantic / Recursive),
+  LangChain
+end note
+
+abstract class BaseEmbedder {
+    +embed_query(t): Vector
+}
+note bottom of BaseEmbedder
+  LMStudioEmbedder
+  (/v1/embeddings)
+end note
+
+abstract class BaseVectorStore {
+    +similarity_search(e, k)
+}
+note bottom of BaseVectorStore
+  ChromaStore
+  (ChromaDB, cosine)
+end note
+
+abstract class BaseRetriever {
+    +retrieve(q, k): RetrievalResult
+}
+note bottom of BaseRetriever
+  Semantic / BM25 /
+  Hybrid (RRF)
+end note
+
+class Reranker {
+    +score(q, docs)
+}
+note bottom of Reranker
+  CrossEncoder (bge/jina),
+  Qwen3 causal LM
+end note
+
+class Factories <<Factory>> {
+    +create_chunker()
+    +create_embedder()
+    +create_vector_store()
+    +create_retriever()
+    +create_reranker()
+}
+
+' ---------- Конфигурация и данные ----------
+class RAGConfig <<Pydantic>>
+class PDFLoader
+class "Document / Chunk" as DocChunk <<dataclass>>
+
+' ---------- Оценка ----------
+class RetrievalMetrics {
+    MAP@k, Recall@k,
+    MRR, NDCG@k
+}
+class LLMJudge {
+    Correctness, Faithfulness,
+    Relevancy, Completeness (1..5)
+}
+
+' ---------- Точки входа ----------
+class ingest_documents <<script>>
+class run_evaluation <<script>>
+
+' ===================== СВЯЗИ =====================
+SimpleRAGOrchestrator o--> BaseRetriever
+SimpleRAGOrchestrator o--> SynthesisAgent
+SynthesisAgent o--> LMStudioClient
+
+BaseRetriever o--> BaseEmbedder
+BaseRetriever o--> BaseVectorStore
+BaseRetriever o--> Reranker
+
+PDFLoader ..> DocChunk
+BaseChunker ..> DocChunk
+
+Factories ..> BaseChunker
+Factories ..> BaseEmbedder
+Factories ..> BaseVectorStore
+Factories ..> BaseRetriever
+Factories ..> Reranker
+RAGConfig ..> Factories
+
+ingest_documents ..> PDFLoader
+ingest_documents ..> Factories
+run_evaluation ..> SimpleRAGOrchestrator
+run_evaluation ..> RetrievalMetrics
+run_evaluation ..> LLMJudge
+run_evaluation ..> RAGConfig
+
+@enduml

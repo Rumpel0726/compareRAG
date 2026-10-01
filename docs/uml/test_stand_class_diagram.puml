@@ -1,0 +1,296 @@
+@startuml compareRAG_test_stand
+' UML-диаграмма классов экспериментального стенда compareRAG
+' Описывает модульную архитектуру (паттерны "Стратегия" и "Фабрика"),
+' конвейер обработки запроса и подсистему оценки (retrieval + generation).
+
+title Экспериментальный стенд compareRAG — диаграмма классов
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor #FDFDFD
+    BorderColor #444444
+    ArrowColor #444444
+}
+
+' ============================================================
+package "Конфигурация" {
+    class RAGConfig <<Pydantic>> {
+        +lm_studio: LMStudioConfig
+        +chromadb: ChromaDBConfig
+        +chunking: ChunkingConfig
+        +retrieval: RetrievalConfig
+        +data_dir: str
+        +results_dir: str
+        +embedding_model_id: str
+        --
+        +{static} load_config(path): RAGConfig
+    }
+}
+
+' ============================================================
+package "Обработка документов" {
+    class PDFLoader {
+        +load(path): List<Document>
+        -mark_pages(text): str  ' [Страница N]
+    }
+    class TextCleaner {
+        +clean(text): str  ' Unicode-нормализация
+    }
+    class MetadataExtractor {
+        +extract(doc): Dict
+    }
+
+    class Document <<dataclass>> {
+        +text: str
+        +metadata: Dict
+    }
+    class Chunk <<dataclass>> {
+        +text: str
+        +metadata: Dict
+        +chunk_id: str
+    }
+}
+
+' ============================================================
+package "Чанкинг (Strategy)" {
+    abstract class BaseChunker {
+        +chunk_size: int
+        +chunk_overlap: int
+        --
+        +{abstract} chunk(doc): List<Chunk>
+        +{abstract} chunk_text(text, meta): List<Chunk>
+        +chunk_documents(docs): List<Chunk>
+        +get_stats(): Dict
+    }
+    class ChonkieChunker
+    class SentenceChunkerWrapper
+    class SemanticChunkerWrapper
+    class RecursiveChunker
+    class LangChainChunker
+
+    class ChunkingStrategyFactory <<Factory>> {
+        +{static} create(strategy, **kwargs): BaseChunker
+    }
+}
+
+' ============================================================
+package "Эмбеддинги (Strategy)" {
+    abstract class BaseEmbedder {
+        +model_name: str
+        +embedding_dimension: int
+        --
+        +{abstract} embed_documents(texts): List<Vector>
+        +{abstract} embed_query(text): Vector
+        +embed_batch(texts, size=32): List<Vector>
+    }
+    class LMStudioEmbedder {
+        ' POST /v1/embeddings, batch=32, retry x3
+    }
+    class EmbedderFactory <<Factory>> {
+        +{static} create_embedder_from_config(cfg): BaseEmbedder
+    }
+}
+
+' ============================================================
+package "Векторное хранилище" {
+    abstract class BaseVectorStore {
+        +collection_name: str
+        --
+        +{abstract} add_documents(chunks, embs, ids)
+        +{abstract} similarity_search(q_emb, k, filter): List<SearchResult>
+        +{abstract} delete_collection()
+        +get_all_chunks(): List<Chunk>
+    }
+    class ChromaStore {
+        ' ChromaDB (SQLite), cosine distance
+    }
+    class SearchResult <<dataclass>> {
+        +chunk: Chunk
+        +score: float
+        +distance: float
+    }
+    class VectorStoreFactory <<Factory>> {
+        +{static} create_vector_store_from_config(cfg): BaseVectorStore
+    }
+}
+
+' ============================================================
+package "Поиск (Strategy)" {
+    abstract class BaseRetriever {
+        +top_k: int
+        --
+        +{abstract} retrieve(query, k, filter): RetrievalResult
+        +{abstract} retrieve_batch(queries, k): List<RetrievalResult>
+        +rerank_results(results, query): List<SearchResult>
+    }
+    class SemanticRetriever {
+        ' cosine similarity
+        +reranker: Reranker [0..1]
+    }
+    class BM25Retriever {
+        ' BM25Okapi + pymorphy2 (лемматизация)
+    }
+    class HybridRetriever {
+        ' Semantic + BM25 -> RRF (k=60)
+        +reranker: Reranker [0..1]
+    }
+    class RetrievalResult <<dataclass>> {
+        +chunks: List<Chunk>
+        +scores: List<float>
+        +query: str
+    }
+    class RetrieverFactory <<Factory>> {
+        +{static} create_retriever_from_config(cfg, embedder, store, reranker): BaseRetriever
+    }
+}
+
+' ============================================================
+package "Переранжирование" {
+    class Reranker {
+        +score(query, docs): List<float>
+    }
+    class CrossEncoderReranker {
+        ' bge / jina (sentence-transformers)
+    }
+    class Qwen3CausalReranker {
+        ' P("yes") из логитов AutoModelForCausalLM
+    }
+    class RerankerFactory <<Factory>> {
+        +{static} create_reranker(model): Reranker
+    }
+}
+
+' ============================================================
+package "Агенты и LLM" {
+    abstract class BaseAgent {
+        +name: str
+        +{abstract} execute(input): AgentResult
+    }
+    class SynthesisAgent {
+        ' chunks -> LLM -> текст ответа
+        +execute(input): AgentResult
+    }
+    class SimpleRAGOrchestrator {
+        +top_k: int
+        --
+        +query(user_query, k, filter): Dict
+        +query_batch(queries, k): List<Dict>
+    }
+    class LMStudioClient {
+        ' POST /v1/chat/completions (Bearer, remote URL)
+        +model: str
+        +chat(messages): str
+    }
+}
+
+' ============================================================
+package "Оценка" {
+    class RetrievalMetrics {
+        +{static} compute_all(retrieved, expected): Dict
+        ' MAP@k, Recall@k, MRR, NDCG@k
+    }
+    class LLMJudge {
+        +judge(question, ref, answer, ctx): Dict
+        ' Correctness, Faithfulness, Relevancy, Completeness (1..5)
+    }
+    class EvalQuestion <<dataclass>> {
+        +question: str
+        +expected_sources: List<str>
+        +expected_pages: Dict
+        +reference_answer: str
+    }
+}
+
+' ============================================================
+package "Внешние сервисы" <<Cloud>> {
+    class "LM Studio\n(/v1/embeddings)" as LMStudio <<external>>
+    class "polza.ai\n(/v1/chat/completions)" as Polza <<external>>
+    class "ChromaDB\n(SQLite)" as Chroma <<external>>
+}
+
+' ============================================================
+package "Точки входа (CLI)" {
+    class ingest_documents <<script>> {
+        ' PDF -> chunks -> embeddings -> ChromaDB
+    }
+    class run_evaluation <<script>> {
+        ' 30 вопросов x pipeline -> метрики + логи
+    }
+}
+
+' ===================== НАСЛЕДОВАНИЕ =========================
+BaseChunker <|-- ChonkieChunker
+BaseChunker <|-- SentenceChunkerWrapper
+BaseChunker <|-- SemanticChunkerWrapper
+BaseChunker <|-- RecursiveChunker
+BaseChunker <|-- LangChainChunker
+
+BaseEmbedder <|-- LMStudioEmbedder
+BaseVectorStore <|-- ChromaStore
+
+BaseRetriever <|-- SemanticRetriever
+BaseRetriever <|-- BM25Retriever
+BaseRetriever <|-- HybridRetriever
+
+Reranker <|-- CrossEncoderReranker
+Reranker <|-- Qwen3CausalReranker
+
+BaseAgent <|-- SynthesisAgent
+
+' ===================== ФАБРИКИ ==============================
+ChunkingStrategyFactory ..> BaseChunker : creates
+EmbedderFactory ..> BaseEmbedder : creates
+VectorStoreFactory ..> BaseVectorStore : creates
+RetrieverFactory ..> BaseRetriever : creates
+RerankerFactory ..> Reranker : creates
+
+' ===================== АССОЦИАЦИИ ===========================
+SimpleRAGOrchestrator o--> BaseRetriever
+SimpleRAGOrchestrator o--> SynthesisAgent
+SimpleRAGOrchestrator ..> RetrievalResult
+SynthesisAgent o--> LMStudioClient
+
+HybridRetriever o--> SemanticRetriever
+HybridRetriever o--> BM25Retriever
+SemanticRetriever o--> BaseEmbedder
+SemanticRetriever o--> BaseVectorStore
+SemanticRetriever o--> Reranker
+HybridRetriever o--> Reranker
+BaseRetriever ..> RetrievalResult : returns
+BaseVectorStore ..> SearchResult : returns
+
+BaseChunker ..> Chunk : produces
+BaseChunker ..> Document : consumes
+PDFLoader ..> Document : produces
+PDFLoader ..> TextCleaner
+PDFLoader ..> MetadataExtractor
+
+LMStudioEmbedder ..> LMStudio : HTTP
+ChromaStore ..> Chroma
+LMStudioClient ..> Polza : HTTP
+LLMJudge o--> LMStudioClient
+
+' ===================== ОЦЕНКА ===============================
+run_evaluation ..> SimpleRAGOrchestrator : drives
+run_evaluation ..> RetrievalMetrics
+run_evaluation ..> LLMJudge
+run_evaluation ..> EvalQuestion
+run_evaluation ..> RAGConfig
+
+' ===================== ИНДЕКСАЦИЯ ===========================
+ingest_documents ..> PDFLoader
+ingest_documents ..> ChunkingStrategyFactory
+ingest_documents ..> EmbedderFactory
+ingest_documents ..> VectorStoreFactory
+ingest_documents ..> RAGConfig
+
+' ===================== КОНФИГ ===============================
+RAGConfig ..> ChunkingStrategyFactory
+RAGConfig ..> EmbedderFactory
+RAGConfig ..> VectorStoreFactory
+RAGConfig ..> RetrieverFactory
+
+@enduml
