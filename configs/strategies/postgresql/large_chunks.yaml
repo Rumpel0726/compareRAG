@@ -1,0 +1,36 @@
+# TokenChunker (Chonkie) — большие чанки (1024) — домен: документация PostgreSQL
+
+lm_studio:
+  url: "http://127.0.0.1:1234"
+  llm_model: "qwen/qwen3-14b"
+  embedding_model: "text-embedding-nomic-embed-text-v1.5"
+  temperature: 0.7
+  max_tokens: 2000
+  timeout: 300
+
+chromadb:
+  path: "./chroma_db"
+  collection_name: "postgresql_large"
+  distance_function: "cosine"
+
+chunking:
+  strategy: "chonkie"
+  chunk_size: 1024
+  chunk_overlap: 100
+
+retrieval:
+  strategy: "semantic"
+  top_k: 10
+  score_threshold: 0.0
+  rrf_k: 60
+  bm25_k1: 1.5
+  bm25_b: 0.75
+
+logging:
+  level: "INFO"
+  log_dir: "./logs"
+  rotation: "500 MB"
+  retention: "10 days"
+
+data_dir: "./data/PostrgreSQL"
+results_dir: "./results/postgresql_large"
