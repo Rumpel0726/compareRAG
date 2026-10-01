@@ -7,11 +7,15 @@ from typing import List, Dict, Any
 from loguru import logger
 
 try:
-    from langchain.text_splitter import RecursiveCharacterTextSplitter
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
     LANGCHAIN_AVAILABLE = True
 except ImportError:
-    LANGCHAIN_AVAILABLE = False
-    logger.warning("LangChain не установлен.")
+    try:
+        from langchain.text_splitter import RecursiveCharacterTextSplitter
+        LANGCHAIN_AVAILABLE = True
+    except ImportError:
+        LANGCHAIN_AVAILABLE = False
+        logger.warning("LangChain не установлен.")
 
 from ..core.base_chunker import BaseChunker, Document, Chunk
 from ..utils.exceptions import ChunkingError

@@ -26,6 +26,7 @@ class SemanticRetriever(BaseRetriever):
         vector_store: BaseVectorStore,
         top_k: int = 5,
         relevance_threshold: float = 0.5,
+        reranker=None,
         **kwargs
     ):
         """
@@ -36,6 +37,7 @@ class SemanticRetriever(BaseRetriever):
             vector_store: Векторное хранилище
             top_k: Количество документов для извлечения
             relevance_threshold: Порог релевантности (минимальный score)
+            reranker: Опциональный Reranker для переранжирования top-N → top-k
             **kwargs: Дополнительные параметры
         """
         super().__init__(top_k=top_k, **kwargs)
@@ -43,10 +45,12 @@ class SemanticRetriever(BaseRetriever):
         self.embedder = embedder
         self.vector_store = vector_store
         self.relevance_threshold = relevance_threshold
+        self.reranker = reranker
 
         logger.debug(
             f"SemanticRetriever инициализирован: top_k={top_k}, "
-            f"threshold={relevance_threshold}"
+            f"threshold={relevance_threshold}, "
+            f"reranker={reranker.model_name if reranker else 'none'}"
         )
 
     def retrieve(
@@ -81,7 +85,9 @@ class SemanticRetriever(BaseRetriever):
         k = k or self.top_k
 
         try:
-            logger.debug(f"Поиск по запросу: '{query[:50]}...', k={k}")
+            # Если reranker задан — берём top_n кандидатов, затем переранжируем до k
+            fetch_k = self.reranker.top_n if self.reranker else k
+            logger.debug(f"Поиск по запросу: '{query[:50]}...', k={k}, fetch_k={fetch_k}")
 
             # Генерируем эмбеддинг для запроса
             query_embedding = self.embedder.embed_query(query)
@@ -89,12 +95,9 @@ class SemanticRetriever(BaseRetriever):
             # Ищем в векторной БД
             search_results = self.vector_store.similarity_search(
                 query_embedding=query_embedding,
-                k=k,
+                k=fetch_k,
                 filter_dict=filter_dict
             )
-
-            # Применяем re-ranking если нужно
-            search_results = self.rerank_results(search_results, query)
 
             # Фильтруем по релевантности
             search_results = self.filter_by_relevance(
@@ -105,6 +108,11 @@ class SemanticRetriever(BaseRetriever):
             # Извлекаем чанки и scores
             chunks = [r.chunk for r in search_results]
             scores = [r.score for r in search_results]
+
+            # Reranker (если задан)
+            if self.reranker and chunks:
+                chunks, scores = self.reranker.rerank_chunks(query, chunks, scores, k)
+                logger.debug(f"Reranker: {fetch_k} → {len(chunks)} чанков")
 
             logger.debug(f"Найдено {len(chunks)} релевантных документов")
 

@@ -89,6 +89,18 @@ python scripts/run_evaluation.py --config configs/strategies/medical/baseline.ya
 
 > Результаты записываются в `experiments/{retrieval}/{emb_folder}/{chunk_strategy}/{chunk_size}/`.
 
+### С удалённым LLM API (Polza AI) + локальными эмбеддингами
+```bash
+# Эмбеддинги — локальный LM Studio (bge-m3), LLM — Polza AI (qwen3-14b)
+python scripts/run_evaluation.py --config configs/strategies/postgresql/baseline.yaml --domain postgresql --top-k 10 --embedding-model text-embedding-bge-m3 --embedder-url http://127.0.0.1:1234 --llm-url https://polza.ai/api --llm-model qwen/qwen3-14b --api-key <ключ> --timeout 600
+
+# То же для medical
+python scripts/run_evaluation.py --config configs/strategies/medical/baseline.yaml --domain medical --top-k 10 --embedding-model text-embedding-bge-m3 --embedder-url http://127.0.0.1:1234 --llm-url https://polza.ai/api --llm-model qwen/qwen3-14b --api-key <ключ> --timeout 600
+```
+
+> `--embedder-url` указывает куда идут эмбеддинги (локально), `--llm-url` — куда генерация (remote).
+> `--api-key` передаётся в заголовок `Authorization: Bearer <ключ>`.
+
 ### Все аргументы run_evaluation.py
 | Аргумент | По умолчанию | Описание |
 |----------|-------------|----------|
@@ -99,6 +111,13 @@ python scripts/run_evaluation.py --config configs/strategies/medical/baseline.ya
 | `--add-eos-token` | `False` | Добавить EOS-токен |
 | `--eos-token` | `</s>` | EOS-токен |
 | `--verbose` | `False` | Подробный вывод чанков и ответов в консоль |
+| `--url` | из конфига | Общий URL для LLM и эмбеддингов |
+| `--llm-url` | из конфига | URL для LLM генерации (переопределяет `--url`) |
+| `--embedder-url` | из конфига | URL для эмбеддингов (переопределяет `--url`) |
+| `--llm-model` | из конфига | Модель генерации (напр. `qwen/qwen3-14b`) |
+| `--api-key` | из конфига | API-ключ для LLM (Bearer token) |
+| `--workers` | `4` | Кол-во параллельных потоков (1 = последовательно) |
+| `--timeout` | `120` | Таймаут LLM-запросов в секундах |
 
 ---
 

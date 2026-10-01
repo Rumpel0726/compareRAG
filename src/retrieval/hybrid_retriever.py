@@ -28,6 +28,7 @@ class HybridRetriever(BaseRetriever):
         bm25_retriever: BaseRetriever,
         rrf_k: int = 60,
         top_k: int = 5,
+        reranker=None,
         **kwargs
     ):
         """
@@ -45,10 +46,12 @@ class HybridRetriever(BaseRetriever):
         self.semantic = semantic_retriever
         self.bm25 = bm25_retriever
         self.rrf_k = rrf_k
+        self.reranker = reranker
 
         logger.info(
             f"HybridRetriever инициализирован: top_k={top_k}, rrf_k={rrf_k}, "
-            f"semantic={semantic_retriever}, bm25={bm25_retriever}"
+            f"semantic={semantic_retriever}, bm25={bm25_retriever}, "
+            f"reranker={reranker.model_name if reranker else 'none'}"
         )
 
     def retrieve(
@@ -116,15 +119,25 @@ class HybridRetriever(BaseRetriever):
                 )
                 chunk_map[chunk.chunk_id] = chunk
 
-            # Сортируем по убыванию RRF score, берём top-k
+            # Если reranker задан — берём top_n кандидатов из RRF, затем переранжируем до k
+            pre_rerank_k = self.reranker.top_n if self.reranker else k
+
+            # Сортируем по убыванию RRF score, берём top
             sorted_ids = sorted(
                 rrf_scores.keys(),
                 key=lambda cid: rrf_scores[cid],
                 reverse=True
-            )[:k]
+            )[:pre_rerank_k]
 
             result_chunks = [chunk_map[cid] for cid in sorted_ids]
             result_scores = [rrf_scores[cid] for cid in sorted_ids]
+
+            # Reranker (если задан): переранжируем top_n → top-k
+            if self.reranker and result_chunks:
+                result_chunks, result_scores = self.reranker.rerank_chunks(
+                    query, result_chunks, result_scores, k
+                )
+                logger.debug(f"HybridRetriever: reranker {pre_rerank_k} → {len(result_chunks)} чанков")
 
             logger.debug(
                 f"HybridRetriever: после fusion {len(result_chunks)} финальных чанков"

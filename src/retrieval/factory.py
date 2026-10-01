@@ -122,7 +122,8 @@ class RetrieverFactory:
 def create_retriever_from_config(
     config,
     embedder: BaseEmbedder,
-    vector_store: BaseVectorStore
+    vector_store: BaseVectorStore,
+    reranker=None,
 ) -> BaseRetriever:
     """
     Создает ретривер из конфигурации.
@@ -152,17 +153,20 @@ def create_retriever_from_config(
             vector_store=vector_store,
             top_k=top_k,
             relevance_threshold=config.retrieval.score_threshold,
+            reranker=reranker,
         )
 
     elif strategy == "hybrid":
-        # Каждый sub-ретривер получает candidate_k для лучшего покрытия при fusion
-        candidate_k = top_k * 3
+        # Если есть reranker — нужно достаточно RRF-кандидатов, чтобы было что переранжировать
+        rerank_top_n = reranker.top_n if reranker else 0
+        candidate_k = max(top_k * 3, rerank_top_n * 2)
 
         semantic = SemanticRetriever(
             embedder=embedder,
             vector_store=vector_store,
             top_k=candidate_k,
             relevance_threshold=0.0,  # фильтрация выполняется после RRF
+            # sub-retriever не переранжирует — переранжирование выполняется в HybridRetriever
         )
 
         bm25 = BM25Retriever(
@@ -177,6 +181,7 @@ def create_retriever_from_config(
             bm25_retriever=bm25,
             rrf_k=config.retrieval.rrf_k,
             top_k=top_k,
+            reranker=reranker,
         )
 
     else:

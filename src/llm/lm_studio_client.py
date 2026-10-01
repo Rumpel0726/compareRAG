@@ -249,24 +249,42 @@ class LMStudioClient:
         Raises:
             LLMError: Если API недоступен
         """
+        is_remote = not any(
+            local in self.url for local in ["localhost", "127.0.0.1", "0.0.0.0"]
+        )
+        check_timeout = 15 if is_remote else 5
+
         try:
             headers = {}
             if self.api_key:
                 headers["Authorization"] = f"Bearer {self.api_key}"
 
-            with httpx.Client(timeout=5) as client:
+            with httpx.Client(timeout=check_timeout) as client:
                 # Пытаемся получить список моделей
                 response = client.get(f"{self.url}/v1/models", headers=headers)
 
                 if response.status_code == 200:
-                    logger.info("LM Studio API доступен")
+                    logger.info("LLM API доступен" + (" (remote)" if is_remote else ""))
+                    return True
+                elif is_remote and response.status_code in (401, 403, 404, 405):
+                    # Удалённые API могут не поддерживать /v1/models — это ОК
+                    logger.info(
+                        f"Remote LLM API ответил {response.status_code} на /v1/models — "
+                        f"пропускаем проверку (будет проверен при первом запросе)"
+                    )
                     return True
                 else:
                     logger.warning(
-                        f"LM Studio API вернул статус {response.status_code}"
+                        f"LLM API вернул статус {response.status_code}"
                     )
 
         except Exception as e:
+            if is_remote:
+                logger.warning(
+                    f"Не удалось проверить remote LLM API ({self.url}): {e}. "
+                    f"Продолжаем — будет проверен при первом запросе."
+                )
+                return True
             logger.error(f"Не удалось подключиться к LM Studio API: {e}")
             raise LLMError(
                 f"LM Studio недоступен по адресу {self.url}. "

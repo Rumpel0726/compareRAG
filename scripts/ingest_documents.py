@@ -396,7 +396,7 @@ def main():
 
         # Финальная статистика
         logger.info("\n" + "=" * 60)
-        logger.info("✅ Индексация завершена успешно!")
+        logger.info("[OK] Индексация завершена успешно!")
         logger.info("=" * 60)
         logger.info(f"Обработано документов: {len(set(c.metadata.get('file_name') for c in chunks))}")
         logger.info(f"Создано чанков: {len(chunks)}")
@@ -406,15 +406,15 @@ def main():
         return 0
 
     except FileNotFoundError as e:
-        logger.error(f"❌ Ошибка: {e}")
+        logger.error(f"[ERROR] Ошибка: {e}")
         return 1
 
     except (DocumentProcessingError, ChunkingError, EmbeddingError, VectorStoreError) as e:
-        logger.error(f"❌ Ошибка обработки: {e}")
+        logger.error(f"[ERROR] Ошибка обработки: {e}")
         return 1
 
     except Exception as e:
-        logger.exception(f"❌ Неожиданная ошибка: {e}")
+        logger.exception(f"[ERROR] Неожиданная ошибка: {e}")
         return 1
 
 

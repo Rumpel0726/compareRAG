@@ -13,12 +13,14 @@ from .chonkie_chunker import ChonkieChunker, CHONKIE_AVAILABLE
 from .langchain_chunker import LangChainChunker, LANGCHAIN_AVAILABLE
 from .sentence_chunker import SentenceChunkerWrapper, SENTENCE_CHUNKER_AVAILABLE
 from .semantic_chunker import SemanticChunkerWrapper, SEMANTIC_CHUNKER_AVAILABLE
+from .recursive_chunker import RecursiveChunkerWrapper, RECURSIVE_CHUNKER_AVAILABLE
 
 
 # Реестр доступных чанкеров
 CHUNKER_REGISTRY: Dict[str, Type[BaseChunker]] = {
     "chonkie": ChonkieChunker,
     "langchain": LangChainChunker,
+    "recursive": RecursiveChunkerWrapper,
     "sentence": SentenceChunkerWrapper,
     "semantic_chunker": SemanticChunkerWrapper,
 }
@@ -84,6 +86,11 @@ class ChunkingStrategyFactory:
                 "Chonkie SemanticChunker недоступен. Установите: pip install chonkie"
             )
 
+        if strategy_name == "recursive" and not RECURSIVE_CHUNKER_AVAILABLE:
+            raise ChunkingError(
+                "Chonkie RecursiveChunker недоступен. Установите: pip install chonkie"
+            )
+
         # Создаем и возвращаем экземпляр чанкера
         try:
             chunker = chunker_class(**kwargs)
@@ -110,6 +117,8 @@ class ChunkingStrategyFactory:
             elif name == "langchain" and LANGCHAIN_AVAILABLE:
                 available.append(name)
             elif name == "sentence" and SENTENCE_CHUNKER_AVAILABLE:
+                available.append(name)
+            elif name == "recursive" and RECURSIVE_CHUNKER_AVAILABLE:
                 available.append(name)
             elif name == "semantic_chunker" and SEMANTIC_CHUNKER_AVAILABLE:
                 available.append(name)

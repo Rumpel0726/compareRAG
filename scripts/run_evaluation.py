@@ -28,6 +28,7 @@ from src.core.config import load_config
 from src.embeddings.factory import create_embedder_from_config
 from src.vector_stores.factory import create_vector_store_from_config
 from src.retrieval.factory import create_retriever_from_config
+from src.retrieval.reranker import Reranker, reranker_short_name
 from src.llm.lm_studio_client import LMStudioClient
 from src.agents.orchestrator import SimpleRAGOrchestrator
 from src.evaluation.questions import EVAL_QUESTIONS as EVAL_QUESTIONS_MEDICAL
@@ -79,6 +80,12 @@ def get_embedding_folder_and_abbrev(embedding_model: str) -> tuple[str, str]:
     elif base == "nomic":
         folder = "nomic"
         abbrev = "nomic"
+    elif "e5" in parts:
+        # multilingual-e5-large-instruct → folder "e5-large", abbrev "e5"
+        e5_idx = parts.index("e5")
+        size = parts[e5_idx + 1] if e5_idx + 1 < len(parts) else ""
+        folder = f"e5-{size}" if size and size != "instruct" else "e5"
+        abbrev = "e5"
     else:
         folder = base
         abbrev = base
@@ -99,7 +106,8 @@ def get_next_log_number(directory: Path, prefix: str, date_str: str) -> int:
     return max(numbers, default=0) + 1
 
 
-def build_experiment_log_paths(project_root: Path, config) -> tuple[Path, Path]:
+def build_experiment_log_paths(project_root: Path, config, domain: str = "medical",
+                                reranker_model: str = None) -> tuple[Path, Path]:
     """Build full and results log file paths for the current experiment run."""
     date_str = datetime.now().strftime("%Y-%m-%d")
     retrieval = config.retrieval.strategy          # semantic | hybrid
@@ -107,11 +115,16 @@ def build_experiment_log_paths(project_root: Path, config) -> tuple[Path, Path]:
     chunk_size = str(config.chunking.chunk_size)   # 256, 512, 1024
     emb_folder, emb_abbrev = get_embedding_folder_and_abbrev(config.lm_studio.embedding_model)
 
-    base_dir = project_root / "experiments" / retrieval / emb_folder / chunk_strategy / chunk_size
+    base_dir = project_root / "experiments" / domain / retrieval / emb_folder / chunk_strategy / chunk_size
+    # При активном reranker результаты пишутся в подпапку rerank_<short>/
+    if reranker_model:
+        base_dir = base_dir / f"rerank_{reranker_short_name(reranker_model)}"
     full_dir = base_dir / "full"
     results_dir = base_dir / "results"
 
     file_prefix = f"{retrieval}_{chunk_strategy}_{chunk_size}_{emb_abbrev}"
+    if reranker_model:
+        file_prefix = f"{file_prefix}_rerank_{reranker_short_name(reranker_model)}"
     num = max(
         get_next_log_number(full_dir, f"{file_prefix}_full", date_str),
         get_next_log_number(results_dir, f"{file_prefix}_res", date_str),
@@ -198,11 +211,19 @@ def initialize_rag(
     add_eos_token: bool = False,
     eos_token: str = None,
     timeout: int = None,
+    retrieval: str = None,
+    reranker_model: str = None,
+    rerank_top_n: int = 20,
     args = None
 ):
     """Инициализация компонентов RAG --- по паттерну web/app.py."""
     logger.info(f"Загрузка конфигурации: {config_path}")
     config = load_config(config_path)
+
+    # Переопределение retrieval strategy (если задана через CLI)
+    if retrieval:
+        config.retrieval.strategy = retrieval
+        logger.info(f"Retrieval strategy (CLI): {retrieval}")
 
     # Переопределение модели эмбеддингов (если задана через CLI)
     if embedding_model:
@@ -258,8 +279,13 @@ def initialize_rag(
         logger.error("Векторное хранилище пусто. Запустите: python scripts/ingest_documents.py")
         sys.exit(1)
 
+    reranker = None
+    if reranker_model:
+        logger.info(f"Инициализация reranker: {reranker_model} (top_n={rerank_top_n})")
+        reranker = Reranker(model=reranker_model, top_n=rerank_top_n)
+
     logger.info("Инициализация ретривера...")
-    retriever = create_retriever_from_config(config, embedder, vector_store)
+    retriever = create_retriever_from_config(config, embedder, vector_store, reranker=reranker)
 
     logger.info("Инициализация LLM клиента...")
     llm_client = LMStudioClient(
@@ -367,20 +393,26 @@ def run_evaluation(
     domain: str = "medical",
     workers: int = 4,
     timeout: int = None,
+    retrieval: str = None,
+    reranker_model: str = None,
+    rerank_top_n: int = 20,
 ) -> None:
     """Главный цикл оценки."""
     orchestrator, llm_client, config = initialize_rag(
-        config_path=config_path, 
-        top_k=top_k, 
-        embedding_model=embedding_model, 
-        api_key=api_key, 
-        url=url, 
+        config_path=config_path,
+        top_k=top_k,
+        embedding_model=embedding_model,
+        api_key=api_key,
+        url=url,
         llm_url=llm_url,
         embedder_url=embedder_url,
-        llm_model=llm_model, 
-        add_eos_token=add_eos_token, 
-        eos_token=eos_token, 
-        timeout=timeout
+        llm_model=llm_model,
+        add_eos_token=add_eos_token,
+        eos_token=eos_token,
+        timeout=timeout,
+        retrieval=retrieval,
+        reranker_model=reranker_model,
+        rerank_top_n=rerank_top_n,
     )
     judge = LLMJudge(llm_client=llm_client)
 
@@ -409,6 +441,8 @@ def run_evaluation(
     eval_log(f"Embeddings:  {config.lm_studio.embedding_model}", results=True)
     eval_log(f"Collection:  {config.chromadb.collection_name}", results=True)
     eval_log(f"Top-k:       {top_k}", results=True)
+    if reranker_model:
+        eval_log(f"Reranker:    {reranker_model} (top_n={rerank_top_n})", results=True)
     eval_log(f"Questions:   {len(EVAL_QUESTIONS)}", results=True)
     eval_log(f"Ground truth: {gt_loaded}/{len(EVAL_QUESTIONS)} эталонных ответов загружено", results=True)
     eval_log("=" * 60, results=True)
@@ -426,12 +460,17 @@ def run_evaluation(
 
     # Параллельная обработка вопросов
     completed_results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=workers) as executor:
-        future_to_idx = {executor.submit(process_question, args): args[0] for args in task_args}
-        for future in as_completed(future_to_idx):
-            res = future.result()
-            completed_results.append(res)
-            vprint(f"  [{len(completed_results)}/{total_q} готово] вопрос {res['idx']}")
+    try:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            future_to_idx = {executor.submit(process_question, args): args[0] for args in task_args}
+            for future in as_completed(future_to_idx):
+                res = future.result()
+                completed_results.append(res)
+                vprint(f"  [{len(completed_results)}/{total_q} готово] вопрос {res['idx']}")
+    except KeyboardInterrupt:
+        print("\n\nПрервано пользователем (Ctrl+C). Отменяем оставшиеся задачи...")
+        executor.shutdown(wait=False, cancel_futures=True)
+        sys.exit(130)
 
     # Сортируем по исходному порядку перед логированием
     completed_results.sort(key=lambda r: r["idx"])
@@ -631,6 +670,13 @@ def main():
         help="Домен вопросов для оценки: medical (по умолчанию), civil_code, postgresql.",
     )
     parser.add_argument(
+        "--retrieval",
+        type=str,
+        default=None,
+        choices=["semantic", "hybrid"],
+        help="Переопределить стратегию поиска из конфига (semantic или hybrid).",
+    )
+    parser.add_argument(
         "--workers",
         type=int,
         default=4,
@@ -643,6 +689,21 @@ def main():
         default=None,
         help="Таймаут LLM-запросов в секундах (переопределяет конфиг, default: 120). "
              "Увеличьте до 300-600 при больших промтах или очередях из нескольких потоков.",
+    )
+    parser.add_argument(
+        "--reranker-model",
+        type=str,
+        default=None,
+        help="Модель переранжирования (HF ID или LM Studio имя). "
+             "Пример: BAAI/bge-reranker-v2-m3 или text-embedding-bge-reranker-v2-m3. "
+             "Если задана — после retrieval извлекается top_n кандидатов, "
+             "переранжируется и возвращается top_k."
+    )
+    parser.add_argument(
+        "--rerank-top-n",
+        type=int,
+        default=20,
+        help="Сколько кандидатов извлекать ДО переранжирования (default: 20).",
     )
     args = parser.parse_args()
 
@@ -664,8 +725,12 @@ def main():
         temp_config.lm_studio.url = args.url
     if args.llm_model:
         temp_config.lm_studio.llm_model = args.llm_model
+    if args.retrieval:
+        temp_config.retrieval.strategy = args.retrieval
 
-    full_path, results_path = build_experiment_log_paths(PROJECT_ROOT, temp_config)
+    full_path, results_path = build_experiment_log_paths(
+        PROJECT_ROOT, temp_config, args.domain, reranker_model=args.reranker_model
+    )
     setup_experiment_logging(full_path, results_path)
 
     run_evaluation(
@@ -683,8 +748,15 @@ def main():
         domain=args.domain,
         workers=args.workers,
         timeout=args.timeout,
+        retrieval=args.retrieval,
+        reranker_model=args.reranker_model,
+        rerank_top_n=args.rerank_top_n,
     )
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nПрервано пользователем (Ctrl+C)")
+        sys.exit(130)

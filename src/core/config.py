@@ -46,7 +46,12 @@ class LMStudioConfig(BaseSettings):
             name = name[len("text-embedding-"):]
         if "/" in name:
             name = name.split("/")[-1]
-        return name.split("-")[0]
+        if ":" in name:
+            name = name.split(":")[0]
+        parts = name.split("-")
+        if "e5" in parts:
+            return "e5"
+        return parts[0]
 
 
 class ChromaDBConfig(BaseSettings):
