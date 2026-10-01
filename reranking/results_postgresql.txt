@@ -1,0 +1,66 @@
+======================================================================
+  DOMAIN: POSTGRESQL  (2 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | e5-large | chonkie/512 | rerank_bge-rerank-v2 | 2026-05-14_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 15:31:56
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-multilingual-e5-large-instruct
+Collection:  postgresql_baseline_e5
+Top-k:       10
+Reranker:    BAAI/bge-reranker-v2-m3 (top_n=20)
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7137
+  Recall@10:     0.8833
+  MRR:               0.8594
+  NDCG@10:       0.8375
+Generation (avg, 30 questions):
+  Answer Correctness: 4.73
+  Faithfulness:       4.67
+  Answer Relevancy:   4.93
+  Completeness:       4.63
+Total time: 745.4s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | e5-large | chonkie/512 | rerank_jina-rerank-v2 | 2026-05-14_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 17:10:50
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-multilingual-e5-large-instruct
+Collection:  postgresql_baseline_e5
+Top-k:       10
+Reranker:    jinaai/jina-reranker-v2-base-multilingual (top_n=20)
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7505
+  Recall@10:     0.9278
+  MRR:               0.8790
+  NDCG@10:       0.8621
+Generation (avg, 30 questions):
+  Answer Correctness: 4.77
+  Faithfulness:       4.70
+  Answer Relevancy:   4.93
+  Completeness:       4.63
+Total time: 1633.4s
+============================================================
+

@@ -1,0 +1,283 @@
+======================================================================
+  DOMAIN: MEDICAL  (9 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 19:50:18
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\large_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_large_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7288
+  Recall@10:     0.9000
+  MRR:               0.7831
+  NDCG@10:       0.7482
+Generation (avg, 30 questions):
+  Answer Correctness: 4.73
+  Faithfulness:       4.86
+  Answer Relevancy:   4.93
+  Completeness:       4.67
+  Coherence:          5.00
+Total time: 244.8s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 19:42:10
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\small_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_small_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.5694
+  Recall@10:     0.8667
+  MRR:               0.6154
+  NDCG@10:       0.6434
+Generation (avg, 30 questions):
+  Answer Correctness: 3.77
+  Faithfulness:       4.38
+  Answer Relevancy:   4.67
+  Completeness:       3.50
+  Coherence:          5.00
+Total time: 207.9s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 19:46:23
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_baseline_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6483
+  Recall@10:     0.8333
+  MRR:               0.7029
+  NDCG@10:       0.6741
+Generation (avg, 30 questions):
+  Answer Correctness: 4.53
+  Faithfulness:       4.90
+  Answer Relevancy:   4.90
+  Completeness:       4.60
+  Coherence:          5.00
+Total time: 191.0s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:22:10
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\recursive_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_recursive_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6594
+  Recall@10:     0.9167
+  MRR:               0.7081
+  NDCG@10:       0.7047
+Generation (avg, 29 questions):
+  Answer Correctness: 4.62
+  Faithfulness:       4.79
+  Answer Relevancy:   4.97
+  Completeness:       4.48
+  Coherence:          5.00
+Total time: 118.8s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:12:02
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\recursive_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_recursive_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6862
+  Recall@10:     0.9500
+  MRR:               0.7379
+  NDCG@10:       0.7649
+Generation (avg, 30 questions):
+  Answer Correctness: 3.27
+  Faithfulness:       4.59
+  Answer Relevancy:   4.57
+  Completeness:       3.10
+  Coherence:          5.00
+Total time: 221.8s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:16:25
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\recursive_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_recursive_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6884
+  Recall@10:     0.9167
+  MRR:               0.7534
+  NDCG@10:       0.7223
+Generation (avg, 30 questions):
+  Answer Correctness: 4.57
+  Faithfulness:       4.90
+  Answer Relevancy:   4.93
+  Completeness:       4.50
+  Coherence:          5.00
+Total time: 305.5s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:08:57
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\sentence_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_sentence_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7273
+  Recall@10:     0.9333
+  MRR:               0.7714
+  NDCG@10:       0.7550
+Generation (avg, 30 questions):
+  Answer Correctness: 4.87
+  Faithfulness:       4.97
+  Answer Relevancy:   5.00
+  Completeness:       4.87
+  Coherence:          5.00
+Total time: 143.1s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 19:55:03
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\sentence_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_sentence_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6198
+  Recall@10:     0.8667
+  MRR:               0.6844
+  NDCG@10:       0.7035
+Generation (avg, 30 questions):
+  Answer Correctness: 4.33
+  Faithfulness:       4.86
+  Answer Relevancy:   4.93
+  Completeness:       4.23
+  Coherence:          5.00
+Total time: 421.2s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:02:46
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_sentence_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7085
+  Recall@10:     0.9167
+  MRR:               0.7370
+  NDCG@10:       0.7640
+Generation (avg, 30 questions):
+  Answer Correctness: 4.33
+  Faithfulness:       4.66
+  Answer Relevancy:   4.83
+  Completeness:       4.20
+  Coherence:          5.00
+Total time: 330.8s
+============================================================
+

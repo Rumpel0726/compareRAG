@@ -1,0 +1,274 @@
+======================================================================
+  DOMAIN: POSTGRESQL  (9 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:10:31
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\large_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_large_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.5707
+  Recall@10:     0.8278
+  MRR:               0.6859
+  NDCG@10:       0.7292
+Generation (avg, 29 questions):
+  Answer Correctness: 4.66
+  Faithfulness:       4.59
+  Answer Relevancy:   4.86
+  Completeness:       4.48
+Total time: 167.5s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:05:30
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\small_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_small_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.5668
+  Recall@10:     0.8333
+  MRR:               0.6531
+  NDCG@10:       0.7153
+Generation (avg, 30 questions):
+  Answer Correctness: 4.53
+  Faithfulness:       4.33
+  Answer Relevancy:   4.83
+  Completeness:       4.30
+Total time: 162.7s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:08:32
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_baseline_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6868
+  Recall@10:     0.8833
+  MRR:               0.8170
+  NDCG@10:       0.7888
+Generation (avg, 30 questions):
+  Answer Correctness: 4.67
+  Faithfulness:       4.70
+  Answer Relevancy:   4.87
+  Completeness:       4.53
+Total time: 100.0s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:34:50
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\recursive_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_recursive_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6092
+  Recall@10:     0.7889
+  MRR:               0.7256
+  NDCG@10:       0.7459
+Generation (avg, 30 questions):
+  Answer Correctness: 4.80
+  Faithfulness:       4.67
+  Answer Relevancy:   4.93
+  Completeness:       4.73
+Total time: 344.7s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:26:36
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\recursive_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_recursive_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.5565
+  Recall@10:     0.8278
+  MRR:               0.6583
+  NDCG@10:       0.6926
+Generation (avg, 29 questions):
+  Answer Correctness: 4.21
+  Faithfulness:       4.07
+  Answer Relevancy:   4.66
+  Completeness:       3.93
+Total time: 215.7s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:30:30
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\recursive_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_recursive_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6296
+  Recall@10:     0.8222
+  MRR:               0.7483
+  NDCG@10:       0.7659
+Generation (avg, 30 questions):
+  Answer Correctness: 4.27
+  Faithfulness:       4.20
+  Answer Relevancy:   4.70
+  Completeness:       4.03
+Total time: 242.9s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:20:37
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\sentence_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_sentence_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6428
+  Recall@10:     0.8278
+  MRR:               0.7569
+  NDCG@10:       0.7677
+Generation (avg, 30 questions):
+  Answer Correctness: 4.73
+  Faithfulness:       4.80
+  Answer Relevancy:   4.87
+  Completeness:       4.60
+Total time: 341.5s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:13:36
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\sentence_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_sentence_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6950
+  Recall@10:     0.8667
+  MRR:               0.7876
+  NDCG@10:       0.7981
+Generation (avg, 29 questions):
+  Answer Correctness: 4.45
+  Faithfulness:       4.38
+  Answer Relevancy:   4.79
+  Completeness:       4.17
+Total time: 180.8s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:16:54
+Config:      C:\ragAI\compareRAG\configs\strategies\postgresql\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  postgresql_sentence_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.6451
+  Recall@10:     0.8444
+  MRR:               0.7492
+  NDCG@10:       0.7788
+Generation (avg, 29 questions):
+  Answer Correctness: 4.55
+  Faithfulness:       4.66
+  Answer Relevancy:   4.83
+  Completeness:       4.41
+Total time: 204.9s
+============================================================
+

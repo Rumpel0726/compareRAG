@@ -1,0 +1,68 @@
+======================================================================
+  DOMAIN: MEDICAL  (2 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: semantic | bge-m3 | sentence/512 | rerank_bge-rerank-v2 | 2026-05-14_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 15:16:12
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_sentence_512_bge
+Top-k:       10
+Reranker:    BAAI/bge-reranker-v2-m3 (top_n=20)
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7911
+  Recall@10:     0.9667
+  MRR:               0.8362
+  NDCG@10:       0.8332
+Generation (avg, 30 questions):
+  Answer Correctness: 4.70
+  Faithfulness:       4.72
+  Answer Relevancy:   4.93
+  Completeness:       4.60
+  Coherence:          5.00
+Total time: 908.6s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: semantic | bge-m3 | sentence/512 | rerank_jina-rerank-v2 | 2026-05-14_02
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 16:04:50
+Config:      C:\ragAI\compareRAG\configs\strategies\medical\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  medical_docs_sentence_512_bge
+Top-k:       10
+Reranker:    jinaai/jina-reranker-v2-base-multilingual (top_n=20)
+Questions:   30
+Ground truth: 29/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7479
+  Recall@10:     0.9667
+  MRR:               0.7794
+  NDCG@10:       0.7944
+Generation (avg, 30 questions):
+  Answer Correctness: 4.77
+  Faithfulness:       4.86
+  Answer Relevancy:   4.97
+  Completeness:       4.63
+  Coherence:          5.00
+Total time: 3925.0s
+============================================================
+

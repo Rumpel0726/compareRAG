@@ -1,0 +1,81 @@
+======================================================================
+  DOMAIN: CIVIL_CODE  (3 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | rerank_bge-rerank-v2 | 2026-05-14_02
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 12:29:05
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_512_bge
+Top-k:       10
+Reranker:    BAAI/bge-reranker-v2-m3 (top_n=20)
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8655
+  Recall@10:     0.9333
+  MRR:               0.9667
+  NDCG@10:       0.9099
+Generation (avg, 30 questions):
+  Answer Correctness: 4.63
+  Faithfulness:       4.63
+  Answer Relevancy:   4.90
+  Completeness:       4.57
+Total time: 867.6s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | rerank_jina-rerank-v2 | 2026-05-14_04
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 14:27:22
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_512_bge
+Top-k:       10
+Reranker:    jinaai/jina-reranker-v2-base-multilingual (top_n=20)
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8494
+  Recall@10:     0.9333
+  MRR:               0.9667
+  NDCG@10:       0.9049
+Generation (avg, 30 questions):
+  Answer Correctness: 4.53
+  Faithfulness:       4.60
+  Answer Relevancy:   4.87
+  Completeness:       4.47
+Total time: 2022.4s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | rerank_qwen3-rerank-06b | 2026-05-14_04
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-14 15:01:45
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_512_bge
+Top-k:       10
+Reranker:    Qwen/Qwen3-Reranker-0.6B (top_n=20)
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+

@@ -1,0 +1,274 @@
+======================================================================
+  DOMAIN: CIVIL_CODE  (9 experiment(s))
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:34:12
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\large_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_large_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7205
+  Recall@10:     0.8889
+  MRR:               0.8417
+  NDCG@10:       0.8277
+Generation (avg, 30 questions):
+  Answer Correctness: 4.57
+  Faithfulness:       4.67
+  Answer Relevancy:   4.87
+  Completeness:       4.50
+Total time: 442.5s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:24:42
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\small_chunks.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_small_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8017
+  Recall@10:     0.8778
+  MRR:               0.9333
+  NDCG@10:       0.9176
+Generation (avg, 30 questions):
+  Answer Correctness: 4.03
+  Faithfulness:       4.00
+  Answer Relevancy:   4.67
+  Completeness:       3.67
+Total time: 246.1s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | chonkie/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:29:20
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_baseline_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7974
+  Recall@10:     0.9333
+  MRR:               0.8861
+  NDCG@10:       0.8814
+Generation (avg, 30 questions):
+  Answer Correctness: 4.57
+  Faithfulness:       4.63
+  Answer Relevancy:   4.97
+  Completeness:       4.47
+Total time: 260.8s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 21:00:40
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\recursive_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_recursive_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7538
+  Recall@10:     0.9444
+  MRR:               0.8486
+  NDCG@10:       0.8516
+Generation (avg, 29 questions):
+  Answer Correctness: 4.69
+  Faithfulness:       4.72
+  Answer Relevancy:   4.90
+  Completeness:       4.66
+Total time: 270.9s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:54:47
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\recursive_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_recursive_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7611
+  Recall@10:     0.9111
+  MRR:               0.8778
+  NDCG@10:       0.8749
+Generation (avg, 30 questions):
+  Answer Correctness: 3.67
+  Faithfulness:       3.77
+  Answer Relevancy:   4.47
+  Completeness:       3.13
+Total time: 169.4s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | recursive/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:58:04
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\recursive_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_recursive_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.7833
+  Recall@10:     0.9333
+  MRR:               0.9067
+  NDCG@10:       0.8829
+Generation (avg, 30 questions):
+  Answer Correctness: 4.47
+  Faithfulness:       4.23
+  Answer Relevancy:   4.90
+  Completeness:       4.27
+Total time: 128.3s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/1024 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:47:04
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_large.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_1024_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8075
+  Recall@10:     0.9333
+  MRR:               0.9000
+  NDCG@10:       0.8787
+Generation (avg, 30 questions):
+  Answer Correctness: 4.67
+  Faithfulness:       4.67
+  Answer Relevancy:   4.97
+  Completeness:       4.63
+Total time: 433.6s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/256 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:42:02
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_small.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_256_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8228
+  Recall@10:     0.9000
+  MRR:               0.9333
+  NDCG@10:       0.9008
+Generation (avg, 30 questions):
+  Answer Correctness: 4.57
+  Faithfulness:       4.37
+  Answer Relevancy:   4.90
+  Completeness:       4.27
+Total time: 114.1s
+============================================================
+
+──────────────────────────────────────────────────────────────────────
+EXPERIMENT: hybrid | bge-m3 | sentence/512 | 2026-05-11_01
+──────────────────────────────────────────────────────────────────────
+============================================================
+EVALUATION RUN: 2026-05-11 20:44:24
+Config:      C:\ragAI\compareRAG\configs\strategies\civil_code\sentence_baseline.yaml
+Model:       qwen/qwen3-14b
+Embeddings:  text-embedding-bge-m3
+Collection:  civil_code_sentence_512_bge
+Top-k:       10
+Questions:   30
+Ground truth: 30/30 эталонных ответов загружено
+============================================================
+
+============================================================
+SUMMARY
+============================================================
+Retrieval (avg, 30 questions):
+  MAP@10:        0.8396
+  Recall@10:     0.9222
+  MRR:               0.9667
+  NDCG@10:       0.9143
+Generation (avg, 30 questions):
+  Answer Correctness: 4.60
+  Faithfulness:       4.53
+  Answer Relevancy:   5.00
+  Completeness:       4.50
+Total time: 132.7s
+============================================================
+
