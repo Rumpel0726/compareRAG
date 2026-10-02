@@ -88,3 +88,12 @@ nul
 !experiments/**/results/
 !experiments/**/*.log
 .claude/
+
+# Local corpora, scratch files and run progress
+data/
+/_*.txt
+/*_progress.json
+/results_*.txt
+/ragAIcompareRAGreranking/
+/test_polza_embeddings.py
+/=*
