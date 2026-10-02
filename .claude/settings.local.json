@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(powershell -NoProfile -Command \"Get-ChildItem -Path ''c:\\\\ragAI\\\\compareRAG'' -Recurse -Name | Sort-Object\")"
-    ]
-  }
-}

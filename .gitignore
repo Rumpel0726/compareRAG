@@ -87,3 +87,4 @@ nul
 # Experiment logs are committed (checked: no API keys)
 !experiments/**/results/
 !experiments/**/*.log
+.claude/
