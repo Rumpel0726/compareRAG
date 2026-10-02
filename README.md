@@ -90,17 +90,22 @@ Recall@k растёт монотонно, а NDCG@k на ГК РФ и PostgreSQL
 ## Как устроено
 
 ```mermaid
-flowchart LR
-    A[PDF-корпус] --> B[Разбиение<br/>Token · Sentence · Recursive · Semantic]
-    B --> C[Эмбеддинги<br/>BGE-M3 · E5-Large · Qwen3-0.6B]
-    C --> D[(ChromaDB)]
-    Q[Вопрос] --> E[Поиск<br/>семантический / гибридный BM25 + RRF]
-    D --> E
-    E --> F[Переранжирование<br/>cross-encoder, опционально]
-    F --> G[LLM<br/>Qwen3-14B]
-    G --> H[Ответ]
-    E -. MAP · Recall · MRR · NDCG .-> M[Оценка]
-    H -. LLM-as-a-Judge: AC · Faithfulness<br/>Relevancy · Completeness .-> M
+flowchart TB
+    subgraph IDX["Индексация"]
+        direction LR
+        A[PDF-корпус] --> B["Разбиение<br/>Token · Sentence · Recursive"] --> C["Эмбеддинги<br/>BGE-M3 · E5-Large · Qwen3-0.6B"] --> D[(ChromaDB)]
+    end
+    subgraph QRY["Ответ на вопрос"]
+        direction LR
+        Q[Вопрос] --> E["Поиск<br/>семантический или BM25 + RRF"] --> F["Переранжирование<br/>cross-encoder, опционально"] --> G["LLM<br/>Qwen3-14B"] --> H[Ответ]
+    end
+    subgraph EV["Оценка"]
+        direction LR
+        R["Метрики поиска<br/>MAP · Recall · MRR · NDCG"]
+        J["LLM-судья<br/>AC · Faithfulness · Relevancy · Completeness"]
+    end
+    IDX --> QRY
+    QRY --> EV
 ```
 
 - **Модульность:** каждый компонент реализует базовый интерфейс (`src/core/base_*.py`) и создаётся фабрикой по имени из конфига. Новая стратегия добавляется одним классом и строкой в реестре.
